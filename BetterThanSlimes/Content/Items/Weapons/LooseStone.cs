@@ -27,7 +27,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.consumable = true;
 
             // Weapon Properties
-            Item.damage = 7;
+            Item.damage = 5;
             Item.knockBack = 3;
             Item.noUseGraphic = true;
             Item.noMelee = true;
