@@ -1,0 +1,3 @@
+displayName = Better than Slimes
+author = minitoast
+version = 0.1

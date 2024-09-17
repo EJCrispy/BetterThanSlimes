@@ -1,0 +1,8 @@
+Items: {
+	LooseStone: {
+		DisplayName: Loose Stone
+		Tooltip: ""
+	}
+}
+
+Projectiles.LooseStoneProjectile.DisplayName: Loose Stone Projectile
