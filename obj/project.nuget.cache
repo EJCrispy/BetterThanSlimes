@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "qQ/JZERmmZo=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\jakes\\source\\repos\\BetterThanSlimes\\BetterThanSlimes.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to read project information for 'BetterThanSlimes': Invalid framework identifier ''."
+    }
+  ]
+}

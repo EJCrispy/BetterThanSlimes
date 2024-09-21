@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\jakes\\source\\repos\\BetterThanSlimes\\BetterThanSlimes.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\jakes\\source\\repos\\BetterThanSlimes\\BetterThanSlimes.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jakes\\source\\repos\\BetterThanSlimes\\BetterThanSlimes.csproj",
+        "projectPath": "C:\\Users\\jakes\\source\\repos\\BetterThanSlimes\\BetterThanSlimes.csproj",
+        "packagesPath": "C:\\Users\\jakes\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jakes\\source\\repos\\BetterThanSlimes\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\jakes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        }
+      }
+    }
+  }
+}

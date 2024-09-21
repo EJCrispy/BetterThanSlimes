@@ -13,13 +13,22 @@ using Terraria.ModLoader;
 //This section removes hearts from enemy drops.
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
-    public class GlobalNPCModifications : GlobalNPC
+    public class GlobalNPCModifications : GlobalItem
     {
-        public override void ModifyGlobalLoot(GlobalLoot globalLoot)
-        { 
-
-            npcLoot.Remove(ItemDropRule.Common(ItemID.CandyApple));
-            npcLoot.Remove(ItemDropRule.Common(ItemID.CandyCane));
+        public override void OnSpawn(Item item, IEntitySource source)
+        {
+            if (item.type == ItemID.Heart)
+            {
+                item.TurnToAir();
+            }
+            if (item.type == ItemID.CandyApple)
+            {
+                item.TurnToAir();
+            }
+            if (item.type == ItemID.CandyCane)
+            {
+                item.TurnToAir();
+            }
         }
     }
 }
