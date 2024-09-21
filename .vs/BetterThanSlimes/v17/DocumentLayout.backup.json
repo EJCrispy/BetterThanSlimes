@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B6B06771-5A78-4CE7-93E1-EF80AEFEAA9C}|BetterThanSlimes.csproj|c:\\users\\jakes\\onedrive\\documents\\my games\\terraria\\tmodloader\\modsources\\betterthanslimes\\common\\players\\playertraits.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6B06771-5A78-4CE7-93E1-EF80AEFEAA9C}|BetterThanSlimes.csproj|solutionrelative:common\\players\\playertraits.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6B06771-5A78-4CE7-93E1-EF80AEFEAA9C}|BetterThanSlimes.csproj|c:\\users\\jakes\\onedrive\\documents\\my games\\terraria\\tmodloader\\modsources\\betterthanslimes\\content\\npcs\\vanillaenemymodifications\\globalnpcmodifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6B06771-5A78-4CE7-93E1-EF80AEFEAA9C}|BetterThanSlimes.csproj|solutionrelative:content\\npcs\\vanillaenemymodifications\\globalnpcmodifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6B06771-5A78-4CE7-93E1-EF80AEFEAA9C}|BetterThanSlimes.csproj|c:\\users\\jakes\\onedrive\\documents\\my games\\terraria\\tmodloader\\modsources\\betterthanslimes\\content\\items\\vanillaitemmodifications\\vanillarecipemodifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6B06771-5A78-4CE7-93E1-EF80AEFEAA9C}|BetterThanSlimes.csproj|solutionrelative:content\\items\\vanillaitemmodifications\\vanillarecipemodifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\Content\\NPCs\\VanillaEnemyModifications\\GlobalNPCModifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Content\\NPCs\\VanillaEnemyModifications\\GlobalNPCModifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,43 +14,29 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PlayerTraits.cs",
-              "DocumentMoniker": "C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\Common\\Players\\PlayerTraits.cs",
-              "RelativeDocumentMoniker": "Common\\Players\\PlayerTraits.cs",
-              "ToolTip": "C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\Common\\Players\\PlayerTraits.cs",
-              "RelativeToolTip": "Common\\Players\\PlayerTraits.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-21T16:37:23.669Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "VanillaRecipeModifications.cs",
-              "DocumentMoniker": "C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\Content\\Items\\VanillaItemModifications\\VanillaRecipeModifications.cs",
-              "RelativeDocumentMoniker": "Content\\Items\\VanillaItemModifications\\VanillaRecipeModifications.cs",
-              "ToolTip": "C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\Content\\Items\\VanillaItemModifications\\VanillaRecipeModifications.cs",
-              "RelativeToolTip": "Content\\Items\\VanillaItemModifications\\VanillaRecipeModifications.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-21T04:20:41.219Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "GlobalNPCModifications.cs",
               "DocumentMoniker": "C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\Content\\NPCs\\VanillaEnemyModifications\\GlobalNPCModifications.cs",
               "RelativeDocumentMoniker": "Content\\NPCs\\VanillaEnemyModifications\\GlobalNPCModifications.cs",
               "ToolTip": "C:\\Users\\jakes\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterThanSlimes\\Content\\NPCs\\VanillaEnemyModifications\\GlobalNPCModifications.cs",
               "RelativeToolTip": "Content\\NPCs\\VanillaEnemyModifications\\GlobalNPCModifications.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACQAAAByAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-21T04:07:46.897Z",
               "EditorCaption": ""

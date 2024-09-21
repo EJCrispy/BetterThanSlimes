@@ -1,6 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Common",
+    "\\Common\\Players",
+    "\\Content",
+    "\\Content\\Items",
+    "\\Content\\Items\\VanillaItemModifications",
+    "\\Content\\NPCs",
+    "\\Content\\NPCs\\VanillaEnemyModifications"
   ],
+  "SelectedNode": "\\Content\\NPCs\\VanillaEnemyModifications\\GlobalNPCModifications.cs",
   "PreviewInSolutionExplorer": false
 }
