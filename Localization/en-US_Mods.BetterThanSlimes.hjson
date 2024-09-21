@@ -3,6 +3,11 @@ Items: {
 		DisplayName: Loose Stone
 		Tooltip: ""
 	}
+
+	Twig: {
+		Tooltip: ""
+		DisplayName: Twig
+	}
 }
 
 Projectiles.LooseStoneProjectile.DisplayName: Loose Stone Projectile
