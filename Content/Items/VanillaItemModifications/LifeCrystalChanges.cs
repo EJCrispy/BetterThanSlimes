@@ -14,23 +14,11 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             return item.type == ItemID.LifeCrystal;
         }
 
-        public override bool CanUseItem(Item item, Player player)
-        {
-            if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
-            {
-                return false; // Prevent using Life Crystal if max life is at or above 250
-            }
-            return base.CanUseItem(item, player);
-        }
-
         public override void OnConsumeItem(Item item, Player player)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                // Decrease the player's max health by the default increase (20) first
-                player.statLifeMax -= 20;
-
-                // Then apply our custom increase (10)
+                // Apply our desired max health increase directly
                 player.statLifeMax += LifePerCrystal;
 
                 // Ensure player's max health does not exceed 250
@@ -47,12 +35,20 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             }
         }
 
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
+            {
+                return false; // Prevent using Life Crystal if max life is at or above 250
+            }
+            return base.CanUseItem(item, player);
+        }
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.LifeCrystal)
             {
                 item.healLife = LifePerCrystal; // Modify healing effect to 10 HP
-                item.StatsModifiedBy.Add(Mod); // Notify the game that we've made a functional change to this item.
             }
         }
     }
