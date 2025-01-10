@@ -10,7 +10,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
     {
         public override void SetDefaults()
         {
-            //Common Properties
+            // Common Properties
             Item.rare = ItemRarityID.Blue;
             Item.value = 40464;
             Item.maxStack = 1;
@@ -32,6 +32,27 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.noMelee = false;
             Item.DamageType = DamageClass.Melee;
         }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            // Calculate the bonus damage from critical strike chance above 100%
+            float critChance = player.GetCritChance(DamageClass.Melee);
+            if (critChance > 100)
+            {
+                float extraCritChance = critChance - 100;
+                float bonusDamage = Item.damage * extraCritChance / 100f;
+                damage += (int)bonusDamage;
+            }
+        }
+
+        public override void ModifyWeaponCrit(Player player, ref float crit)
+        {
+            // Limit the critical strike chance to 100%
+            if (crit > 100)
+            {
+                crit = 100;
+            }
+        }
     }
 }
 
@@ -42,7 +63,7 @@ namespace BetterThanSlimes.Content
         public override void OnKill(NPC npc)
         {
             Player player = Main.player[npc.lastInteraction];
-            // Check if the NPC was killed by Blksteel and is not a critter
+            // Check if the NPC was killed by your custom weapon and is not a critter
             if (npc.catchItem <= 0 && player.HeldItem.type == ModContent.ItemType<Items.Weapons.BlackSteel>())
             {
                 int projectileID = ModContent.ProjectileType<Projectiles.VengefulSpirit>();
