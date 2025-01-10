@@ -22,12 +22,20 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         public override void Load()
         {
             MethodInfo method = typeof(Player).GetMethod("ConsumeItem", BindingFlags.Instance | BindingFlags.Public);
-            _consumeItemHook = new Hook(method, new ConsumeItemDelegate(Player_ConsumeItem));
+            if (method != null)
+            {
+                _consumeItemHook = new Hook(method, new ConsumeItemDelegate(Player_ConsumeItem));
+            }
+            else
+            {
+                // Handle method not found scenario
+                throw new Exception("Failed to find method: ConsumeItem");
+            }
         }
 
         public override void Unload()
         {
-            _consumeItemHook.Dispose();
+            _consumeItemHook?.Dispose();
         }
 
         private delegate void ConsumeItemDelegate(Action<Player, int> orig, Player self, int type);
