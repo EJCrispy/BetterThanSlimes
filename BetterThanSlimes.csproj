@@ -7,6 +7,9 @@
 	<PropertyGroup>
 		
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Content\Items\Weapons\BlackSteel.png" />
+	</ItemGroup>
 
 	<!-- References -->
 
