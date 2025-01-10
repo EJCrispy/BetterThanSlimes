@@ -31,9 +31,18 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
     {
         public int lifeCrystalsUsed = 0;
 
+        public override void Initialize()
+        {
+            // Ensure new characters start with the correct base health
+            if (Player.statLifeMax < 100)
+            {
+                Player.statLifeMax = 100;
+            }
+        }
+
         public override void ResetEffects()
         {
-            // Ensure the player has a minimum base health value of 100
+            // Ensure the player has the correct base health
             if (Player.statLifeMax < 100)
             {
                 Player.statLifeMax = 100;
