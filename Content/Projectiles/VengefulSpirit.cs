@@ -70,9 +70,9 @@ namespace BetterThanSlimes.Content.Projectiles
             // Load the texture of your projectile
             Texture2D texture = ModContent.Request<Texture2D>("BetterThanSlimes/Content/Projectiles/VengefulSpirit").Value;
             int frameHeight = texture.Height / 3; // Adjust this based on the number of frames
-            int frameWidth = texture.Width; // Adjust this if frames are aligned horizontally
+            int frameWidth = 25; // Set the width to match the sprite width
             Rectangle sourceRectangle = new Rectangle(0, Projectile.frame * frameHeight, frameWidth, frameHeight);
-            Vector2 origin = sourceRectangle.Size() / 2f;
+            Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, sourceRectangle, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
