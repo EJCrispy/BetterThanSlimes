@@ -45,6 +45,8 @@ namespace BetterThanSlimes.Content.Items.Accessories
     {
         private Dictionary<int, int> npcImmunity = new Dictionary<int, int>();
 
+        public override bool InstancePerEntity => true; // Add this line
+
         public override void OnKill(NPC npc)
         {
             if (npc.life <= 0)
