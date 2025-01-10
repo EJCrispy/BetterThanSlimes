@@ -54,8 +54,11 @@ namespace BetterThanSlimes.Content.Projectiles
             // Set the rotation to match the projectile's direction
             if (Projectile.velocity != Vector2.Zero)
             {
-                Projectile.rotation = Projectile.velocity.ToRotation();
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
             }
+
+            // Set sprite direction based on the velocity
+            Projectile.spriteDirection = Projectile.velocity.X > 0f ? 1 : -1;
 
             // Animation logic
             Projectile.frameCounter++;
@@ -72,7 +75,7 @@ namespace BetterThanSlimes.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            // Load the texture of your projectile
+            // Load the texture of projectile
             Texture2D texture = ModContent.Request<Texture2D>("BetterThanSlimes/Content/Projectiles/VengefulSpirit").Value;
             int frameHeight = 30; // Set the height to match the sprite height
             int frameWidth = texture.Width / 3; // Adjust this based on the number of frames
