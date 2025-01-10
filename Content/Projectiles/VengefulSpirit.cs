@@ -24,8 +24,8 @@ namespace BetterThanSlimes.Content.Projectiles
 
         public override void AI()
         {
-            float maxDetectRadius = 400f; // The maximum radius within which the projectile will detect enemies
-            float accelerationFactor = 2.5f; // The speed at which the projectile accelerates
+            float maxDetectRadius = 800f; // The maximum radius within which the projectile will detect enemies
+            float accelerationFactor = 4f; // The speed at which the projectile accelerates
 
             NPC closestNPC = null;
             float closestDist = float.MaxValue;
