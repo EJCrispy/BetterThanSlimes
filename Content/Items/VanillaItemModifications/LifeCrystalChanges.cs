@@ -24,11 +24,10 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             MethodInfo method = typeof(Player).GetMethod("ConsumeItem", BindingFlags.Instance | BindingFlags.Public);
             if (method != null)
             {
-                _consumeItemHook = new Hook(method, new ConsumeItemDelegate(Player_ConsumeItem));
+                _consumeItemHook = new Hook(method, Player_ConsumeItem);
             }
             else
             {
-                // Handle method not found scenario
                 throw new Exception("Failed to find method: ConsumeItem");
             }
         }
@@ -38,13 +37,11 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             _consumeItemHook?.Dispose();
         }
 
-        private delegate void ConsumeItemDelegate(Action<Player, int> orig, Player self, int type);
-
         private void Player_ConsumeItem(Action<Player, int> orig, Player self, int type)
         {
             if (type == ItemID.LifeCrystal && self.statLifeMax < MaxLifeCap)
             {
-                self.statLifeMax += LifePerCrystal - 20; // Increase max life by 10 instead of 20
+                self.statLifeMax += LifePerCrystal - 20;
 
                 if (self.statLifeMax > MaxLifeCap)
                 {
@@ -58,7 +55,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             }
             else
             {
-                orig(self, type); // Call the original method for other items
+                orig(self, type);
             }
         }
 
@@ -66,7 +63,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
             {
-                return false; // Prevent using Life Crystal if max life is at or above 200
+                return false;
             }
             return base.CanUseItem(item, player);
         }
@@ -75,16 +72,16 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                return true; // Indicate that the item was successfully used
+                return true;
             }
-            return base.UseItem(item, player); // Default behavior for other items
+            return base.UseItem(item, player);
         }
 
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                item.healLife = LifePerCrystal; // Modify healing effect to 10 HP
+                item.healLife = LifePerCrystal;
             }
         }
     }
