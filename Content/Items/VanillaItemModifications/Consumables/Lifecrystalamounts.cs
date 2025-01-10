@@ -33,7 +33,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
         public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
         {
             base.ModifyMaxStats(out health, out mana);
-            health = new StatModifier(1f, 0f, lifeCrystalsUsed * 10); // Increase max health by 10 per Life Crystal used
+            health = health.CombineWith(new StatModifier(1f, 0f, lifeCrystalsUsed * 10)); // Combine base health with Life Crystal bonus
         }
     }
 }
