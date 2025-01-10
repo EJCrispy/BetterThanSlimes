@@ -40,7 +40,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
             if (critChance > 100)
             {
                 float extraCritChance = critChance - 100;
-                float bonusDamage = Item.damage * (extraCritChance / 100f + 1);
+                float bonusDamage = Item.damage * (extraCritChance);
                 damage += bonusDamage;
 
                 // Debug output
