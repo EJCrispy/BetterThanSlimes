@@ -8,6 +8,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Twig
 	}
+
+	BlackSteel: {
+		DisplayName: Black Steel
+		Tooltip: ""
+	}
 }
 
 Projectiles.LooseStoneProjectile.DisplayName: Loose Stone Projectile
