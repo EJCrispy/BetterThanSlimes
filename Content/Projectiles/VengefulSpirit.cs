@@ -3,12 +3,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BetterThanSlimes.Content.Projectiles
 {
     public class VengefulSpirit : ModProjectile
     {
+        private Dictionary<int, int> npcImmunity = new Dictionary<int, int>();
+
         public override void SetDefaults()
         {
             Projectile.width = 24; // Frame width
@@ -71,6 +74,36 @@ namespace BetterThanSlimes.Content.Projectiles
                     Projectile.frame = 0;
                 }
             }
+
+            // Update the immunity frames for each NPC
+            foreach (int npcIndex in npcImmunity.Keys.ToArray())
+            {
+                if (npcImmunity[npcIndex] > 0)
+                {
+                    npcImmunity[npcIndex]--;
+                }
+                else
+                {
+                    npcImmunity.Remove(npcIndex);
+                }
+            }
+        }
+
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            // Set the immunity frames for the hit NPC
+            npcImmunity[target.whoAmI] = 10; // Adjust this value as needed
+        }
+
+        public override bool? CanHitNPC(NPC target)
+        {
+            // Check if the NPC is immune to the projectile
+            if (npcImmunity.TryGetValue(target.whoAmI, out int immunity) && immunity > 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public override bool PreDraw(ref Color lightColor)
