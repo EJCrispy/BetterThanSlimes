@@ -15,7 +15,7 @@ namespace BetterThanSlimes.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 1;
+            Projectile.penetrate = 3;
             Projectile.timeLeft = 300;
             Projectile.light = 0.5f;
             Projectile.extraUpdates = 1;
@@ -24,7 +24,7 @@ namespace BetterThanSlimes.Content.Projectiles
         public override void AI()
         {
             float maxDetectRadius = 400f; // The maximum radius within which the projectile will detect enemies
-            float speed = 10f; // The speed at which the projectile will move towards the target
+            float accelerationFactor = 0.1f; // Higher values mean faster acceleration
 
             NPC closestNPC = null;
             float closestDist = float.MaxValue;
@@ -46,8 +46,8 @@ namespace BetterThanSlimes.Content.Projectiles
             {
                 Vector2 direction = closestNPC.Center - Projectile.Center;
                 direction.Normalize();
-                direction *= speed;
-                Projectile.velocity = (Projectile.velocity * (20f - 1f) + direction) / 20f;
+                direction *= accelerationFactor;
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, direction, 0.1f);
             }
         }
     }
