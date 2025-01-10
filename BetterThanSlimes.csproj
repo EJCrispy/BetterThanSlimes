@@ -8,9 +8,6 @@
 		
 	</PropertyGroup>
 	<ItemGroup>
-	  <AdditionalFiles Remove="Content\Projectiles\VengefulSpirit.png" />
-	</ItemGroup>
-	<ItemGroup>
 	  <None Remove="Content\Items\Weapons\BlackSteel.png" />
 	</ItemGroup>
 	<ItemGroup>
