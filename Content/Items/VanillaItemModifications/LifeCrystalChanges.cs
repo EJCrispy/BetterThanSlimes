@@ -6,12 +6,12 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
 {
     public class LifeCrystalGlobalItem : GlobalItem
     {
-        public static readonly int MaxExampleLifeFruits = 15;
-        public static readonly int LifePerCrystal = 10;
+        public static readonly int MaxExampleLifeFruits = 10;
+        public static readonly int LifePerFruit = 10;
 
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
-            return item.type == ItemID.LifeCrystal; // Apply to Life Crystal only
+            return item.type == ItemID.LifeCrystal;
         }
 
         public override void SetDefaults(Item item)
@@ -19,12 +19,16 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             item.StatsModifiedBy.Add(Mod); // Notify the game that we've made a functional change to this item.
         }
 
-        public override void OnConsumeItem(Item item, Player player)
+        public override bool CanUseItem(Item item, Player player)
         {
-            if (player.statLifeMax < (500 + MaxExampleLifeFruits * LifePerCrystal))
+            // Check if the player's max health is below the maximum allowed health.
+            if (player.statLifeMax < (500 + MaxExampleLifeFruits * LifePerFruit))
             {
-                player.UseHealthMaxIncreasingItem(LifePerCrystal); // Increase max health on consumption
+                // Increase the player's max health by LifePerFruit when the item is used.
+                player.statLifeMax2 += LifePerFruit;
+                return true;
             }
+            return false;
         }
     }
 }
