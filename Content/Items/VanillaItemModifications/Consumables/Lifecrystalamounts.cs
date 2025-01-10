@@ -23,6 +23,12 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
             if (item.type == ItemID.LifeCrystal && player.statLifeMax2 < 500)
             {
                 player.GetModPlayer<LifeCrystalModPlayer>().lifeCrystalsUsed++;
+                player.statLifeMax2 += 10; // Directly increase max life by 10
+                player.statLife += 10; // Increase current life by 10
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    player.HealEffect(10, true); // Show the healing effect
+                }
             }
         }
     }
@@ -30,18 +36,6 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
     public class LifeCrystalModPlayer : ModPlayer
     {
         public int lifeCrystalsUsed = 0;
-
-        public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
-        {
-            base.ModifyMaxStats(out health, out mana);
-            health = health.CombineWith(new StatModifier(1f, 0f, lifeCrystalsUsed * 10)); // Combine base health with Life Crystal bonus
-
-            // Ensure the player has a minimum base health value
-            if (Player.statLifeMax < 100)
-            {
-                Player.statLifeMax = 100; // Set the default starting health
-            }
-        }
 
         public override void SaveData(TagCompound tag)
         {
