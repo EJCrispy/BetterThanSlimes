@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader.IO;
 
 namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
 {
@@ -34,6 +35,19 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
         {
             base.ModifyMaxStats(out health, out mana);
             health = health.CombineWith(new StatModifier(1f, 0f, lifeCrystalsUsed * 10)); // Combine base health with Life Crystal bonus
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            tag["lifeCrystalsUsed"] = lifeCrystalsUsed;
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.ContainsKey("lifeCrystalsUsed"))
+            {
+                lifeCrystalsUsed = tag.GetInt("lifeCrystalsUsed");
+            }
         }
     }
 }
