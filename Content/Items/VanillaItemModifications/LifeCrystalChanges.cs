@@ -41,18 +41,20 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (type == ItemID.LifeCrystal)
             {
-                if (self.statLifeMax < MaxLifeCap)
-                {
-                    self.statLifeMax += LifePerCrystal - 20; // Increase max life by 10 instead of 20
+                var modPlayer = self.GetModPlayer<MyModPlayer>();
 
-                    if (self.statLifeMax > MaxLifeCap)
+                if (modPlayer.MaxLife < MaxLifeCap)
+                {
+                    modPlayer.MaxLife += LifePerCrystal - 20; // Increase max life by 10 instead of 20
+
+                    if (modPlayer.MaxLife > MaxLifeCap)
                     {
-                        self.statLifeMax = MaxLifeCap;
+                        modPlayer.MaxLife = MaxLifeCap;
                     }
 
-                    if (self.statLife > self.statLifeMax)
+                    if (self.statLife > modPlayer.MaxLife)
                     {
-                        self.statLife = self.statLifeMax;
+                        self.statLife = modPlayer.MaxLife;
                     }
                 }
             }
@@ -64,7 +66,9 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
 
         public override bool CanUseItem(Item item, Player player)
         {
-            if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
+            var modPlayer = player.GetModPlayer<MyModPlayer>();
+
+            if (item.type == ItemID.LifeCrystal && modPlayer.MaxLife >= MaxLifeCap)
             {
                 return false; // Prevent using Life Crystal if max life is at or above 200
             }
@@ -86,6 +90,21 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             {
                 item.healLife = LifePerCrystal; // Modify healing effect to 10 HP
             }
+        }
+    }
+
+    public class MyModPlayer : ModPlayer
+    {
+        public int MaxLife { get; set; }
+
+        public override void ResetEffects()
+        {
+            MaxLife = Player.statLifeMax2;
+        }
+
+        public override void UpdateDead()
+        {
+            MaxLife = Player.statLifeMax2;
         }
     }
 }
