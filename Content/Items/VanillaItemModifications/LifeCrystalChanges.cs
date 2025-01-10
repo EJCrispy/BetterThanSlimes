@@ -14,30 +14,6 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             return item.type == ItemID.LifeCrystal;
         }
 
-        public override void OnConsumeItem(Item item, Player player)
-        {
-            if (item.type == ItemID.LifeCrystal)
-            {
-                // Apply our desired max health increase
-                player.statLifeMax += LifePerCrystal - 20;
-
-                // Ensure player's max health does not exceed 250
-                if (player.statLifeMax > MaxLifeCap)
-                {
-                    player.statLifeMax = MaxLifeCap;
-                }
-
-                // Ensure player's current health does not exceed max health
-                if (player.statLife > player.statLifeMax)
-                {
-                    player.statLife = player.statLifeMax;
-                }
-
-                // Ensure the changes are permanent
-                player.statLifeMax += 0;
-            }
-        }
-
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
@@ -45,6 +21,35 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
                 return false; // Prevent using Life Crystal if max life is at or above 250
             }
             return base.CanUseItem(item, player);
+        }
+
+        public override bool? UseItem(Item item, Player player)
+        {
+            if (item.type == ItemID.LifeCrystal)
+            {
+                // Apply our custom health increase and cap logic
+                AdjustPlayerHealth(player, LifePerCrystal);
+                return true; // Indicate that the item was successfully used
+            }
+            return base.UseItem(item, player); // Default behavior for other items
+        }
+
+        private void AdjustPlayerHealth(Player player, int lifeIncrease)
+        {
+            // Apply custom max health increase
+            player.statLifeMax += lifeIncrease - 20;
+
+            // Ensure player's max health does not exceed 250
+            if (player.statLifeMax > MaxLifeCap)
+            {
+                player.statLifeMax = MaxLifeCap;
+            }
+
+            // Ensure player's current health does not exceed max health
+            if (player.statLife > player.statLifeMax)
+            {
+                player.statLife = player.statLifeMax;
+            }
         }
 
         public override void SetDefaults(Item item)
