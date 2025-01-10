@@ -32,17 +32,21 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.noMelee = false;
             Item.DamageType = DamageClass.Melee;
         }
+    }
+}
 
-        public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
+namespace BetterThanSlimes.Content
+{
+    public class GlobalNPCMod : GlobalNPC
+    {
+        public override void OnKill(NPC npc)
         {
-            if (target.life <= 0)
+            Player player = Main.player[npc.lastInteraction];
+            if (player.HeldItem.type == ModContent.ItemType<Items.Weapons.BlackSteel>())
             {
-                // This just grabs the custom proj
                 int projectileID = ModContent.ProjectileType<Projectiles.VengefulSpirit>();
-                Vector2 spawnPosition = target.Center;
-                Vector2 direction = Main.MouseWorld - target.Center;
-                direction.Normalize();
-                Projectile.NewProjectile(player.GetSource_ItemUse(Item), spawnPosition, direction * 10f, projectileID, Item.damage, Item.knockBack, player.whoAmI);
+                Vector2 spawnPosition = npc.Center;
+                Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, projectileID, 15, 2, Main.myPlayer);
             }
         }
     }
