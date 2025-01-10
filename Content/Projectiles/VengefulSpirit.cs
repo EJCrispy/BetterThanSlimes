@@ -51,6 +51,12 @@ namespace BetterThanSlimes.Content.Projectiles
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, direction, 0.1f);
             }
 
+            // Set the rotation to match the projectile's direction
+            if (Projectile.velocity != Vector2.Zero)
+            {
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+            }
+
             // Animation logic
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= 18) // Adjust the frame delay for slower animation
