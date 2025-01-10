@@ -68,7 +68,7 @@ namespace BetterThanSlimes.Content.Projectiles
         {
             // Load the texture of your projectile
             Texture2D texture = ModContent.Request<Texture2D>("BetterThanSlimes/Content/Projectiles/VengefulSpirit").Value;
-            int frameHeight = texture.Height / 0; // Adjust this based on the number of frames
+            int frameHeight = texture.Height / 1; // Adjust this based on the number of frames
             int frameWidth = 25; // Set the width to match the sprite width
             Rectangle sourceRectangle = new Rectangle(0, Projectile.frame * frameHeight, frameWidth, frameHeight);
             Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
