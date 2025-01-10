@@ -35,7 +35,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
         public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (target.life <= 0)
+            if (target.life <= 30)
             {
                 // LostSoulHostile is a placeholder, we need a homing spirit ghost shitter
                 int projectileID = ProjectileID.LostSoulHostile;
