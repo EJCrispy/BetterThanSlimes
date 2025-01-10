@@ -15,14 +15,19 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
 
         public override void OnConsumeItem(Item item, Player player)
         {
-            if (item.type == ItemID.LifeCrystal && player.statLifeMax < 500)
+            if (item.type == ItemID.LifeCrystal)
             {
-                player.statLifeMax += LifePerFruit;
-                player.statLife += LifePerFruit;
+                int defaultIncrease = 20; // Default HP increase by Life Crystal
 
-                // Reduce the default increase by the difference (10) to give net increase of 10
-                player.statLifeMax -= 10;
-                player.statLife -= 10;
+                // Adjust player's max and current health
+                player.statLifeMax += LifePerFruit - defaultIncrease;
+                player.statLife += LifePerFruit - defaultIncrease;
+
+                // Ensure player's max health does not exceed 500
+                if (player.statLifeMax > 500)
+                {
+                    player.statLifeMax = 500;
+                }
             }
         }
     }
