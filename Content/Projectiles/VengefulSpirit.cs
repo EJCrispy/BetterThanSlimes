@@ -58,7 +58,7 @@ namespace BetterThanSlimes.Content.Projectiles
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;
-                if (Projectile.frame >= 3) // Adjust this based on the number of frames in spritesheet
+                if (Projectile.frame >= 4) // Adjust this based on the number of frames in your spritesheet
                 {
                     Projectile.frame = 0;
                 }
@@ -67,10 +67,11 @@ namespace BetterThanSlimes.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            // Load the texture of projectile
-            Texture2D texture = ModContent.Request<Texture2D>("BetterThanSlimes/Content/Projectiles/VengefulSpirit").Value;
-            int frameHeight = texture.Height / 3; // Adjust this based on the number of frames
-            Rectangle sourceRectangle = new Rectangle(0, Projectile.frame * frameHeight, texture.Width, frameHeight);
+            // Load the texture of your projectile
+            Texture2D texture = ModContent.Request<Texture2D>("BetterThanSlimes/Content/Images/VengefulSpirit").Value;
+            int frameHeight = texture.Height / 4; // Adjust this based on the number of frames
+            int frameWidth = texture.Width; // Adjust this if frames are aligned horizontally
+            Rectangle sourceRectangle = new Rectangle(0, Projectile.frame * frameHeight, frameWidth, frameHeight);
             Vector2 origin = sourceRectangle.Size() / 2f;
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
