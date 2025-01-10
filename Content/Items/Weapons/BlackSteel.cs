@@ -33,15 +33,15 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.DamageType = DamageClass.Melee;
         }
 
-        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
         {
             // Calculate the bonus damage from critical strike chance above 100%
             float critChance = player.GetCritChance(DamageClass.Melee);
             if (critChance > 100)
             {
                 float extraCritChance = critChance - 100;
-                float bonusDamage = Item.damage * (extraCritChance);
-                damage += bonusDamage;
+                int bonusDamage = (int)(Item.damage * (extraCritChance / 100f));
+                modifiers.FinalDamage += bonusDamage;
 
                 // Debug output
                 Main.NewText("Crit Chance: " + critChance + "%");
