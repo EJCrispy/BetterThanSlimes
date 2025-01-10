@@ -8,27 +8,32 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
     {
         public override bool InstancePerEntity => true;
 
-        public override void SetDefaults(Item item)
+        public override bool CanUseItem(Item item, Player player)
         {
-            if (item.type == ItemID.LifeCrystal)
+            if (item.type == ItemID.LifeCrystal && player.statLifeMax2 >= 500)
             {
-                item.healLife = 10; // Change the heal amount to 10
+                return false; // Prevent usage if max life is 500 or more
             }
+            return base.CanUseItem(item, player);
         }
 
-        public override bool? UseItem(Item item, Player player)
+        public override void OnConsumeItem(Item item, Player player)
         {
             if (item.type == ItemID.LifeCrystal && player.statLifeMax2 < 500)
             {
-                player.statLifeMax2 += 10; // Increase max life by 10
-                player.statLife += 10; // Also increase current life by 10
-                if (Main.myPlayer == player.whoAmI)
-                {
-                    player.HealEffect(10, true); // Show the healing effect
-                }
-                return true; // Prevent default behavior
+                player.GetModPlayer<LifeCrystalModPlayer>().lifeCrystalsUsed++;
             }
-            return base.UseItem(item, player);
+        }
+    }
+
+    public class LifeCrystalModPlayer : ModPlayer
+    {
+        public int lifeCrystalsUsed = 0;
+
+        public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
+        {
+            base.ModifyMaxStats(out health, out mana);
+            health = new StatModifier(1f, 0f, lifeCrystalsUsed * 10); // Increase max health by 10 per Life Crystal used
         }
     }
 }
