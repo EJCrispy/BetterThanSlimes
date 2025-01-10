@@ -13,7 +13,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
         {
             if (item.type == ItemID.LifeCrystal && player.statLifeMax2 >= 500)
             {
-                return false; // Prevent usage if max life is 500 or more
+                return false; // Prevent usage if max life is 500 or more, I dont know if this is needed but i'm too scared to change it.
             }
             return base.CanUseItem(item, player);
         }
@@ -29,11 +29,11 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
 
     public class LifeCrystalModPlayer : ModPlayer
     {
-        public int lifeCrystalsUsed = 10;
+        public int lifeCrystalsUsed = 10; // this just makes people start with 100 hp, if it isn't set to 10 peoople spawn with that many life crystals of hp
 
         public override void Initialize()
         {
-            // Ensure new characters start with the correct base health
+            // This doesn't do shit by the way, idk why. too scared to delete it
             if (Player.statLifeMax < 100)
             {
                 Player.statLifeMax = 100;
@@ -42,7 +42,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
 
         public override void ResetEffects()
         {
-            // Ensure the player has the correct base health
+            // again, this doesn't do shit, i'm too scared to change it tho
             if (Player.statLifeMax < 100)
             {
                 Player.statLifeMax = 100;
@@ -52,7 +52,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
         public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
         {
             base.ModifyMaxStats(out health, out mana);
-            health = health.CombineWith(new StatModifier(1f, 0f, lifeCrystalsUsed * 10)); // Combine base health with Life Crystal bonus
+            health = health.CombineWith(new StatModifier(1f, 0f, lifeCrystalsUsed * 10)); // Combine base health with Life Crystal bonus, pretty simple
         }
 
         public override void SaveData(TagCompound tag)
@@ -64,7 +64,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
         {
             if (tag.ContainsKey("lifeCrystalsUsed"))
             {
-                lifeCrystalsUsed = tag.GetInt("lifeCrystalsUsed");
+                lifeCrystalsUsed = tag.GetInt("lifeCrystalsUsed"); // this is just to make everything fit btw
             }
             else
             {
