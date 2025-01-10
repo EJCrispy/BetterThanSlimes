@@ -18,14 +18,16 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal)
             {
+                // Temporarily reduce max life to negate the default increase
+                player.statLifeMax2 -= 20;
+
+                // Apply our desired max health increase
+                player.statLifeMax2 += LifePerCrystal;
+
                 // Ensure player's max health does not exceed 250
-                if (player.statLifeMax2 + LifePerCrystal > MaxLifeCap)
+                if (player.statLifeMax2 > MaxLifeCap)
                 {
                     player.statLifeMax2 = MaxLifeCap;
-                }
-                else
-                {
-                    player.statLifeMax2 += LifePerCrystal - 20;
                 }
 
                 // Ensure player's current health does not exceed max health
@@ -34,10 +36,9 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
                     player.statLife = player.statLifeMax2;
                 }
 
-                // Indicate that the item was successfully used
-                return true;
+                return true; // Indicate that the item was successfully used
             }
-            return base.UseItem(item, player);
+            return base.UseItem(item, player); // Default behavior for other items
         }
 
         public override bool CanUseItem(Item item, Player player)
