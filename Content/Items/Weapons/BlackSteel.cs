@@ -37,8 +37,8 @@ namespace BetterThanSlimes.Content.Items.Weapons
         {
             if (target.life <= 0)
             {
-                // Fireball is a placeholder, we need a homing spirit ghost shitter
-                int projectileID = ProjectileID.Fireball;
+                // LostSoulHostile is a placeholder, we need a homing spirit ghost shitter
+                int projectileID = ProjectileID.LostSoulHostile;
                 Vector2 spawnPosition = target.Center;
                 Vector2 direction = Main.MouseWorld - target.Center;
                 direction.Normalize();
