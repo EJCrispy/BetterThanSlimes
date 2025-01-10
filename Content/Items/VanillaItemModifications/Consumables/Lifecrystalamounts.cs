@@ -6,9 +6,11 @@ using Mono.Cecil;
 
 namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
 {
-    public class LifeCrystalDetour : LifeCrystalGlobalItem
+    public class LifeCrystalDetour : GlobalItem
     {
         private ILHook ilHook;
+
+        public override bool InstancePerEntity => true;
 
         public override void Load()
         {
