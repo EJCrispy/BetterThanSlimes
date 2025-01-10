@@ -39,13 +39,29 @@ namespace BetterThanSlimes.Content.Items.Accessories
         {
             bigRedNose = false;
         }
+
+        public override void OnHurt(Player.HurtInfo info)
+        {
+            if (bigRedNose && info.Damage > 30)
+            {
+                Vector2 spawnPosition = Player.position;
+                spawnPosition.Y -= 45; // Adjust the value as needed
+
+                // Create the explosion projectile
+                int proj = Projectile.NewProjectile(Player.GetSource_Misc("BigRedNoseExplosion"), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 40, 10, Player.whoAmI);
+
+                // Set local immunity for the projectile
+                Main.projectile[proj].usesLocalNPCImmunity = true;
+                Main.projectile[proj].localNPCHitCooldown = 10; // Adjust the cooldown value as needed
+            }
+        }
     }
 
     public class MyGlobalNPC : GlobalNPC
     {
         private Dictionary<int, int> npcImmunity = new Dictionary<int, int>();
 
-        public override bool InstancePerEntity => true; // Add this line
+        public override bool InstancePerEntity => true;
 
         public override void OnKill(NPC npc)
         {
@@ -59,7 +75,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
                     spawnPosition.Y -= 45; // Adjust the value as needed
 
                     // Create the explosion projectile
-                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 65, 10, player.whoAmI);
+                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 40, 10, player.whoAmI);
 
                     // Set local immunity for the projectile
                     Main.projectile[proj].usesLocalNPCImmunity = true;
