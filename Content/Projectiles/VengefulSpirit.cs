@@ -57,7 +57,7 @@ namespace BetterThanSlimes.Content.Projectiles
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;
-                if (Projectile.frame >= 3) // Adjust this based on the number of frames in spritesheet
+                if (Projectile.frame >= 2) // Adjust this based on the number of frames in spritesheet
                 {
                     Projectile.frame = 0;
                 }
