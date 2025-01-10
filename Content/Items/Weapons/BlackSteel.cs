@@ -42,7 +42,8 @@ namespace BetterThanSlimes.Content
         public override void OnKill(NPC npc)
         {
             Player player = Main.player[npc.lastInteraction];
-            if (player.HeldItem.type == ModContent.ItemType<Items.Weapons.BlackSteel>())
+            // Check if the NPC was killed by Blksteel and is not a critter
+            if (npc.catchItem <= 0 && player.HeldItem.type == ModContent.ItemType<Items.Weapons.BlackSteel>())
             {
                 int projectileID = ModContent.ProjectileType<Projectiles.VengefulSpirit>();
                 Vector2 spawnPosition = npc.Center;
