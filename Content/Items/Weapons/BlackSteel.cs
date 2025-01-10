@@ -35,14 +35,14 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
         public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (target.life <= 30)
+            if (target.life <= 0)
             {
-                // LostSoulHostile is a placeholder, we need a homing spirit ghost shitter
-                int projectileID = ProjectileID.LostSoulHostile;
+                // This just grabs the custom proj
+                int projectileID = ModContent.ProjectileType<Projectiles.VengefulSpirit>();
                 Vector2 spawnPosition = target.Center;
                 Vector2 direction = Main.MouseWorld - target.Center;
                 direction.Normalize();
-                Projectile.NewProjectile(Projectile.InheritSource(target), spawnPosition, direction * 10f, projectileID, Item.damage, Item.knockBack, player.whoAmI);
+                Projectile.NewProjectile(player.GetSource_ItemUse(Item), spawnPosition, direction * 10f, projectileID, Item.damage, Item.knockBack, player.whoAmI);
             }
         }
     }
