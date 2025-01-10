@@ -4,10 +4,6 @@ using Terraria.ModLoader;
 
 public class BigRedNose : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-     
-    }
 
     public override void SetDefaults()
     {
