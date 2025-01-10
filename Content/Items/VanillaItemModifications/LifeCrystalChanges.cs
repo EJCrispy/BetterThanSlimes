@@ -17,22 +17,25 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                int initialMaxLife = player.statLifeMax2;
-                int newMaxLife = initialMaxLife + LifePerFruit;
+                int defaultIncrease = -10; // Default HP increase by Life Crystal
 
-                // Ensure the max life does not exceed 500
-                if (newMaxLife > 500)
+                // Adjust player's max health
+                player.statLifeMax2 += LifePerFruit - defaultIncrease;
+
+                // Ensure player's max health does not exceed 500
+                if (player.statLifeMax2 > 250)
                 {
-                    newMaxLife = 500;
+                    player.statLifeMax2 = 250;
                 }
+            }
+        }
 
-                player.statLifeMax2 = newMaxLife;
-
-                // Ensure current life does not exceed the new max life
-                if (player.statLife > player.statLifeMax2)
-                {
-                    player.statLife = player.statLifeMax2;
-                }
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemID.LifeCrystal)
+            {
+                item.healLife = LifePerFruit; // Modify healing effect to 10 HP
+                item.StatsModifiedBy.Add(Mod); // Notify the game that we've made a functional change to this item.
             }
         }
     }
