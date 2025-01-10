@@ -27,6 +27,12 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
                 {
                     player.statLifeMax = 250;
                 }
+
+                // Ensure player's current health does not exceed max health
+                if (player.statLife > player.statLifeMax)
+                {
+                    player.statLife = player.statLifeMax;
+                }
             }
         }
 
@@ -36,14 +42,6 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             {
                 item.healLife = LifePerCrystal; // Modify healing effect to 10 HP
                 item.StatsModifiedBy.Add(Mod); // Notify the game that we've made a functional change to this item.
-            }
-        }
-
-        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
-        {
-            if (player.statLifeMax > 250)
-            {
-                player.statLifeMax = 250;
             }
         }
     }
