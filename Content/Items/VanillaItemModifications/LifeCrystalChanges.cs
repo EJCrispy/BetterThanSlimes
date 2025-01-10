@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using MonoMod.RuntimeDetour;
+using MonoMod.Cil;
+using Mono.Cecil.Cil; // Add this directive for OpCodes
 using System.Reflection;
 using System;
 
@@ -12,7 +14,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         public static readonly int LifePerCrystal = 10;
         public const int MaxLifeCap = 200;
 
-        private static Hook _consumeItemHook;
+        private static ILHook _consumeItemILHook;
 
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
@@ -24,7 +26,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             MethodInfo method = typeof(Player).GetMethod("ConsumeItem", BindingFlags.Instance | BindingFlags.Public);
             if (method != null)
             {
-                _consumeItemHook = new Hook(method, new ConsumeItemDelegate(Player_ConsumeItem));
+                _consumeItemILHook = new ILHook(method, Player_ConsumeItemIL);
             }
             else
             {
@@ -34,45 +36,38 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
 
         public override void Unload()
         {
-            _consumeItemHook?.Dispose();
+            _consumeItemILHook?.Dispose();
         }
 
-        private delegate void ConsumeItemDelegate(Player self, int type);
-
-        private void Player_ConsumeItem(Player self, int type)
+        private void Player_ConsumeItemIL(ILContext il)
         {
-            if (type == ItemID.LifeCrystal)
+            var c = new ILCursor(il);
+            c.Emit(OpCodes.Ldarg_0);
+            c.Emit(OpCodes.Ldarg_1);
+            c.EmitDelegate<Action<Player, int>>((self, type) =>
             {
-                var modPlayer = self.GetModPlayer<MyModPlayer>();
-
-                if (modPlayer.MaxLife < MaxLifeCap)
+                if (type == ItemID.LifeCrystal && self.statLifeMax2 < MaxLifeCap)
                 {
-                    modPlayer.MaxLife += LifePerCrystal - 20; // Increase max life by 10 instead of 20
+                    self.statLifeMax2 += LifePerCrystal - 20;
 
-                    if (modPlayer.MaxLife > MaxLifeCap)
+                    if (self.statLifeMax2 > MaxLifeCap)
                     {
-                        modPlayer.MaxLife = MaxLifeCap;
+                        self.statLifeMax2 = MaxLifeCap;
                     }
 
-                    if (self.statLife > modPlayer.MaxLife)
+                    if (self.statLife > self.statLifeMax2)
                     {
-                        self.statLife = modPlayer.MaxLife;
+                        self.statLife = self.statLifeMax2;
                     }
                 }
-            }
-            else
-            {
-                typeof(Player).GetMethod("ConsumeItem", BindingFlags.Instance | BindingFlags.Public).Invoke(self, new object[] { type });
-            }
+            });
         }
 
         public override bool CanUseItem(Item item, Player player)
         {
-            var modPlayer = player.GetModPlayer<MyModPlayer>();
-
-            if (item.type == ItemID.LifeCrystal && modPlayer.MaxLife >= MaxLifeCap)
+            if (item.type == ItemID.LifeCrystal && player.statLifeMax2 >= MaxLifeCap)
             {
-                return false; // Prevent using Life Crystal if max life is at or above 200
+                return false;
             }
             return base.CanUseItem(item, player);
         }
@@ -81,32 +76,17 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                return true; // Indicate that the item was successfully used
+                return true;
             }
-            return base.UseItem(item, player); // Default behavior for other items
+            return base.UseItem(item, player);
         }
 
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                item.healLife = LifePerCrystal; // Modify healing effect to 10 HP
+                item.healLife = LifePerCrystal;
             }
-        }
-    }
-
-    public class MyModPlayer : ModPlayer
-    {
-        public int MaxLife { get; set; }
-
-        public override void ResetEffects()
-        {
-            MaxLife = Player.statLifeMax2;
-        }
-
-        public override void UpdateDead()
-        {
-            MaxLife = Player.statLifeMax2;
         }
     }
 }
