@@ -29,7 +29,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
 
     public class LifeCrystalModPlayer : ModPlayer
     {
-        public int lifeCrystalsUsed = 0;
+        public int lifeCrystalsUsed = 10;
 
         public override void Initialize()
         {
