@@ -54,11 +54,11 @@ namespace BetterThanSlimes.Content.Projectiles
 
             // Animation logic
             Projectile.frameCounter++;
-            if (Projectile.frameCounter >= 10) // Adjust the frame delay for slower animation
+            if (Projectile.frameCounter >= 30) // Adjust the frame delay for slower animation
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;
-                if (Projectile.frame >= 3) // Adjust this based on the number of frames in your spritesheet
+                if (Projectile.frame >= 10) // Adjust this based on the number of frames in your spritesheet
                 {
                     Projectile.frame = 0;
                 }
@@ -69,7 +69,7 @@ namespace BetterThanSlimes.Content.Projectiles
         {
             // Load the texture of your projectile
             Texture2D texture = ModContent.Request<Texture2D>("BetterThanSlimes/Content/Projectiles/VengefulSpirit").Value;
-            int frameHeight = texture.Height / 3; // Adjust this based on the number of frames
+            int frameHeight = texture.Height / 30; // Adjust this based on the number of frames
             int frameWidth = 25; // Set the width to match the sprite width
             Rectangle sourceRectangle = new Rectangle(0, Projectile.frame * frameHeight, frameWidth, frameHeight);
             Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
