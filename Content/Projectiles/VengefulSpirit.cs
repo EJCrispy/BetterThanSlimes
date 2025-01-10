@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace BetterThanSlimes.Content.Projectiles
@@ -15,7 +16,7 @@ namespace BetterThanSlimes.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 4;
             Projectile.timeLeft = 600;
             Projectile.light = 0.5f;
             Projectile.extraUpdates = 1;
@@ -47,9 +48,34 @@ namespace BetterThanSlimes.Content.Projectiles
             {
                 Vector2 direction = closestNPC.Center - Projectile.Center;
                 direction.Normalize();
-                direction *= speed;
-                Projectile.velocity = (Projectile.velocity * (20f - 1f) + direction) / 20f;
+                direction *= accelerationFactor;
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, direction, 0.1f);
             }
+
+            // Animation logic
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter >= 5) // Adjust the frame delay as needed
+            {
+                Projectile.frameCounter = 0;
+                Projectile.frame++;
+                if (Projectile.frame >= 3) // Adjust this based on the number of frames in spritesheet
+                {
+                    Projectile.frame = 0;
+                }
+            }
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            // Load the texture of projectile
+            Texture2D texture = ModContent.Request<Texture2D>("BetterThanSlimes/Content/Images/VengefulSpirit").Value;
+            int frameHeight = texture.Height / 4; // Adjust this based on the number of frames
+            Rectangle sourceRectangle = new Rectangle(0, Projectile.frame * frameHeight, texture.Width, frameHeight);
+            Vector2 origin = sourceRectangle.Size() / 2f;
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, sourceRectangle, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            return false;
         }
     }
 }
