@@ -37,9 +37,9 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             _consumeItemHook?.Dispose();
         }
 
-        private delegate void ConsumeItemDelegate(Action<Player, int> orig, Player self, int type);
+        private delegate void ConsumeItemDelegate(Player self, int type);
 
-        private void Player_ConsumeItem(Action<Player, int> orig, Player self, int type)
+        private void Player_ConsumeItem(Player self, int type)
         {
             if (type == ItemID.LifeCrystal)
             {
@@ -62,7 +62,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             }
             else
             {
-                orig(self, type); // Call the original method for other items
+                typeof(Player).GetMethod("ConsumeItem", BindingFlags.Instance | BindingFlags.Public).Invoke(self, new object[] { type });
             }
         }
 
