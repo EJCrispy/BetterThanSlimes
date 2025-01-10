@@ -11,8 +11,16 @@ Items: {
 
 	BlackSteel: {
 		DisplayName: Black Steel
-		Tooltip: '''"An eastern style sword that is delicate and sharp. Prone to critical hits. The blade has ancient writing, it translates to: "The Black Steel of the East."'''
+		Tooltip: '''"An eastern style sword that is delicate and sharp, but it's impurities are visable. Prone to critical hits. The blade seems to separate vengeful spirits from their bodies upon death."'''
+	}
+
+	StoneHatchet: {
+		DisplayName: Stone Hatchet
+		Tooltip: ""
 	}
 }
 
-Projectiles.LooseStoneProjectile.DisplayName: Loose Stone Projectile
+Projectiles: {
+	LooseStoneProjectile.DisplayName: Loose Stone Projectile
+	VengefulSpirit.DisplayName: Vengeful Spirit
+}
