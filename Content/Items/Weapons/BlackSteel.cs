@@ -15,7 +15,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
             //Common Properties
             Item.rare = ItemRarityID.Blue;
-            Item.value = 40462;
+            Item.value = 40463;
             Item.maxStack = 1;
 
             Item.width = 40;
