@@ -14,36 +14,33 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             return item.type == ItemID.LifeCrystal;
         }
 
-        public override bool? UseItem(Item item, Player player)
+        public override void OnConsumeItem(Item item, Player player)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                Main.NewText("Before modification: " + player.statLifeMax);
-
-                player.statLifeMax2 += LifePerCrystal; // Apply custom increase
+                // Apply our desired max health increase
+                player.statLifeMax += LifePerCrystal - 20;
 
                 // Ensure player's max health does not exceed 250
-                if (player.statLifeMax2 > MaxLifeCap)
+                if (player.statLifeMax > MaxLifeCap)
                 {
-                    player.statLifeMax2 = MaxLifeCap;
+                    player.statLifeMax = MaxLifeCap;
                 }
 
                 // Ensure player's current health does not exceed max health
-                if (player.statLife > player.statLifeMax2)
+                if (player.statLife > player.statLifeMax)
                 {
-                    player.statLife = player.statLifeMax2;
+                    player.statLife = player.statLifeMax;
                 }
 
-                Main.NewText("After modification: " + player.statLifeMax2);
-
-                return true; // Indicate that the item was successfully used
+                // Ensure the changes are permanent
+                player.statLifeMax += 0;
             }
-            return base.UseItem(item, player); // Default behavior for other items
         }
 
         public override bool CanUseItem(Item item, Player player)
         {
-            if (item.type == ItemID.LifeCrystal && player.statLifeMax2 >= MaxLifeCap)
+            if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
             {
                 return false; // Prevent using Life Crystal if max life is at or above 250
             }
