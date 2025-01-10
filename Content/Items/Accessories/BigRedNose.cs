@@ -56,7 +56,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
                 {
                     // Adjust the y-coordinate to spawn the projectile higher
                     Vector2 spawnPosition = npc.position;
-                    spawnPosition.Y -= 35; // Adjust the value as needed
+                    spawnPosition.Y -= 45; // Adjust the value as needed
 
                     // Create the explosion projectile
                     int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT1Explosion, 40, 10, player.whoAmI);
