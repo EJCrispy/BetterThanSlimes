@@ -6,7 +6,7 @@ using Mono.Cecil;
 
 namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
 {
-    public class LifeCrystalDetour : Mod
+    public class LifeCrystalDetour : LifeCrystalGlobalItem
     {
         private ILHook ilHook;
 
