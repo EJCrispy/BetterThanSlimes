@@ -35,6 +35,12 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
         {
             base.ModifyMaxStats(out health, out mana);
             health = health.CombineWith(new StatModifier(1f, 0f, lifeCrystalsUsed * 10)); // Combine base health with Life Crystal bonus
+
+            // Ensure the player has a minimum base health value
+            if (Player.statLifeMax < 100)
+            {
+                Player.statLifeMax = 100; // Set the default starting health
+            }
         }
 
         public override void SaveData(TagCompound tag)
@@ -47,6 +53,10 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
             if (tag.ContainsKey("lifeCrystalsUsed"))
             {
                 lifeCrystalsUsed = tag.GetInt("lifeCrystalsUsed");
+            }
+            else
+            {
+                lifeCrystalsUsed = 0;
             }
         }
     }
