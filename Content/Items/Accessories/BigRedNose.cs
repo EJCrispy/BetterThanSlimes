@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework; // Add this line for Vector2
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BetterThanSlimes.Content.Items.Accessories
 {
@@ -41,6 +43,8 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
     public class MyGlobalNPC : GlobalNPC
     {
+        private Dictionary<int, int> npcImmunity = new Dictionary<int, int>();
+
         public override void OnKill(NPC npc)
         {
             if (npc.life <= 0)
@@ -50,10 +54,32 @@ namespace BetterThanSlimes.Content.Items.Accessories
                 {
                     // Adjust the y-coordinate to spawn the projectile higher
                     Vector2 spawnPosition = npc.position;
-                    spawnPosition.Y -= 16; // Adjust the value as needed
+                    spawnPosition.Y -= 30; // Adjust the value as needed
 
                     // Create the explosion projectile
-                    Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT1Explosion, 100, 10, player.whoAmI);
+                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT1Explosion, 100, 10, player.whoAmI);
+
+                    // Set local immunity for the projectile
+                    Main.projectile[proj].usesLocalNPCImmunity = true;
+                    Main.projectile[proj].localNPCHitCooldown = 10; // Adjust the cooldown value as needed
+                }
+            }
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            base.PostAI(npc);
+
+            // Update the immunity frames for each NPC
+            foreach (int npcIndex in npcImmunity.Keys.ToArray())
+            {
+                if (npcImmunity[npcIndex] > 0)
+                {
+                    npcImmunity[npcIndex]--;
+                }
+                else
+                {
+                    npcImmunity.Remove(npcIndex);
                 }
             }
         }
