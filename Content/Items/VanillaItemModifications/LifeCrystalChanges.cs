@@ -2,8 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using MonoMod.RuntimeDetour;
-using MonoMod.Cil;
-using Mono.Cecil.Cil; // Add this directive for OpCodes
 using System.Reflection;
 using System;
 
@@ -14,7 +12,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         public static readonly int LifePerCrystal = 10;
         public const int MaxLifeCap = 200;
 
-        private static ILHook _consumeItemILHook;
+        private static Hook _consumeItemHook;
 
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
@@ -26,7 +24,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             MethodInfo method = typeof(Player).GetMethod("ConsumeItem", BindingFlags.Instance | BindingFlags.Public);
             if (method != null)
             {
-                _consumeItemILHook = new ILHook(method, Player_ConsumeItemIL);
+                _consumeItemHook = new Hook(method, Player_ConsumeItem);
             }
             else
             {
@@ -36,19 +34,16 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
 
         public override void Unload()
         {
-            _consumeItemILHook?.Dispose();
+            _consumeItemHook?.Dispose();
         }
 
-        private void Player_ConsumeItemIL(ILContext il)
+        private void Player_ConsumeItem(Action<Player, int> orig, Player self, int type)
         {
-            var c = new ILCursor(il);
-            c.Emit(OpCodes.Ldarg_0);
-            c.Emit(OpCodes.Ldarg_1);
-            c.EmitDelegate<Action<Player, int>>((self, type) =>
+            if (type == ItemID.LifeCrystal)
             {
-                if (type == ItemID.LifeCrystal && self.statLifeMax < MaxLifeCap)
+                if (self.statLifeMax < MaxLifeCap)
                 {
-                    self.statLifeMax += LifePerCrystal - 20;
+                    self.statLifeMax += LifePerCrystal - 20; // Increase max life by 10 instead of 20
 
                     if (self.statLifeMax > MaxLifeCap)
                     {
@@ -60,14 +55,18 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
                         self.statLife = self.statLifeMax;
                     }
                 }
-            });
+            }
+            else
+            {
+                orig(self, type); // Call the original method for other items
+            }
         }
 
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
             {
-                return false;
+                return false; // Prevent using Life Crystal if max life is at or above 200
             }
             return base.CanUseItem(item, player);
         }
@@ -76,16 +75,16 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                return true;
+                return true; // Indicate that the item was successfully used
             }
-            return base.UseItem(item, player);
+            return base.UseItem(item, player); // Default behavior for other items
         }
 
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                item.healLife = LifePerCrystal;
+                item.healLife = LifePerCrystal; // Modify healing effect to 10 HP
             }
         }
     }
