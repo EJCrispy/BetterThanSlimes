@@ -18,22 +18,19 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                int defaultIncrease = 20; // Default HP increase by Life Crystal
-
-                // Adjust player's max health
-                player.statLifeMax += LifePerCrystal;
-                player.statLifeMax -= defaultIncrease;
+                // Apply our desired max health increase directly
+                player.statLifeMax2 += LifePerCrystal - 20;
 
                 // Ensure player's max health does not exceed 250
-                if (player.statLifeMax > MaxLifeCap)
+                if (player.statLifeMax2 > MaxLifeCap)
                 {
-                    player.statLifeMax = MaxLifeCap;
+                    player.statLifeMax2 = MaxLifeCap;
                 }
 
                 // Ensure player's current health does not exceed max health
-                if (player.statLife > player.statLifeMax)
+                if (player.statLife > player.statLifeMax2)
                 {
-                    player.statLife = player.statLifeMax;
+                    player.statLife = player.statLifeMax2;
                 }
             }
         }
