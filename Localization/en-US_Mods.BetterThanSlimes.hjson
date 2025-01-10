@@ -21,7 +21,7 @@ Items: {
 
 	BigRedNose: {
 		DisplayName: Big Red Nose
-		Tooltip: Those Who Nose will start to explode
+		Tooltip: "Killing an enemy causes an explosion, damaging nearby enemies! Taking more than 30 damage turns yourself into the bomb!"
 	}
 }
 
