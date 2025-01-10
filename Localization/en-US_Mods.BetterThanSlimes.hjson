@@ -18,6 +18,12 @@ Items: {
 		DisplayName: Stone Hatchet
 		Tooltip: ""
 	}
+
+	BigRedNose: {
+		DisplayName: Big Red Nose
+		Tooltip: "Those who nose"
+	
+	}
 }
 
 Projectiles: {
