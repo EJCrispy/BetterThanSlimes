@@ -54,7 +54,7 @@ namespace BetterThanSlimes.Content.Projectiles
             // Set the rotation to match the projectile's direction
             if (Projectile.velocity != Vector2.Zero)
             {
-                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+                Projectile.rotation = Projectile.velocity.ToRotation();
             }
 
             // Animation logic
