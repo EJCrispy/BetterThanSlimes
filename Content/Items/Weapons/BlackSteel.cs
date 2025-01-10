@@ -10,7 +10,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
     {
         public override void SetDefaults()
         {
-            // Common Properties
+            //Common Properties
             Item.rare = ItemRarityID.Blue;
             Item.value = 40464;
             Item.maxStack = 1;
@@ -27,35 +27,10 @@ namespace BetterThanSlimes.Content.Items.Weapons
             // Weapon Properties
             Item.damage = 15;
             Item.crit = 96;
-            Item.knockBack = 2;
+            Item.knockBack = 3;
             Item.noUseGraphic = false;
             Item.noMelee = false;
             Item.DamageType = DamageClass.Melee;
-        }
-
-        public override void HoldItem(Player player)
-        {
-            // Calculate the bonus damage from critical strike chance above 100%
-            float critChance = player.GetCritChance(DamageClass.Melee);
-            if (critChance > 100)
-            {
-                float extraCritChance = critChance - 100;
-                float bonusDamage = extraCritChance / 100f;
-                player.GetDamage(DamageClass.Melee) += bonusDamage;
-
-                // Debug output
-                Main.NewText("Crit Chance: " + critChance + "%");
-                Main.NewText("Bonus Damage: " + bonusDamage * 100 + "%");
-            }
-        }
-
-        public override void ModifyWeaponCrit(Player player, ref float crit)
-        {
-            // Limit the critical strike chance to 100%
-            if (crit > 100)
-            {
-                crit = 100;
-            }
         }
     }
 }
