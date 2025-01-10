@@ -11,8 +11,8 @@ namespace BetterThanSlimes.Content.Projectiles
     {
         public override void SetDefaults()
         {
-            Projectile.width = 25;
-            Projectile.height = 30;
+            Projectile.width = 25; // Frame width
+            Projectile.height = 30; // Frame height
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Melee;
@@ -54,7 +54,7 @@ namespace BetterThanSlimes.Content.Projectiles
 
             // Animation logic
             Projectile.frameCounter++;
-            if (Projectile.frameCounter >= 5) // Adjust the frame delay as needed
+            if (Projectile.frameCounter >= 10) // Adjust the frame delay for slower animation
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;
