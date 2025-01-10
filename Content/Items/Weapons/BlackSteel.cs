@@ -47,7 +47,16 @@ namespace BetterThanSlimes.Content
             {
                 int projectileID = ModContent.ProjectileType<Projectiles.VengefulSpirit>();
                 Vector2 spawnPosition = npc.Center;
-                Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, projectileID, 15, 2, Main.myPlayer);
+
+                // Spawn multiple projectiles in random directions
+                for (int i = 0; i < 3; i++)
+                {
+                    // Generate random direction for the projectile
+                    Vector2 randomDirection = new Vector2(Main.rand.NextFloat(-1, 1), Main.rand.NextFloat(-1, 1)).SafeNormalize(Vector2.UnitY);
+
+                    // Spawn the projectile with the random direction and a speed of 5
+                    Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, randomDirection * 5, projectileID, 15, 2, Main.myPlayer);
+                }
             }
         }
     }
