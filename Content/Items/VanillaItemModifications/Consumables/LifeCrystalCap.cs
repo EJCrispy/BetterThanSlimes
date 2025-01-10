@@ -7,7 +7,7 @@ using Mono.Cecil.Cil; // Add this directive for OpCodes
 using System.Reflection;
 using System;
 
-namespace BetterThanSlimes.Content.Items.VanillaItemModifications
+namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
 {
     public class LifeCrystalGlobalItem : GlobalItem
     {
