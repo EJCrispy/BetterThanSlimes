@@ -24,7 +24,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             MethodInfo method = typeof(Player).GetMethod("ConsumeItem", BindingFlags.Instance | BindingFlags.Public);
             if (method != null)
             {
-                _consumeItemHook = new Hook(method, Player_ConsumeItem);
+                _consumeItemHook = new Hook(method, new ConsumeItemDelegate(Player_ConsumeItem));
             }
             else
             {
@@ -36,6 +36,8 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             _consumeItemHook?.Dispose();
         }
+
+        private delegate void ConsumeItemDelegate(Action<Player, int> orig, Player self, int type);
 
         private void Player_ConsumeItem(Action<Player, int> orig, Player self, int type)
         {
