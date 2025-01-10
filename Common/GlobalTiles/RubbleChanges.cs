@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-public class MyModPlayer : ModPlayer
+public class DebugRubbleTiles : ModPlayer
 {
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
@@ -14,9 +15,9 @@ public class MyModPlayer : ModPlayer
             int j = Player.tileTargetY;
             Tile tile = Main.tile[i, j];
 
-            // Check for a specific tile frame that corresponds to rubble tiles
-            if (tile != null && tile.TileFrameX == 144 && tile.TileFrameY == 108)
+            if (tile != null && IsBoulderTile(tile))
             {
+                Console.WriteLine($"Rubble Tile Frame: X = {tile.TileFrameX}, Y = {tile.TileFrameY}");
                 WorldGen.KillTile(i, j, noItem: true);
                 for (int k = 0; k < 10; k++)
                 {
@@ -24,5 +25,10 @@ public class MyModPlayer : ModPlayer
                 }
             }
         }
+    }
+
+    private bool IsBoulderTile(Tile tile)
+    {
+        return tile.TileFrameX == 144 && tile.TileFrameY == 108; // 
     }
 }
