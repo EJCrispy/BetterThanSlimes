@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework; // Add this line for Vector2
 
 namespace BetterThanSlimes.Content.Items.Accessories
 {
@@ -19,6 +20,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
             Item.value = Item.sellPrice(0, 1);
             Item.accessory = true;
             Item.vanity = false;
+            Item.rare = ItemRarityID.Blue; // Set the rarity to blue
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -46,7 +48,8 @@ namespace BetterThanSlimes.Content.Items.Accessories
                 Player player = Main.player[npc.lastInteraction];
                 if (player.GetModPlayer<MyPlayer>().bigRedNose)
                 {
-                    Projectile.NewProjectile(npc.GetSource_Death(), npc.position, npc.velocity, ProjectileID.DD2ExplosiveTrapT1Explosion, 0, 0, player.whoAmI);
+                    // Create the explosion projectile
+                    Projectile.NewProjectile(npc.GetSource_Death(), npc.position, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT1Explosion, 100, 10, player.whoAmI);
                 }
             }
         }
