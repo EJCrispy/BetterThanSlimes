@@ -12,7 +12,60 @@
 	  <PackageReference Include="MonoMod.RuntimeDetour" Version="25.2.2" />
 	  <PackageReference Include="MonoMod.RuntimeDetour.HookGen" Version="22.7.31.1" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Content\Items\Placeable\" />
+	  <Folder Include="Content\ModdedTiles\" />
+	</ItemGroup>
 
 	<!-- References -->
 
 </Project>
+
+using Terraria.ModLoader;
+
+namespace YourModNamespace
+{
+    public class YourMod : Mod
+    {
+        public override void Load()
+        {
+            // Register your new tile and item here
+        }
+    }
+}public class YourMod : Mod
+{
+public override void Load()
+{
+// Register your new tile and item here
+}
+    public class YourMod : Mod
+    {
+        public override void Load()
+        {
+            // Register your new tile and item here
+        }
+    using Terraria.ModLoader;
+
+namespace YourModNamespace
+{
+    public class YourMod : Mod
+    {
+        public override void Load()
+        {
+            // Register your new tile and item here
+        }
+    }
+}public class YourMod : Mod
+{
+public override void Load()
+{
+// Register your new tile and item here
+}
+ 
+}     public class YourMod : Mod
+    {
+        public override void Load()
+        {
+            // Register your new tile and item here
+        }
+    
