@@ -14,36 +14,39 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             return item.type == ItemID.LifeCrystal;
         }
 
-        public override bool CanUseItem(Item item, Player player)
-        {
-            if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap)
-            {
-                return false; // Prevent using Life Crystal if max life is at or above 250
-            }
-            return base.CanUseItem(item, player);
-        }
-
         public override bool? UseItem(Item item, Player player)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                player.statLifeMax += LifePerCrystal; // Increase max life by 10
-
                 // Ensure player's max health does not exceed 250
-                if (player.statLifeMax > MaxLifeCap)
+                if (player.statLifeMax2 + LifePerCrystal > MaxLifeCap)
                 {
-                    player.statLifeMax = MaxLifeCap;
+                    player.statLifeMax2 = MaxLifeCap;
+                }
+                else
+                {
+                    player.statLifeMax2 += LifePerCrystal - 20;
                 }
 
                 // Ensure player's current health does not exceed max health
-                if (player.statLife > player.statLifeMax)
+                if (player.statLife > player.statLifeMax2)
                 {
-                    player.statLife = player.statLifeMax;
+                    player.statLife = player.statLifeMax2;
                 }
 
-                return true; // Indicate that the item was successfully used
+                // Indicate that the item was successfully used
+                return true;
             }
-            return base.UseItem(item, player); // Default behavior for other items
+            return base.UseItem(item, player);
+        }
+
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.type == ItemID.LifeCrystal && player.statLifeMax2 >= MaxLifeCap)
+            {
+                return false; // Prevent using Life Crystal if max life is at or above 250
+            }
+            return base.CanUseItem(item, player);
         }
 
         public override void SetDefaults(Item item)
