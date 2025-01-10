@@ -8,6 +8,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Twig
 	}
+
+	BlackSteel: {
+		DisplayName: Black Steel
+		Tooltip: '''"An eastern style sword that is delicate and sharp. Prone to critical hits. The blade has ancient writing, it translates to: "The Black Steel of the East."'''
+	}
 }
 
 Projectiles.LooseStoneProjectile.DisplayName: Loose Stone Projectile
