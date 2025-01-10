@@ -48,8 +48,12 @@ namespace BetterThanSlimes.Content.Items.Accessories
                 Player player = Main.player[npc.lastInteraction];
                 if (player.GetModPlayer<MyPlayer>().bigRedNose)
                 {
+                    // Adjust the y-coordinate to spawn the projectile higher
+                    Vector2 spawnPosition = npc.position;
+                    spawnPosition.Y -= 16; // Adjust the value as needed
+
                     // Create the explosion projectile
-                    Projectile.NewProjectile(npc.GetSource_Death(), npc.position, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT1Explosion, 100, 10, player.whoAmI);
+                    Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT1Explosion, 100, 10, player.whoAmI);
                 }
             }
         }
