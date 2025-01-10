@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace BetterThanSlimes.Content.Items.Weapons
 {
@@ -12,7 +10,6 @@ namespace BetterThanSlimes.Content.Items.Weapons
     {
         public override void SetDefaults()
         {
-
             //Common Properties
             Item.rare = ItemRarityID.Blue;
             Item.value = 40464;
@@ -34,7 +31,19 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.noUseGraphic = false;
             Item.noMelee = false;
             Item.DamageType = DamageClass.Melee;
+        }
 
+        public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (target.life <= 0)
+            {
+                // Fireball is a placeholder, we need a homing spirit ghost shitter
+                int projectileID = ProjectileID.Fireball;
+                Vector2 spawnPosition = target.Center;
+                Vector2 direction = Main.MouseWorld - target.Center;
+                direction.Normalize();
+                Projectile.NewProjectile(Projectile.InheritSource(target), spawnPosition, direction * 10f, projectileID, Item.damage, Item.knockBack, player.whoAmI);
+            }
         }
     }
 }
