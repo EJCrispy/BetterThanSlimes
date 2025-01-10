@@ -6,7 +6,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
 {
     public class LifeCrystalGlobalItem : GlobalItem
     {
-        public static readonly int LifePerCrystal = 50;
+        public static readonly int LifePerCrystal = 10;
         public const int MaxLifeCap = 250;
 
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
@@ -23,11 +23,12 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             return base.CanUseItem(item, player);
         }
 
-        public override void OnConsumeItem(Item item, Player player)
+        public override bool? UseItem(Item item, Player player)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                player.statLifeMax += LifePerCrystal; // Increase max life by 50
+                // Directly adjust the player's max life increase
+                player.statLifeMax += LifePerCrystal - 20;
 
                 // Ensure player's max health does not exceed 250
                 if (player.statLifeMax > MaxLifeCap)
@@ -40,14 +41,17 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
                 {
                     player.statLife = player.statLifeMax;
                 }
+
+                return true; // Indicate that the item was successfully used
             }
+            return base.UseItem(item, player); // Default behavior for other items
         }
 
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                item.healLife = LifePerCrystal; // Modify healing effect to 50 HP
+                item.healLife = LifePerCrystal; // Modify healing effect to 10 HP
             }
         }
     }
