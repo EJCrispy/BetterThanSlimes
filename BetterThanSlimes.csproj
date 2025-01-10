@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- Import tModLoader mod properties -->
 	<Import Project="..\tModLoader.targets" />
@@ -14,58 +14,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Content\Items\Placeable\" />
-	  <Folder Include="Content\ModdedTiles\" />
 	</ItemGroup>
 
 	<!-- References -->
 
 </Project>
-
-using Terraria.ModLoader;
-
-namespace YourModNamespace
-{
-    public class YourMod : Mod
-    {
-        public override void Load()
-        {
-            // Register your new tile and item here
-        }
-    }
-}public class YourMod : Mod
-{
-public override void Load()
-{
-// Register your new tile and item here
-}
-    public class YourMod : Mod
-    {
-        public override void Load()
-        {
-            // Register your new tile and item here
-        }
-    using Terraria.ModLoader;
-
-namespace YourModNamespace
-{
-    public class YourMod : Mod
-    {
-        public override void Load()
-        {
-            // Register your new tile and item here
-        }
-    }
-}public class YourMod : Mod
-{
-public override void Load()
-{
-// Register your new tile and item here
-}
- 
-}     public class YourMod : Mod
-    {
-        public override void Load()
-        {
-            // Register your new tile and item here
-        }
-    
