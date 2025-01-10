@@ -19,14 +19,13 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
             {
                 int defaultIncrease = 20; // Default HP increase by Life Crystal
 
-                // Adjust player's max and current health
-                player.statLifeMax += LifePerFruit - defaultIncrease;
-                player.statLife += LifePerFruit - defaultIncrease;
+                // Adjust player's max health
+                player.statLifeMax2 += LifePerFruit - defaultIncrease;
 
                 // Ensure player's max health does not exceed 500
-                if (player.statLifeMax > 500)
+                if (player.statLifeMax2 > 500)
                 {
-                    player.statLifeMax = 500;
+                    player.statLifeMax2 = 500;
                 }
             }
         }
