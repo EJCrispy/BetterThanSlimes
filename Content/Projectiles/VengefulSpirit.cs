@@ -11,8 +11,8 @@ namespace BetterThanSlimes.Content.Projectiles
     {
         public override void SetDefaults()
         {
-            Projectile.width = 25; // Frame width
-            Projectile.height = 40; // Frame height
+            Projectile.width = 35; // Frame width
+            Projectile.height = 60; // Frame height
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Melee;
