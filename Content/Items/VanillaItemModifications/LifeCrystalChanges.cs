@@ -27,8 +27,7 @@ namespace BetterThanSlimes.Content.Items.VanillaItemModifications
         {
             if (item.type == ItemID.LifeCrystal)
             {
-                // Directly adjust the player's max life increase
-                player.statLifeMax += LifePerCrystal - 20;
+                player.statLifeMax += LifePerCrystal; // Increase max life by 10
 
                 // Ensure player's max health does not exceed 250
                 if (player.statLifeMax > MaxLifeCap)
