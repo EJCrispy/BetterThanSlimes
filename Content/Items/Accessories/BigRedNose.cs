@@ -65,7 +65,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
         public override void OnKill(NPC npc)
         {
-            if (npc.life <= 0)
+            if (npc.life <= 0 && !npc.friendly && npc.type != NPCID.ServantofCthulhu)
             {
                 Player player = Main.player[npc.lastInteraction];
                 if (player.GetModPlayer<MyPlayer>().bigRedNose)
