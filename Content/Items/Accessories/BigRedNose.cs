@@ -57,5 +57,49 @@ namespace BetterThanSlimes.Content.Items.Accessories
         }
     }
 
-    public class MyGlobalNPC { }
+    public class MyGlobalNPC : GlobalNPC
+    {
+        private Dictionary<int, int> npcImmunity = new Dictionary<int, int>();
+
+        public override bool InstancePerEntity => true;
+
+        public override void OnKill(NPC npc)
+        {
+            if (npc.life <= 0 && !npc.friendly && npc.catchItem <= 0 && npc.type != NPCID.ServantofCthulhu)
+            {
+                Player player = Main.player[npc.lastInteraction];
+                if (player.GetModPlayer<MyPlayer>().bigRedNose)
+                {
+                    // Adjust the y-coordinate to spawn the projectile higher
+                    Vector2 spawnPosition = npc.position;
+                    spawnPosition.Y -= 45; // Adjust the value as needed
+
+                    // Create the explosion projectile
+                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 65, 10, player.whoAmI);
+
+                    // Set local immunity for the projectile
+                    Main.projectile[proj].usesLocalNPCImmunity = true;
+                    Main.projectile[proj].localNPCHitCooldown = 1; // Adjust the cooldown value as needed
+                }
+            }
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            base.PostAI(npc);
+
+            // Update the immunity frames for each NPC
+            foreach (int npcIndex in npcImmunity.Keys.ToArray())
+            {
+                if (npcImmunity[npcIndex] > 0)
+                {
+                    npcImmunity[npcIndex]--;
+                }
+                else
+                {
+                    npcImmunity.Remove(npcIndex);
+                }
+            }
+        }
+    }
 }
