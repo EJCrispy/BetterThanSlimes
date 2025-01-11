@@ -19,7 +19,7 @@ namespace BetterThanSlimes.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 2;
             Projectile.timeLeft = 1600;
             Projectile.light = 0.5f;
             Projectile.extraUpdates = 1;
