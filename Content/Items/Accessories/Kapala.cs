@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Content.Items.Accessories
+namespace ExampleMod.Content.Items.Accessories
 {
     public class Kapala : ModItem
     {
@@ -46,7 +46,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
     public class ExampleGlobalNPC : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void OnKill(NPC npc)
         {
             if (Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaEquipped)
             {
