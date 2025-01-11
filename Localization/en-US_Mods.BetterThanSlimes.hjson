@@ -22,6 +22,13 @@ Items: {
 	BigRedNose: {
 		DisplayName: Big Red Nose
 		Tooltip: Killing an enemy causes an explosion, damaging nearby enemies! Taking more than 30 damage turns yourself into the bomb!
+
+	}
+
+	Kapala: {
+	DisplayName: Kapala
+	Tooltip: A skull cup bestowed upon Kali's most loyal devotees. Drinking blood from it can improve one's health and enlightenment.
+
 	}
 }
 
