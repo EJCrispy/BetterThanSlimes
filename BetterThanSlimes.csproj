@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- Import tModLoader mod properties -->
 	<Import Project="..\tModLoader.targets" />
@@ -11,6 +11,11 @@
 	  <PackageReference Include="Mono.Cecil" Version="0.11.6" />
 	  <PackageReference Include="MonoMod.RuntimeDetour" Version="25.2.2" />
 	  <PackageReference Include="MonoMod.RuntimeDetour.HookGen" Version="22.7.31.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Content\Items\Placeable\" />
+	  <Folder Include="Content\ModdedTiles\" />
+	  <Folder Include="Content\NPCs\VanillaEnemyModifications\BetterThanSlimes\" />
 	</ItemGroup>
 
 	<!-- References -->
