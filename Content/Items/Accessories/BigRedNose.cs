@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework; // Add this line for Vector2
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 

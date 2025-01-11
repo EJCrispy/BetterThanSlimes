@@ -11,7 +11,7 @@ using Terraria.DataStructures;
 
 // This section of code reshapes enemy properties such as drop rates.
 
-//This section removes hearts from enemy drops.
+// This section removes hearts from enemy drops.
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class GlobalNPCModifications : GlobalItem
@@ -34,10 +34,16 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     }
 }
 
-//This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
+// This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
-    public class DoctorBonesModifications : GlobalNPC
+    using Terraria.ModLoader;
+    using Terraria;
+    using Terraria.ID;
+    using Terraria.GameContent.ItemDropRules;
+    using static global::BetterThanSlimes.BetterThanSlimes.Content.Items.Accessories;
+
+    public class MinibossModifications : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
@@ -46,6 +52,12 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                 npcLoot.Add(ItemDropRule.Common(ItemID.BlandWhip, 1));
                 npcLoot.Add(ItemDropRule.Common(ItemID.RopeCoil, 1, 3, 3));
                 npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 3, 3));
+            }
+
+            if (npc.type == NPCID.Clown)
+            {
+                npcLoot.Add(ItemDropRule.Common(itemId: 5546,
+                                                1)); //should make clowns drop red nose
             }
         }
     }
