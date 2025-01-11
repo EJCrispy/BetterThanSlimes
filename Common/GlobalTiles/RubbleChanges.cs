@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BetterThanSlimes.Content.Items.Weapons;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
