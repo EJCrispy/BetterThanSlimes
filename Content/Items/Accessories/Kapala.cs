@@ -37,10 +37,10 @@ namespace ExampleMod.Content.Items.Accessories
             kapalaEquipped = false;
         }
 
-        public void HealOnKill(int healAmount)
+        public void HealOnKill()
         {
-            Player.statLife += healAmount;
-            Player.HealEffect(healAmount);
+            Player.statLife += 10; // Grants 10 life upon killing an enemy
+            Player.HealEffect(10); // Shows the heal effect
         }
     }
 
@@ -50,7 +50,7 @@ namespace ExampleMod.Content.Items.Accessories
         {
             if (Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaEquipped)
             {
-                Main.LocalPlayer.GetModPlayer<KapalaPlayer>().HealOnKill(10);
+                Main.LocalPlayer.GetModPlayer<KapalaPlayer>().HealOnKill();
             }
         }
     }
