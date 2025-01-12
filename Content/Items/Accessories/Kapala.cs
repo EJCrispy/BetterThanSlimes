@@ -39,8 +39,8 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
         public void HealOnKill()
         {
-            Player.statLife += 3; // Grants 10 life upon killing an enemy
-            Player.HealEffect(3); // Shows the heal effect
+            Player.statLife += 7; // Grants 10 life upon killing an enemy
+            Player.HealEffect(7); // Shows the heal effect
         }
     }
 
