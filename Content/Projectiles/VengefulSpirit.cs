@@ -92,7 +92,7 @@ namespace BetterThanSlimes.Content.Projectiles
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             // Set the immunity frames for the hit NPC
-            npcImmunity[target.whoAmI] = 10; // Adjust this value as needed
+            npcImmunity[target.whoAmI] = 0; // Adjust this value as needed
         }
 
         public override bool? CanHitNPC(NPC target)
