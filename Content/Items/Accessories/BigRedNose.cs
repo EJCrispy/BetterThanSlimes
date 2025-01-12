@@ -52,7 +52,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
                 // Set local immunity for the projectile
                 Main.projectile[proj].usesLocalNPCImmunity = true;
-                Main.projectile[proj].localNPCHitCooldown = 10; // Adjust the cooldown value as needed
+                Main.projectile[proj].localNPCHitCooldown = 0; // Adjust the cooldown value as needed
             }
         }
     }
@@ -79,7 +79,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
                     // Set local immunity for the projectile
                     Main.projectile[proj].usesLocalNPCImmunity = true;
-                    Main.projectile[proj].localNPCHitCooldown = 1; // Adjust the cooldown value as needed
+                    Main.projectile[proj].localNPCHitCooldown = 0; // Adjust the cooldown value as needed
                 }
             }
         }
