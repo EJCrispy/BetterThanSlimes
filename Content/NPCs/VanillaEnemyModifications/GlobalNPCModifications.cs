@@ -38,6 +38,10 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             {
                 item.TurnToAir();
             }
+            if (item.type == ItemID.SugarPlum)
+            {
+                item.TurnToAir(); 
+            }
         }
     }
 }
