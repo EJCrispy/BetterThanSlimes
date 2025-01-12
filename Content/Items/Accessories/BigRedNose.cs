@@ -48,7 +48,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
                 spawnPosition.Y -= 45; // Adjust the value as needed
 
                 // Create the explosion projectile
-                int proj = Projectile.NewProjectile(Player.GetSource_Misc("BigRedNoseExplosion"), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 40, 10, Player.whoAmI);
+                int proj = Projectile.NewProjectile(Player.GetSource_Misc("BigRedNoseExplosion"), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 70, 10, Player.whoAmI);
 
                 // Set local immunity for the projectile
                 Main.projectile[proj].usesLocalNPCImmunity = true;
@@ -65,7 +65,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
         public override void OnKill(NPC npc)
         {
-            if (npc.life <= 0)
+            if (npc.life <= 0 && !npc.friendly && npc.catchItem <= 0 && npc.type != NPCID.ServantofCthulhu)
             {
                 Player player = Main.player[npc.lastInteraction];
                 if (player.GetModPlayer<MyPlayer>().bigRedNose)
@@ -75,7 +75,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
                     spawnPosition.Y -= 45; // Adjust the value as needed
 
                     // Create the explosion projectile
-                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 65, 10, player.whoAmI);
+                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT2Explosion, 25, 10, player.whoAmI);
 
                     // Set local immunity for the projectile
                     Main.projectile[proj].usesLocalNPCImmunity = true;
