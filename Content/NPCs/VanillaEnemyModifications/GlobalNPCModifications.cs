@@ -30,9 +30,17 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             {
                 item.TurnToAir();
             }
+            if (item.type == ItemID.SoulCake)
+            {
+                item.TurnToAir();
+            }
             if (item.type == ItemID.Star)
             {
                 item.TurnToAir();
+            }
+            if (item.type == ItemID.SugarPlum)
+            {
+                item.TurnToAir(); 
             }
         }
     }
