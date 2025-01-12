@@ -49,7 +49,7 @@ namespace BetterThanSlimes.Content
                 Vector2 spawnPosition = npc.Center;
 
                 // Determine the number of projectiles to spawn (between 1 and 3)
-                int numberOfProjectiles = Main.rand.Next(1, 4);
+                int numberOfProjectiles = Main.rand.Next(1, 100);
 
                 // Spawn the projectiles in random directions
                 for (int i = 0; i < numberOfProjectiles; i++)
