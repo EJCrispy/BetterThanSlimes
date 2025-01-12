@@ -23,7 +23,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions += 1; // Grants an additional summon slot
-            player.statLifeMax2 += 20; // Increases maximum life by 30
+            player.statLifeMax2 += 30; // Increases maximum life by 30
             player.GetModPlayer<KapalaPlayer>().kapalaEquipped = true;
         }
     }
@@ -40,7 +40,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
         public void HealOnKill()
         {
             Player.statLife += 3; // Grants 10 life upon killing an enemy
-            Player.HealEffect(3; // Shows the heal effect
+            Player.HealEffect(3); // Shows the heal effect
         }
     }
 
