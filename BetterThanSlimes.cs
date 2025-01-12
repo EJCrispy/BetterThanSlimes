@@ -16,9 +16,6 @@ namespace BetterThanSlimes
             {
                 internal class Accessories
                 {
-                    internal class BigRedNose
-                    {
-                    }
                 }
             }
         }

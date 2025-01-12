@@ -13,8 +13,8 @@ namespace BetterThanSlimes.Content.Items.Tools
             Item.DamageType = DamageClass.Melee;
             Item.width = 16;
             Item.height = 16;
-            Item.useTime = 23;
-            Item.useAnimation = 23;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 2;
             Item.value = 10;

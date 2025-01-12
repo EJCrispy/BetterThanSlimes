@@ -1,9 +1,18 @@
-﻿using BetterThanSlimes.Content.Items.Weapons;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameInput;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-// giving up on ts (this shit)
+namespace BetterThanSlimes.Common.GlobalTiles
+{
+    public class RubbleChanges : ModSystem
+    {
+        public override void Load()
+        {
+
+        }
+    }
+}

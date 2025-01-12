@@ -30,6 +30,10 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             {
                 item.TurnToAir();
             }
+            if (item.type == ItemID.Star)
+            {
+                item.TurnToAir();
+            }
         }
     }
 }
