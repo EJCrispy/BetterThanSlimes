@@ -48,7 +48,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
                 spawnPosition.Y -= 45; // Adjust the value as needed
 
                 // Create the explosion projectile
-                int proj = Projectile.NewProjectile(Player.GetSource_Misc("BigRedNoseExplosion"), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 40, 10, Player.whoAmI);
+                int proj = Projectile.NewProjectile(Player.GetSource_Misc("BigRedNoseExplosion"), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 20, 10, Player.whoAmI);
 
                 // Set local immunity for the projectile
                 Main.projectile[proj].usesLocalNPCImmunity = true;
