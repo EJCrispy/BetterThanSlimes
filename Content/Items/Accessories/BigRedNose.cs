@@ -91,7 +91,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
             // Update the immunity frames for each NPC
             foreach (int npcIndex in npcImmunity.Keys.ToArray())
             {
-                if (npcImmunity[npcIndex] > 0)
+                if (npcImmunity[npcIndex] > 1)
                 {
                     npcImmunity[npcIndex]--;
                 }
