@@ -48,7 +48,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
             if (Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaEquipped)
             {
                 // 1/7 chance to drop a heart
-                if (Main.rand.NextBool(3))
+                if (Main.rand.NextBool(1))
                 {
                     Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart = true; // Set the flag
                     Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.Heart);
