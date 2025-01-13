@@ -26,7 +26,7 @@ Items: {
 
 	Kapala: {
 		DisplayName: Kapala
-		Tooltip: A skull cup bestowed upon Kali's most loyal devotees. Drinking blood from it can improve one's health and enlightenment. Grants 20 max life, 1 minion slot, and 7 health upon killing an enemy. Part of an ancient relic.
+		Tooltip: A skull cup bestowed upon Kali's most loyal devotees. Drinking blood from it can improve one's health and enlightenment. Grants 20 max life, 1 minion slot, and chance for enemies to drop hearts. Part of an ancient relic.
 	}
 }
 
