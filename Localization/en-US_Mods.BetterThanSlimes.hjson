@@ -28,6 +28,12 @@ Items: {
 		DisplayName: Kapala
 		Tooltip: A skull cup bestowed upon Kali's most loyal devotees. Drinking blood from it can improve one's health and enlightenment. Grants 20 max life, 1 minion slot, and chance for enemies to drop hearts. Part of an ancient relic.
 	}
+
+	LilasNecklace: {
+		DisplayName: Lila's Necklace
+		Tooltip: THE PRINCE. THE WHEEL. THE FOOL. THE EMPEROR. THEY WERE ALL PAWNS IN HER GAME IN THE END. FEED HER THE WAY SHE FEEDS YU.
+
+	}
 }
 
 Projectiles: {
