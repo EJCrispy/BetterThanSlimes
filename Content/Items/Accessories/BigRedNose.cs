@@ -75,7 +75,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
                     spawnPosition.Y -= 45; // Adjust the value as needed
 
                     // Create the explosion projectile
-                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.SolarWhipSwordExplosion, 35, 10, player.whoAmI);
+                    int proj = Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT2Explosion, 35, 10, player.whoAmI);
 
                     // Set local immunity for the projectile
                     Main.projectile[proj].usesLocalNPCImmunity = true;
