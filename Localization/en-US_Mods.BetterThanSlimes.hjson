@@ -42,8 +42,7 @@ Projectiles: {
 
 Buffs: {
 	LilaBuff: {
-	DisplayName: 512
-	Description: You can hear the heavenly melody
-}
-
+		Description: You can hear the heavenly melody
+		DisplayName: "512"
+	}
 }

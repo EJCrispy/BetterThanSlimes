@@ -28,7 +28,6 @@ namespace BetterThanSlimes.Content.Players
                 player.GetAttackSpeed(DamageClass.Ranged) += 0.16f;
                 player.GetAttackSpeed(DamageClass.Magic) += 0.16f;
                 player.GetAttackSpeed(DamageClass.Summon) += 0.16f;
-                player.GetAttackSpeed(DamageClass.Throwing) += 0.16f;
             }
         }
     }
