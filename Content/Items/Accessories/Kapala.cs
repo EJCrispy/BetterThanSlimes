@@ -40,15 +40,15 @@ namespace BetterThanSlimes.Content.Items.Accessories
         }
     }
 
-
     public class ExampleGlobalNPC : GlobalNPC
     {
         public override void OnKill(NPC npc)
         {
-            if (Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaEquipped)
+            if (Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaEquipped &&
+                npc.life <= 0 && !npc.friendly && npc.catchItem <= 0 && npc.type != NPCID.Bee)
             {
-                // 1/7 chance to drop a heart
-                if (Main.rand.NextBool(5))
+                // 1/4 chance to drop a heart
+                if (Main.rand.NextBool(4))
                 {
                     Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart = true; // Set the flag
                     Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.Heart);
@@ -58,5 +58,3 @@ namespace BetterThanSlimes.Content.Items.Accessories
         }
     }
 }
-
-
