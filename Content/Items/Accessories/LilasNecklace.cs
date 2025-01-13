@@ -29,7 +29,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
         {
             player.moveSpeed += 0.15f; // Increases movement speed by 15%
             player.jumpSpeedBoost += 0.20f; // Increases jump speed by 20%
-            player.jumpBoost = true; // Enables increased jump height
+            player.gravity -= 0.2f; // Decrease gravity to increase jump height
         }
     }
 }
