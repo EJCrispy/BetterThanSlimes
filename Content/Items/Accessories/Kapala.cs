@@ -17,7 +17,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
             Item.height = 14;
             Item.accessory = true;
             Item.value = Item.sellPrice(0, 1);
-            Item.rare = ItemRarityID.Red; 
+            Item.rare = ItemRarityID.Red;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -31,12 +31,15 @@ namespace BetterThanSlimes.Content.Items.Accessories
     public class KapalaPlayer : ModPlayer
     {
         public bool kapalaEquipped = false;
+        public bool kapalaHeart = false; // New property to mark Kapala hearts
 
         public override void ResetEffects()
         {
             kapalaEquipped = false;
+            kapalaHeart = false;
         }
     }
+
 
     public class ExampleGlobalNPC : GlobalNPC
     {
@@ -47,9 +50,13 @@ namespace BetterThanSlimes.Content.Items.Accessories
                 // 1/7 chance to drop a heart
                 if (Main.rand.NextBool(7))
                 {
+                    Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart = true; // Set the flag
                     Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.Heart);
+                    Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart = false; // Reset the flag
                 }
             }
         }
     }
 }
+
+

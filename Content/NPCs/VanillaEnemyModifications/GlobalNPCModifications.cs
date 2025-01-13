@@ -8,17 +8,15 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using BetterThanSlimes.Content.Items.Accessories;
 
-// This section of code reshapes enemy properties such as drop rates.
-
-// This section removes hearts from enemy drops.
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class GlobalNPCModifications : GlobalItem
     {
         public override void OnSpawn(Item item, IEntitySource source)
         {
-            if (item.type == ItemID.Heart)
+            if (item.type == ItemID.Heart && !Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart)
             {
                 item.TurnToAir();
             }
@@ -40,11 +38,12 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             }
             if (item.type == ItemID.SugarPlum)
             {
-                item.TurnToAir(); 
+                item.TurnToAir();
             }
         }
     }
 }
+
 
 // This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
