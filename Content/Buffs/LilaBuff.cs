@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Content.Players
+namespace BetterThanSlimes.Content.Buffs
 {
     public class MyModPlayer : ModPlayer
     {
