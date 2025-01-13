@@ -17,13 +17,13 @@ namespace BetterThanSlimes.Content.Items.Accessories
             Item.height = 14;
             Item.accessory = true;
             Item.value = Item.sellPrice(0, 1);
-            Item.rare = ItemRarityID.Green; // You can change the rarity if desired
+            Item.rare = ItemRarityID.Red; 
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions += 1; // Grants an additional summon slot
-            player.statLifeMax2 += 30; // Increases maximum life by 30
+            player.statLifeMax2 += 20; // Increases maximum life by 20
             player.GetModPlayer<KapalaPlayer>().kapalaEquipped = true;
         }
     }
@@ -36,12 +36,6 @@ namespace BetterThanSlimes.Content.Items.Accessories
         {
             kapalaEquipped = false;
         }
-
-        public void HealOnKill()
-        {
-            Player.statLife += 7; // Grants 10 life upon killing an enemy
-            Player.HealEffect(7); // Shows the heal effect
-        }
     }
 
     public class ExampleGlobalNPC : GlobalNPC
@@ -50,7 +44,11 @@ namespace BetterThanSlimes.Content.Items.Accessories
         {
             if (Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaEquipped)
             {
-                Main.LocalPlayer.GetModPlayer<KapalaPlayer>().HealOnKill();
+                // 1/7 chance to drop a heart
+                if (Main.rand.NextBool(7))
+                {
+                    Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.Heart);
+                }
             }
         }
     }
