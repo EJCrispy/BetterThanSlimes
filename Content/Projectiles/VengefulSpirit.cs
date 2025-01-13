@@ -23,6 +23,7 @@ namespace BetterThanSlimes.Content.Projectiles
             Projectile.timeLeft = 1600;
             Projectile.light = 0.5f;
             Projectile.extraUpdates = 1;
+            Projectile.tileCollide = false; // This line makes the projectile go through walls
         }
 
         public override void AI()
@@ -69,7 +70,7 @@ namespace BetterThanSlimes.Content.Projectiles
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;
-                if (Projectile.frame >= 3) // Adjust this based on the number of frames in your spritesheet
+                if (Projectile.frame >= 3) // Adjust this based on the number of frames in spritesheet
                 {
                     Projectile.frame = 0;
                 }
