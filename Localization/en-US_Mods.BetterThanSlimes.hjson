@@ -39,3 +39,11 @@ Projectiles: {
 	LooseStoneProjectile.DisplayName: Loose Stone Projectile
 	VengefulSpirit.DisplayName: Vengeful Spirit
 }
+
+Buffs: {
+	LilaBuff: {
+	DisplayName: 512
+	Description: You can hear the heavenly melody
+}
+
+}
