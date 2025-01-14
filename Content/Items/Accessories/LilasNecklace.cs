@@ -22,7 +22,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
             Item.value = Item.sellPrice(0, 1);
             Item.accessory = true;
             Item.vanity = false;
-            Item.rare = ItemRarityID.Blue; // Set the rarity to blue
+            Item.rare = ItemRarityID.Purple; // Set the rarity to blue
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
