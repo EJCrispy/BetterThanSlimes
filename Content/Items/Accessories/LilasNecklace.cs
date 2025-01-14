@@ -27,9 +27,9 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += 0.15f; // Increases movement speed by 15%
-            player.jumpSpeedBoost += 0.20f; // Increases jump speed by 20%
-            player.gravity -= 0.2f; // Decrease gravity to increase jump height
+            player.moveSpeed += 0.35f; // Increases movement speed by 35%
+            player.jumpSpeedBoost += 0.30f; // Increases jump speed by 30%
+        
         }
     }
 }
