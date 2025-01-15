@@ -36,7 +36,7 @@ namespace BetterThanSlimes.Content.Items.Tools
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Gel, 1);
-           recipe.AddIngredient(ItemID.Wood, 1);
+           recipe.AddIngredient(9, 1);
             recipe.AddIngredient(5553, 1); // 5553 is loose stone
             recipe.Register();
         }
