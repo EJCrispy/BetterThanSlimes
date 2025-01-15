@@ -9,49 +9,51 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using BetterThanSlimes.Content.Items.Accessories;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class GlobalNPCModifications : GlobalItem
     {
+        // all code below makes items despawn when spawned in.
         public override void OnSpawn(Item item, IEntitySource source)
         {
             if (item.type == ItemID.CopperCoin || item.type == ItemID.SilverCoin || item.type == ItemID.GoldCoin || item.type == ItemID.PlatinumCoin)
             {
                 item.TurnToAir();
+            }
 
-
-                if (item.type == ItemID.Heart && !Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart)
-                {
-                    item.TurnToAir();
-                }
-                if (item.type == ItemID.CandyApple)
-                {
-                    item.TurnToAir();
-                }
-                if (item.type == ItemID.CandyCane)
-                {
-                    item.TurnToAir();
-                }
-                if (item.type == ItemID.SoulCake)
-                {
-                    item.TurnToAir();
-                }
-                if (item.type == ItemID.Star)
-                {
-                    item.TurnToAir();
-                }
-                if (item.type == ItemID.SugarPlum)
-                {
-                    item.TurnToAir();
-                }
+            if (item.type == ItemID.Heart && !Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart)
+            {
+                item.TurnToAir();
+            }
+            if (item.type == ItemID.CandyApple)
+            {
+                item.TurnToAir();
+            }
+            if (item.type == ItemID.CandyCane)
+            {
+                item.TurnToAir();
+            }
+            if (item.type == ItemID.SoulCake)
+            {
+                item.TurnToAir();
+            }
+            if (item.type == ItemID.Star)
+            {
+                item.TurnToAir();
+            }
+            if (item.type == ItemID.SugarPlum)
+            {
+                item.TurnToAir();
             }
         }
     }
+}
 
 
-    // This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
-    namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
+// This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
+namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     {
         using Terraria.ModLoader;
         using Terraria;
@@ -80,4 +82,4 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             }
         }
     }
-}
+
