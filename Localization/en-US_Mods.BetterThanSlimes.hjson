@@ -33,6 +33,11 @@ Items: {
 		DisplayName: Lila's Necklace
 		Tooltip: THE PRINCE. THE WHEEL. THE FOOL. THE EMPEROR. THEY WERE ALL PAWNS IN HER GAME IN THE END. FEED HER THE WAY SHE FEEDS YU.
 	}
+
+	StonePickaxe: {
+		DisplayName: Stone Pickaxe
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

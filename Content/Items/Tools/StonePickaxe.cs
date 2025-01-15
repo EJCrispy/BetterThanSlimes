@@ -32,13 +32,13 @@ namespace BetterThanSlimes.Content.Items.Tools
             // Add any melee effects you want to apply here
         }
 
-        public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Gel, 2);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddIngredient(5552, 2); // 5552 is loose stone
-            recipe.Register();
+      //  public override void AddRecipes()
+      //  {
+      //      Recipe recipe = CreateRecipe();
+      //      recipe.AddIngredient(ItemID.Gel, 2);
+      //     recipe.AddIngredient(ItemID.Wood, 3);
+      //      recipe.AddIngredient(5552, 2); // 5552 is loose stone
+      //      recipe.Register();
         }
     }
-}
+//}
