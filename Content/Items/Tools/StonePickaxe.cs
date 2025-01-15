@@ -30,7 +30,7 @@ namespace BetterThanSlimes.Content.Items.Tools
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
             // Add any melee effects you want to apply here
-        }
+        } 
 
         public override void AddRecipes()
         {
