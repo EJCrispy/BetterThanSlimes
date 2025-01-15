@@ -19,7 +19,7 @@ namespace TutorialMod.Common.Players
             base.PostUpdateMiscEffects();
             Player.maxRunSpeed -= 1.125f;
             Player.accRunSpeed -= 1.125f;
-            Player.jumpHeight -= 0;
+            Player.jumpHeight -= 3;
             Player.maxFallSpeed -= -10;
             Player.jumpSpeed -= -0.0195f;
 
