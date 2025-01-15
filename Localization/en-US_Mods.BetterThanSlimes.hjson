@@ -63,7 +63,7 @@ Buffs: {
 	}
 }
 Tiles: {
-	LooseDirt: {
+	LooseDirtTile: {
 	Displayname: Loose Dirt
 	Description: Lirt
 	}
