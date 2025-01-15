@@ -21,7 +21,7 @@ namespace TutorialMod.Common.Players
             Player.accRunSpeed -= 1.125f;
             Player.jumpHeight -= 3;
             Player.maxFallSpeed -= -10;
-            Player.jumpSpeed -= -0.0195f;
+            Player.jumpSpeed -= -1.0195f;
 
         }
     }
