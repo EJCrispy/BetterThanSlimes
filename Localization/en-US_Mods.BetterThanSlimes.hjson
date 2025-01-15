@@ -38,6 +38,11 @@ Items: {
 		DisplayName: Stone Pickaxe
 		Tooltip: ""
 	}
+
+	Guidebook: {
+		DisplayName: Guidebook
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
