@@ -6,7 +6,7 @@ public class GlobalDirtTile : GlobalTile
 {
     public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
     {
-        if (type == TileID.Dirt && !noItem)
+        if (type == TileID.Dirt && !fail && !noItem)
         {
             // Prevent the default item drop
             noItem = true;
