@@ -16,61 +16,67 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     {
         public override void OnSpawn(Item item, IEntitySource source)
         {
-            if (item.type == ItemID.Heart && !Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart)
+            if (item.type == ItemID.CopperCoin || item.type == ItemID.SilverCoin || item.type == ItemID.GoldCoin || item.type == ItemID.PlatinumCoin)
             {
                 item.TurnToAir();
-            }
-            if (item.type == ItemID.CandyApple)
-            {
-                item.TurnToAir();
-            }
-            if (item.type == ItemID.CandyCane)
-            {
-                item.TurnToAir();
-            }
-            if (item.type == ItemID.SoulCake)
-            {
-                item.TurnToAir();
-            }
-            if (item.type == ItemID.Star)
-            {
-                item.TurnToAir();
-            }
-            if (item.type == ItemID.SugarPlum)
-            {
-                item.TurnToAir();
+
+
+                if (item.type == ItemID.Heart && !Main.LocalPlayer.GetModPlayer<KapalaPlayer>().kapalaHeart)
+                {
+                    item.TurnToAir();
+                }
+                if (item.type == ItemID.CandyApple)
+                {
+                    item.TurnToAir();
+                }
+                if (item.type == ItemID.CandyCane)
+                {
+                    item.TurnToAir();
+                }
+                if (item.type == ItemID.SoulCake)
+                {
+                    item.TurnToAir();
+                }
+                if (item.type == ItemID.Star)
+                {
+                    item.TurnToAir();
+                }
+                if (item.type == ItemID.SugarPlum)
+                {
+                    item.TurnToAir();
+                }
             }
         }
     }
-}
 
 
-// This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
-namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
-{
-    using Terraria.ModLoader;
-    using Terraria;
-    using Terraria.ID;
-    using Terraria.GameContent.ItemDropRules;
-    using static global::BetterThanSlimes.BetterThanSlimes.Content.Items.Accessories;
-
-    public class MinibossModifications : GlobalNPC
+    // This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
+    namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            if (npc.type == NPCID.DoctorBones)
-            {
-                npcLoot.Add(ItemDropRule.Common(ItemID.BlandWhip, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemID.RopeCoil, 1, 3, 3));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 3, 3));
-                npcLoot.Add(ItemDropRule.Common(itemId: 5547,
-                                                1)); //should drop kapala
-            }
+        using Terraria.ModLoader;
+        using Terraria;
+        using Terraria.ID;
+        using Terraria.GameContent.ItemDropRules;
+        using static global::BetterThanSlimes.BetterThanSlimes.Content.Items.Accessories;
 
-            if (npc.type == NPCID.Clown)
+        public class MinibossModifications : GlobalNPC
+        {
+            public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
             {
-                npcLoot.Add(ItemDropRule.Common(itemId: 5546,
-                                                1)); //should make clowns drop red nose
+                if (npc.type == NPCID.DoctorBones)
+                {
+                    npcLoot.Add(ItemDropRule.Common(ItemID.BlandWhip, 1));
+                    npcLoot.Add(ItemDropRule.Common(ItemID.RopeCoil, 1, 3, 3));
+                    npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 3, 3));
+                    npcLoot.Add(ItemDropRule.Common(itemId: 5547,
+                                                    1)); //should drop kapala
+                }
+
+                if (npc.type == NPCID.Clown)
+                {
+                    npcLoot.Add(ItemDropRule.Common(itemId: 5546,
+                                                    1)); //should make clowns drop red nose
+                }
             }
         }
     }
