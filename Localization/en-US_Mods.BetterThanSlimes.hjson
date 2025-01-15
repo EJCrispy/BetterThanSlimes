@@ -51,3 +51,5 @@ Buffs: {
 		DisplayName: "512"
 	}
 }
+
+WorldGen.WorldGenTutorialOresPassMessage: Mods.BetterThanSlimes.WorldGen.WorldGenTutorialOresPassMessage
