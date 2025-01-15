@@ -56,5 +56,12 @@ Buffs: {
 		DisplayName: "512"
 	}
 }
+Tiles: {
+	LooseDirt: {
+	Displayname: Loose Dirt
+	Tooltip: ""
+	}
+
+}
 
 WorldGen.WorldGenTutorialOresPassMessage: Mods.BetterThanSlimes.WorldGen.WorldGenTutorialOresPassMessage
