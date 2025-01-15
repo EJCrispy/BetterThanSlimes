@@ -43,6 +43,12 @@ Items: {
 		DisplayName: Guidebook
 		Tooltip: ""
 	}
+
+	LooseDirtItem: {
+	DisplayName: Loose Dirt
+	Tooltip: Loose Dirt
+	
+	}
 }
 
 Projectiles: {
@@ -59,7 +65,7 @@ Buffs: {
 Tiles: {
 	LooseDirt: {
 	Displayname: Loose Dirt
-	Tooltip: ""
+	Description: Lirt
 	}
 
 }
