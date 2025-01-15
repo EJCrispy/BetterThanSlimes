@@ -22,7 +22,7 @@ namespace BetterThanSlimes.Content.Items.Tools
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = false;
 
-            Item.pick = 1; 
+            Item.pick = 100; 
             Item.attackSpeedOnlyAffectsWeaponAnimation = true; // Melee speed affects how fast the tool swings for damage purposes, but not how fast it can dig
             Item.tileBoost = -3; // Set the range to -3
         }
@@ -32,13 +32,13 @@ namespace BetterThanSlimes.Content.Items.Tools
             // Add any melee effects you want to apply here
         }
 
-      //  public override void AddRecipes()
-      //  {
-      //      Recipe recipe = CreateRecipe();
-      //      recipe.AddIngredient(ItemID.Gel, 2);
-      //     recipe.AddIngredient(ItemID.Wood, 3);
-      //      recipe.AddIngredient(5552, 2); // 5552 is loose stone
-      //      recipe.Register();
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Gel, 2);
+           recipe.AddIngredient(ItemID.Wood, 3);
+            recipe.AddIngredient(5552, 2); // 5552 is loose stone
+            recipe.Register();
         }
     }
-//}
+}
