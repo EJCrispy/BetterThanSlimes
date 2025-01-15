@@ -24,18 +24,21 @@ namespace BetterThanSlimes.Content.Items.Tools
 
             Item.axe = 1; // How much axe power the weapon has, note that the axe power displayed in-game is this value multiplied by 5
             Item.attackSpeedOnlyAffectsWeaponAnimation = true; // Melee speed affects how fast the tool swings for damage purposes, but not how fast it can dig
+            Item.tileBoost = -3; // Set the range to -3
         }
 
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
-   
-            }
-        
+            // Add any melee effects you want to apply here
+        }
 
-        // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
         public override void AddRecipes()
         {
-           
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Gel, 1);
+            recipe.AddIngredient(5550, 2); // 5550 is twig
+            recipe.AddIngredient(5552, 1); // 5552 is loose stone
+            recipe.Register();
         }
     }
 }
