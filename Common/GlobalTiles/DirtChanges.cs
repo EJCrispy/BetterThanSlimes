@@ -2,16 +2,19 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-public class GlobalDirtTile : GlobalTile
+namespace BetterThanSlimes.Common.GlobalTiles
 {
-    public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
+    public class GlobalDirtTile : GlobalTile
     {
-        if ((type == TileID.Dirt || type == TileID.Grass) && !fail && !noItem)
+        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            // Prevent the default item drop
-            noItem = true;
-            // Drop wood instead
-            Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.Wood);
+            if ((type == TileID.Dirt || type == TileID.Grass) && !fail && !noItem)
+            {
+                // Prevent the default item drop
+                noItem = true;
+                // Drop wood instead
+                Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.Wood);
+            }
         }
     }
 }
