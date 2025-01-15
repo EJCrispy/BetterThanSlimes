@@ -8,12 +8,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-
 namespace TutorialMod.Common.Players
 {
     public class PlayerTraits : ModPlayer
     {
-        //This section of code reduces base player movement speed, acceleration speed, max jump height, and jump speed.
+        // This section of code reduces base player movement speed, acceleration speed, max jump height, and jump speed.
         public override void PostUpdateMiscEffects()
         {
             base.PostUpdateMiscEffects();
@@ -23,6 +22,9 @@ namespace TutorialMod.Common.Players
             Player.maxFallSpeed -= -10;
             Player.jumpSpeed -= -0.0075f;
 
+            // New code to decrease building range by 2 tiles.
+            Player.tileRangeX -= 2;
+            Player.tileRangeY -= 2;
         }
     }
 }
