@@ -18,7 +18,6 @@
 	<ItemGroup>
 	  <Folder Include="Content\Items\Placeable\" />
 	  <Folder Include="Content\ModdedTiles\" />
-	  <Folder Include="Content\NPCs\VanillaEnemyModifications\BetterThanSlimes\" />
 	</ItemGroup>
 
 	<!-- References -->
