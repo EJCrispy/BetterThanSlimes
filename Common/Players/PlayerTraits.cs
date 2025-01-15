@@ -22,11 +22,11 @@ namespace TutorialMod.Common.Players
             Player.maxFallSpeed -= -10;
             Player.jumpSpeed -= -0.0075f;
 
-            // New code to decrease building range by 2 tiles.
+            // decrease ALL range by 2 tiles (make sure to play around this)
             Player.tileRangeX -= 2;
             Player.tileRangeY -= 2;
 
-            // New code to decrease building speed.
+            // decrease building speed.
             Player.tileSpeed += 1.6f; // 
         }
     }
