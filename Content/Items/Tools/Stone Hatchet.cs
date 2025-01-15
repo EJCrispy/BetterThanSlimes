@@ -13,8 +13,8 @@ namespace BetterThanSlimes.Content.Items.Tools
             Item.DamageType = DamageClass.Melee;
             Item.width = 16;
             Item.height = 16;
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.useTime = 52;
+            Item.useAnimation = 52;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 2;
             Item.value = 10;
@@ -22,7 +22,7 @@ namespace BetterThanSlimes.Content.Items.Tools
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = false;
 
-            Item.axe = 2; // How much axe power the weapon has, note that the axe power displayed in-game is this value multiplied by 5
+            Item.axe = 1; // How much axe power the weapon has, note that the axe power displayed in-game is this value multiplied by 5
             Item.attackSpeedOnlyAffectsWeaponAnimation = true; // Melee speed affects how fast the tool swings for damage purposes, but not how fast it can dig
         }
 
