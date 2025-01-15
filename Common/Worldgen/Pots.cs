@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
 namespace BetterThanSlimes.Common.Worldgen
-{ // ty pepperoni, this just removes all pots on world gen
+{ // this just removes all pots on world gen
     public class RemovePots : ModSystem
     {
         public static LocalizedText WorldGenTutorialOresPassMessage { get; private set; }
