@@ -36,8 +36,8 @@ namespace BetterThanSlimes.Content.Items.Tools
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Gel, 1);
-            recipe.AddIngredient(5550, 2); // 5550 is twig
-            recipe.AddIngredient(5552, 1); // 5552 is loose stone
+            recipe.AddIngredient(5551, 2); // 5551 is twig
+            recipe.AddIngredient(5553, 1); // 5553 is loose stone
             recipe.Register();
         }
     }
