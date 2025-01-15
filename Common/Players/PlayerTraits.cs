@@ -25,6 +25,9 @@ namespace TutorialMod.Common.Players
             // New code to decrease building range by 2 tiles.
             Player.tileRangeX -= 2;
             Player.tileRangeY -= 2;
+
+            // New code to decrease building speed.
+            Player.tileSpeed -= 0.5f; // 
         }
     }
 }
