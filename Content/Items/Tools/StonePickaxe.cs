@@ -35,9 +35,9 @@ namespace BetterThanSlimes.Content.Items.Tools
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Gel, 1);
-           recipe.AddIngredient(9, 1);
-            recipe.AddIngredient(5553, 1); // 5553 is loose stone
+            recipe.AddIngredient(ItemID.Gel, 2);
+           recipe.AddIngredient(9, 3);
+            recipe.AddIngredient(5553, 2); // 5553 is loose stone
             recipe.Register();
         }
     }
