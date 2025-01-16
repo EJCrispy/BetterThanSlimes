@@ -88,6 +88,7 @@ public class GuidebookUIState : UIState
     }
 
 
+
     private void ChangePage(int direction)
     {
         currentPage = Math.Clamp(currentPage + direction, 0, pages.Count - 1);

@@ -21,26 +21,38 @@ namespace BetterThanSlimes.Content.Items
             Item.rare = ItemRarityID.Blue;
         }
 
+        public override bool? UseItem(Player player)
+        {
+            if (!Main.dedServ) // Ensure this runs on the client
+            {
+                GuidebookUIState.ToggleUI(); // Toggle the guidebook UI
+            }
+            return true;
+        }
+
         public override bool CanRightClick()
         {
-            return true; // Allow right-click functionality
+            return true; // Enable right-click functionality
         }
 
         public override void RightClick(Player player)
         {
             if (!Main.dedServ) // Ensure this runs on the client
             {
-                Main.playerInventory = true; // Open the inventory
-                Main.npcChatText = "";       // Clear any chat text
-                Main.npcChatCornerItem = 0;  // Reset the corner item
-                Main.HoverItem = new Item(); // Clear any hovered item
-                Main.npcChatRelease = true;  // Prevent lingering interactions
+                // Open the crafting UI as if interacting with the Guide
+                Main.playerInventory = true; // Open the inventory window
+                Main.InGuideCraftMenu = true; // Enable the Guide's crafting menu
 
-                // Open the crafting UI as if the Guide was interacted with
+                // Clear the guide item and reset related states
+                Main.guideItem.SetDefaults();
+                Main.guideItem.type = ItemID.None; // Ensure no item is selected
+                Main.npcChatText = ""; // Clear chat text
+                Main.npcChatCornerItem = 0; // Clear corner item
+                Main.HoverItem = new Item(); // Clear any hovered item
+                Main.npcChatRelease = true; // Prevent lingering interactions
+
+                // Refresh crafting recipes to ensure it's up-to-date
                 Recipe.FindRecipes();
-                Main.guideItem.type = ItemID.None; // Clear any previous "guide help" item
-                Main.guideItem.SetDefaults(); // Reset guide item
-                Main.InGuideCraftMenu = true; // Enable Guide crafting functionality
             }
         }
     }

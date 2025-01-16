@@ -45,9 +45,8 @@ Items: {
 	}
 
 	LooseDirtItem: {
-	DisplayName: Loose Dirt
-	Tooltip: Loose Dirt
-	
+		DisplayName: Loose Dirt
+		Tooltip: Loose Dirt
 	}
 }
 
@@ -62,12 +61,12 @@ Buffs: {
 		DisplayName: "512"
 	}
 }
+
 Tiles: {
 	LooseDirtTile: {
-	Displayname: Loose Dirt
-	Description: Lirt
+		Displayname: Loose Dirt
+		Description: Lirt
 	}
-
 }
 
 WorldGen.WorldGenTutorialOresPassMessage: Mods.BetterThanSlimes.WorldGen.WorldGenTutorialOresPassMessage

@@ -8,7 +8,7 @@
 		
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Content\Items\Guidebook.png" />
+	  <None Remove="Content\Guidebook.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Mono.Cecil" Version="0.11.6" />
