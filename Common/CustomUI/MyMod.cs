@@ -19,7 +19,6 @@ namespace BetterThanSlimes.Common.CustomUI
             if (!Main.dedServ) // Only load UI on the client
             {
                 GuidebookUI = new UserInterface();
-                GuidebookUI.SetState(new GuidebookUIState());
             }
         }
 
