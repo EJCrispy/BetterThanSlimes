@@ -14,12 +14,11 @@ namespace BetterThanSlimes.Content.ModdedTiles
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
-            Main.tileSand[Type] = true; // Enables gravity for the tile
 
             AddMapEntry(new Color(151, 107, 75), Language.GetText("Loose Dirt"));
 
             DustType = DustID.Dirt; // Determines the type of dust the tile generates when broken
-            MineResist = 0.5f; // Reduces the number of hits needed to break the tile
+            MineResist = 0.25f; // Reduces the number of hits needed to break the tile
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
