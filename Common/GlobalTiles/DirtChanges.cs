@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using BetterThanSlimes.Content.Items.Placeable;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +14,7 @@ namespace BetterThanSlimes.Common.GlobalTiles
                 // Prevent the default item drop
                 noItem = true;
                 // Drop wood instead
-                Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.Wood);
+                Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<LooseDirtItem>());
             }
         }
     }

@@ -25,8 +25,7 @@ namespace BetterThanSlimes.Content.ModdedTiles
             {
                 // Prevent the default item drop
                 noItem = true;
-                // Drop the custom item (Loose Dirt)
-                Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<LooseDirtItem>());
+                // Drop nothin
             }
         }
     }
