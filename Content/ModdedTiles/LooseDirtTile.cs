@@ -25,7 +25,8 @@ namespace BetterThanSlimes.Content.ModdedTiles
             {
                 // Prevent the default item drop
                 noItem = true;
-                // Drop nothin
+                // Drop not
+ 
             }
         }
     }
