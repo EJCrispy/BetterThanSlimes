@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace BetterThanSlimes.Content.NPCs.TownNPCChanges
 {
-    public class TownNPC : ModNPC
+    public class CanTownNPCMoveIn : ModNPC
     {
         public override void SetStaticDefaults()
         {
