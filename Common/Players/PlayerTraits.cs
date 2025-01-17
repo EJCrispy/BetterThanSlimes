@@ -27,7 +27,7 @@ namespace TutorialMod.Common.Players
             Player.tileRangeY -= 2;
 
             // decrease building speed.
-            Player.tileSpeed += 1.6f; // 
+            Player.tileSpeed += 2f; // 
         }
     }
 }
