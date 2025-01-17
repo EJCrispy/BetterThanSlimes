@@ -30,10 +30,10 @@ namespace BetterThanSlimes.Common.GlobalTiles
             Main.NewText($"Right-clicked tile at ({i}, {j}), TileType: {tile.TileType}, FrameX: {tile.TileFrameX}, FrameY: {tile.TileFrameY}");
 
             // Valid frame positions for your tile
-            int[] validFrameX = { 0, 18, 36, 54, 72, 90, 1368, 1386, 1440, 1458, 1404, 1422, 108, 180, 198, 144, 162};
-            int[] validFrameY = { 0, 18 };
-            int[] validFrameXForWood = { 2160, 2178, 1296, 2196, 2214 };
-            int[] validFrameYForWood = { 0, 18 };
+            int[] validFrameX = [0, 18, 36, 54, 72, 90, 1368, 1386, 1440, 1458, 1404, 1422, 108, 180, 198, 144, 162];
+            int[] validFrameY = [0, 18];
+            int[] validFrameXForWood = [2160, 2178, 1296, 2196, 2214];
+            int[] validFrameYForWood = [0, 18];
 
             // Check if the clicked tile's frames are valid
             if (validFrameX.Contains(tile.TileFrameX) && validFrameY.Contains(tile.TileFrameY))
