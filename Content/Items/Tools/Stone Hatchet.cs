@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BetterThanSlimes.Content.Items.Weapons;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -36,8 +37,8 @@ namespace BetterThanSlimes.Content.Items.Tools
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Gel, 1);
-            recipe.AddIngredient(5553, 2); // 5553 is twig
-            recipe.AddIngredient(5555, 1); // 5555 is loose stone
+            recipe.AddIngredient(ModContent.ItemType<Twig>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<LooseStone>(), 1); ;
             recipe.Register();
         }
     }
