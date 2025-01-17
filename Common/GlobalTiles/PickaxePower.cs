@@ -2,15 +2,15 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace YourModNamespace
+namespace BetterThanSlimes.Common.GlobalTiles
 {
-    public class PickaxePowerChanges: GlobalTile
+    public class PickaxePowerChanges : GlobalTile
     {
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
             if (type == TileID.Iron)
             {
-                
+
                 Player player = Main.LocalPlayer;
                 if (player.HeldItem.pick <= 20)
                 {
@@ -72,7 +72,7 @@ namespace YourModNamespace
             {
 
                 Player player = Main.LocalPlayer;
-                if (player.HeldItem.pick <= 20)
+                if (player.HeldItem.pick <= 45)
                 {
                     // Prevents damaging the block
                     return false;
