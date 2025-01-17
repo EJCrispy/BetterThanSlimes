@@ -16,8 +16,8 @@ namespace TutorialMod.Common.Players
         public override void PostUpdateMiscEffects()
         {
             base.PostUpdateMiscEffects();
-            Player.maxRunSpeed -= 1.425f;
-            Player.accRunSpeed -= 1.425f;
+            Player.maxRunSpeed -= 1.925f;
+            Player.accRunSpeed -= 1.925f;
             Player.jumpHeight -= 7;
             Player.maxFallSpeed -= -10;
             Player.jumpSpeed -= -0.0075f;
