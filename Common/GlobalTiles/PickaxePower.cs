@@ -8,18 +8,68 @@ namespace YourModNamespace
     {
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
-            if (type == TileID.WoodBlock)
+            if (type == TileID.Iron)
             {
-                // Assuming there's a way to get the player's pickaxe power, like Player.pick
+                
                 Player player = Main.LocalPlayer;
-                if (player.HeldItem.pick <= 100)
+                if (player.HeldItem.pick <= 20)
                 {
-                    // Prevents damaging the wood block
+                    // Prevents damaging the block
+                    return false;
+                }
+            }
+            if (type == TileID.Lead)
+            {
+
+                Player player = Main.LocalPlayer;
+                if (player.HeldItem.pick <= 20)
+                {
+                    // Prevents damaging the block
+                    return false;
+                }
+            }
+            if (type == TileID.Silver)
+            {
+
+                Player player = Main.LocalPlayer;
+                if (player.HeldItem.pick <= 35)
+                {
+                    // Prevents damaging the block
+                    return false;
+                }
+            }
+            if (type == TileID.Tungsten)
+            {
+
+                Player player = Main.LocalPlayer;
+                if (player.HeldItem.pick <= 35)
+                {
+                    // Prevents damaging the block
+                    return false;
+                }
+            }
+            if (type == TileID.Gold)
+            {
+
+                Player player = Main.LocalPlayer;
+                if (player.HeldItem.pick <= 45)
+                {
+                    // Prevents damaging the block
+                    return false;
+                }
+            }
+            if (type == TileID.Platinum)
+            {
+
+                Player player = Main.LocalPlayer;
+                if (player.HeldItem.pick <= 45)
+                {
+                    // Prevents damaging the block
                     return false;
                 }
             }
 
-            // Allow other tiles to be damaged normally
+
             return base.CanKillTile(i, j, type, ref blockDamaged);
         }
     }
