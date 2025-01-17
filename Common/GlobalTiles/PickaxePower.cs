@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace YourModNamespace
 {
-    public class YourGlobalTile : GlobalTile
+    public class PickaxePowerChanges: GlobalTile
     {
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
@@ -68,7 +68,16 @@ namespace YourModNamespace
                     return false;
                 }
             }
+            if (type == TileID.LivingWood)
+            {
 
+                Player player = Main.LocalPlayer;
+                if (player.HeldItem.pick <= 20)
+                {
+                    // Prevents damaging the block
+                    return false;
+                }
+            }
 
             return base.CanKillTile(i, j, type, ref blockDamaged);
         }
