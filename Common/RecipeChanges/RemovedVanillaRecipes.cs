@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterThanSlimes.Common
+namespace BetterThanSlimes.Common.RecipeChanges
 {
     internal class Class1
     {
