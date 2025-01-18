@@ -20,8 +20,8 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.maxStack = 9999;
 
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.useAnimation = 25;
-            Item.useTime = 25;
+            Item.useAnimation = 36;
+            Item.useTime = 36;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.consumable = true;
