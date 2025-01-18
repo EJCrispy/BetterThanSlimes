@@ -18,12 +18,12 @@ namespace BetterThanSlimes.Common.GlobalTiles
             if (tile.TileType == 5)
             {
 
-                if (tile.TileFrameX == 44 && tile.TileFrameY == 198 || tile.TileFrameX == 44 && tile.TileFrameY == 220 || tile.TileFrameX == 44 && tile.TileFrameY == 242 || tile.TileFrameX == 66 && tile.TileFrameY == 220 || tile.TileFrameX == 88 && tile.TileFrameY == 220 || tile.TileFrameX == 66 && tile.TileFrameY == 22 || tile.TileFrameX == 88 && tile.TileFrameY == 88 || tile.TileFrameX == 88 && tile.TileFrameY == 110 || tile.TileFrameX == 66 && tile.TileFrameY == 0 || tile.TileFrameX == 66 && tile.TileFrameY == 22 || tile.TileFrameX == 66 && tile.TileFrameY == 242 || tile.TileFrameX == 66 && tile.TileFrameY == 198 || tile.TileFrameX == 66 && tile.TileFrameY == 44)
+                if (tile.TileFrameX == 44 && tile.TileFrameY == 198 || tile.TileFrameX == 44 && tile.TileFrameY == 220 || tile.TileFrameX == 44 && tile.TileFrameY == 242 || tile.TileFrameX == 66 && tile.TileFrameY == 220 || tile.TileFrameX == 88 && tile.TileFrameY == 220 || tile.TileFrameX == 66 && tile.TileFrameY == 22 || tile.TileFrameX == 88 && tile.TileFrameY == 88 || tile.TileFrameX == 88 && tile.TileFrameY == 110 || tile.TileFrameX == 66 && tile.TileFrameY == 0 || tile.TileFrameX == 66 && tile.TileFrameY == 22 || tile.TileFrameX == 66 && tile.TileFrameY == 242 || tile.TileFrameX == 66 && tile.TileFrameY == 198 || tile.TileFrameX == 66 && tile.TileFrameY == 44 || tile.TileFrameX == 88 && tile.TileFrameY == 66)
                 {
 
                     WorldGen.KillTile(i, j);
                     Item.NewItem(null, new Vector2(i * 16, j * 16), ModContent.ItemType<Twig>());
-                    
+
                 }
                 else
                 {
@@ -39,7 +39,16 @@ namespace BetterThanSlimes.Common.GlobalTiles
             // Prevent default item drop for wood
             if (tile.TileType == 5) // Replace 5 with your specific wood tile type
             {
-                noItem = true; // Prevent items from dropping
+                if (tile.TileFrameX == 44 && tile.TileFrameY == 198 || tile.TileFrameX == 44 && tile.TileFrameY == 220 || tile.TileFrameX == 44 && tile.TileFrameY == 242 || tile.TileFrameX == 66 && tile.TileFrameY == 220 || tile.TileFrameX == 88 && tile.TileFrameY == 220 || tile.TileFrameX == 66 && tile.TileFrameY == 22 || tile.TileFrameX == 88 && tile.TileFrameY == 88 || tile.TileFrameX == 88 && tile.TileFrameY == 110 || tile.TileFrameX == 66 && tile.TileFrameY == 0 || tile.TileFrameX == 66 && tile.TileFrameY == 22 || tile.TileFrameX == 66 && tile.TileFrameY == 242 || tile.TileFrameX == 66 && tile.TileFrameY == 198 || tile.TileFrameX == 66 && tile.TileFrameY == 44 || tile.TileFrameX == 88 && tile.TileFrameY == 66)
+                {
+                    noItem = true; // Prevent items from dropping
+
+                }
+                else
+                {
+                    noItem = false;
+
+                }
             }
         }
     }
