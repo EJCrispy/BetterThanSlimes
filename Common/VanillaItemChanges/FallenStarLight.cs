@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace BetterThanSlimes.Common.VanillaItemChanges
 {
-    public class ShortswordGlobalItem : GlobalItem
+    public class FallenStarLight : GlobalItem
     {
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
@@ -17,8 +17,9 @@ namespace BetterThanSlimes.Common.VanillaItemChanges
         {
             item.StatsModifiedBy.Add(Mod);
 
-            item.useTime = 70;
-            item.useAnimation = 70;
+            item.useTime = 170;
+            item.useAnimation = 170;
+            item.autoReuse = true; // Enable autofire
         }
 
         // Emit light when the item is used
