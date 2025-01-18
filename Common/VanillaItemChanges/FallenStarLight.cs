@@ -17,8 +17,8 @@ namespace BetterThanSlimes.Common.VanillaItemChanges
         {
             item.StatsModifiedBy.Add(Mod);
 
-            item.useTime = 170;
-            item.useAnimation = 170;
+            item.useTime = 70;
+            item.useAnimation = 70;
             item.autoReuse = true; // Enable autofire
         }
 
