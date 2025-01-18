@@ -48,6 +48,11 @@ Items: {
 		DisplayName: Loose Dirt
 		Tooltip: Loose Dirt
 	}
+
+	Twine: {
+		DisplayName: Twine
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
