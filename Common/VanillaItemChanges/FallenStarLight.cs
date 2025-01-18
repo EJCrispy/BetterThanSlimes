@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace BetterThanSlimes.Common.VanillaItemChanges
 {
-    public class FallenStarLight : GlobalItem
+    public class ShortswordGlobalItem : GlobalItem
     {
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
@@ -21,14 +21,14 @@ namespace BetterThanSlimes.Common.VanillaItemChanges
             item.useAnimation = 70;
         }
 
-        // Emit light when the item is in the player's inventory
-        public override void UpdateInventory(Item item, Player player)
+        // Emit light when the item is used
+        public override bool? UseItem(Item item, Player player)
         {
             if (AppliesToEntity(item, false))
             {
-                // Adding white light around the player holding the item
-                Lighting.AddLight(player.Center, 1.0f, 1.0f, 1.0f);
+                Lighting.AddLight(player.Center, 1.0f, 1.0f, 1.0f); // White light
             }
+            return base.UseItem(item, player);
         }
     }
 }
