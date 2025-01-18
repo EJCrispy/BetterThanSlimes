@@ -1,34 +1,18 @@
 ﻿using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace BetterThanSlimes.Content.Buffs
 {
-    public class MyModPlayer : ModPlayer
+    public class LilaBuff : ModBuff
     {
-        public bool attackSpeedBuff;
+        public static readonly int DefenseBonus = 10;
 
-        public override void ResetEffects()
-        {
-            attackSpeedBuff = false;
-        }
+        public override LocalizedText Description => base.Description.WithFormatArgs(DefenseBonus);
 
-        public override void UpdateDead()
+        public override void Update(Player player, ref int buffIndex)
         {
-            attackSpeedBuff = false;
-        }
-
-        public override void PostUpdate()
-        {
-            if (attackSpeedBuff)
-            {
-                // Reference the player variable correctly within the class
-                Player player = this.Player;
-                // Increase attack speed for all weapons
-                player.GetAttackSpeed(DamageClass.Melee) += 0.16f;
-                player.GetAttackSpeed(DamageClass.Ranged) += 0.16f;
-                player.GetAttackSpeed(DamageClass.Magic) += 0.16f;
-                player.GetAttackSpeed(DamageClass.Summon) += 0.16f;
-            }
+            player.statDefense += DefenseBonus;
         }
     }
 }
