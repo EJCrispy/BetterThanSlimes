@@ -25,7 +25,7 @@ namespace BetterThanSlimes.Content.Items.Tools
 
             Item.pick = 10; 
             Item.attackSpeedOnlyAffectsWeaponAnimation = true; // Melee speed affects how fast the tool swings for damage purposes, but not how fast it can dig
-            Item.tileBoost = -1; 
+            Item.tileBoost = 0; 
         }
 
         public override void MeleeEffects(Player player, Rectangle hitbox)
