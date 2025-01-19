@@ -1,16 +1,11 @@
-﻿using BetterThanSlimes.Content.Items;
-using BetterThanSlimes.Content.Items.Weapons;
-using Humanizer;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.GameContent.Generation;
-using Terraria.ID;
+﻿using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
+using Terraria.ID;
 using Terraria.WorldBuilding;
-using static Terraria.WorldBuilding.Actions;
-
+using Terraria.GameContent.Generation;
+using Terraria.DataStructures;
+using BetterThanSlimes.Content.Items.Weapons;
+using BetterThanSlimes.Content.Items;
 
 namespace BetterThanSlimes.Common.Worldgen
 {
@@ -19,15 +14,7 @@ namespace BetterThanSlimes.Common.Worldgen
         // We use PostWorldGen for this because we want to ensure that all chests have been placed before adding items.
         public override void PostWorldGen()
         {
-            // Place some additional items in Frozen Chests:
-            // These are the 3 new items we will place.
-            int[] itemsToPlaceInWoodenChests = { ModContent.ItemType<LooseStone>(), ModContent.ItemType<Twine>(), ItemID.Bottle };
-            // This variable will help cycle through the items so that different Frozen Chests get different items
-            int itemsToPlaceInWoodenChestsChoice = 0;
-            // Rather than place items in each chest, we'll place up to 6 items (2 of each). 
-            int itemsPlaced = 0;
-            int maxItems = 6;
-            // Loop over all the chests
+            // Loop over all chests and modify their contents
             for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
             {
                 Chest chest = Main.chest[chestIndex];
@@ -35,34 +22,39 @@ namespace BetterThanSlimes.Common.Worldgen
                 {
                     continue;
                 }
+
                 Tile chestTile = Main.tile[chest.x, chest.y];
-                // We need to check if the current chest is the Frozen Chest. We need to check that it exists and has the TileType and TileFrameX values corresponding to the Frozen Chest.
-                // If you look at the sprite for Chests by extracting Tiles_21.xnb, you'll see that the 12th chest is the Frozen Chest. Since we are counting from 0, this is where 11 comes from. 36 comes from the width of each tile including padding. An alternate approach is to check the wiki and looking for the "Internal Tile ID" section in the infobox: https://terraria.wiki.gg/wiki/Frozen_Chest
-                if (chestTile.TileType == TileID.Containers && chestTile.TileFrameX == 11 * 36)
+                // Check if the chest is a Wooden Chest
+                if (chestTile.TileType == TileID.Containers && chestTile.TileFrameX == 0)  // 0 corresponds to Wooden Chests
                 {
-                    // We have found a Frozen Chest
-                    // If we don't want to add one of the items to every Frozen Chest, we can randomly skip this chest with a 33% chance.
-                    if (WorldGen.genRand.NextBool(3))
-                        continue;
-                    // Next we need to find the first empty slot for our item
-                    for (int inventoryIndex = 0; inventoryIndex < Chest.maxItems; inventoryIndex++)
+                    // Loop through all items in the chest and clear the slots (remove vanilla items)
+                    for (int i = 0; i < Chest.maxItems; i++)
                     {
-                        if (chest.item[inventoryIndex].type == ItemID.None)
-                        {
-                            // Place the item
-                            chest.item[inventoryIndex].SetDefaults(itemsToPlaceInWoodenChests[itemsToPlaceInWoodenChestsChoice]);
-                            // Decide on the next item that will be placed.
-                            itemsToPlaceInWoodenChestsChoice = (itemsToPlaceInWoodenChestsChoice + 1) % itemsToPlaceInWoodenChests.Length;
-                            // Alternate approach: Random instead of cyclical: chest.item[inventoryIndex].SetDefaults(WorldGen.genRand.Next(itemsToPlaceInFrozenChests));
-                            itemsPlaced++;
-                            break;
-                        }
+                        chest.item[i] = new Item();  // Clear the chest's inventory slot
                     }
+
+                    // Now add the new items with their respective chances
+                    AddItemToChest(chest, ModContent.ItemType<LooseStone>(), WorldGen.genRand.Next(2, 7)); // Loose Stones (2-6)
+                    AddItemToChest(chest, ModContent.ItemType<Twine>(), 1, 0.25f); // Twine (1) with 25% chance
+                    AddItemToChest(chest, ModContent.ItemType<Twig>(), WorldGen.genRand.Next(2, 5)); // Twigs (2-4)
+                    AddItemToChest(chest, ItemID.Gel, WorldGen.genRand.Next(1, 3), 0.5f); // Gel (1-2) with 50% chance
                 }
-                // Once we've placed as many items as we wanted, break out of the loop
-                if (itemsPlaced >= maxItems)
+            }
+        }
+
+        // Helper function to add items to the chest with optional chance
+        private void AddItemToChest(Chest chest, int itemType, int amount, float chance = 1f)
+        {
+            if (WorldGen.genRand.NextFloat() <= chance)  // Check if we roll the chance
+            {
+                for (int i = 0; i < Chest.maxItems; i++)
                 {
-                    break;
+                    if (chest.item[i].type == ItemID.None)
+                    {
+                        chest.item[i].SetDefaults(itemType);  // Set the item type
+                        chest.item[i].stack = amount;  // Set the random amount of the item
+                        break;  // Stop after placing the item
+                    }
                 }
             }
         }

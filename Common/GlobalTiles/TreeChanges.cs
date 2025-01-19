@@ -27,7 +27,7 @@ namespace BetterThanSlimes.Common.GlobalTiles
                     Item.NewItem(null, new Vector2(i * 16, j * 16), ItemID.Wood);
                 }
             }
-            if ((type == TileID.Trees || type == TileID.PalmTree || type == TileID.MushroomTrees) && !fail && !noItem)
+            if ((type == TileID.Trees || type == TileID.PalmTree || type == TileID.MushroomTrees || type == TileID.VanityTreeYellowWillow || type == TileID.VanityTreeSakura) && !fail && !noItem)
             {
                 // Prevent wood and coin drops
                 noItem = true;
