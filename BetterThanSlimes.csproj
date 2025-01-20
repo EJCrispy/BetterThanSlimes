@@ -17,6 +17,7 @@
 	  <PackageReference Include="MonoMod.RuntimeDetour.HookGen" Version="22.7.31.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Folder Include="Content\NPCs\ModEnemies\" />
 	  <Folder Include="Content\NPCs\TownNPCChanges\" />
 	</ItemGroup>
 
