@@ -11,7 +11,6 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
 {
     public class LifeCrystalGlobalItem : GlobalItem
     {
-        public static readonly int LifePerCrystal = 10; // this shit doesn't work lol, see LifeCrystalAmounts.cs for the actual code. This .cs is literally only for the cap.
         public const int MaxLifeCap = 200;
 
         private static ILHook _consumeItemILHook;
@@ -46,13 +45,12 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
             c.Emit(OpCodes.Ldarg_1);
             c.EmitDelegate<Action<Player, int>>((self, type) =>
             {
-                if (type == ItemID.LifeCrystal && self.statLifeMax2 < MaxLifeCap)
+                if (type == ItemID.LifeCrystal && self.statLifeMax < MaxLifeCap)
                 {
-                    self.statLifeMax2 += LifePerCrystal - 20; //again, this shit is useless
 
-                    if (self.statLifeMax2 > MaxLifeCap)
+                    if (self.statLifeMax > MaxLifeCap)
                     {
-                        self.statLifeMax2 = MaxLifeCap;
+                        self.statLifeMax = MaxLifeCap;
                     }
 
                     if (self.statLife > self.statLifeMax2)
@@ -65,7 +63,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
 
         public override bool CanUseItem(Item item, Player player)
         {
-            if (item.type == ItemID.LifeCrystal && player.statLifeMax2 >= MaxLifeCap) // no worky
+            if (item.type == ItemID.LifeCrystal && player.statLifeMax >= MaxLifeCap) // no worky
             {
                 return false;
             }
@@ -80,13 +78,5 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
             }
             return base.UseItem(item, player);
         }
-
-        public override void SetDefaults(Item item)
-        {
-            if (item.type == ItemID.LifeCrystal)
-            {
-                item.healLife = LifePerCrystal;
-            }
         }
     }
-}

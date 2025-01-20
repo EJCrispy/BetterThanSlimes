@@ -18,7 +18,12 @@ namespace BetterThanSlimes.Content.Items.Materials
 
         public override void UpdateInventory(Player player)
         {
-            player.AddBuff(BuffID.OnFire, 1); // This sets the player on fire for 1 second (60 ticks) while the item is in their inventory
+            player.AddBuff(BuffID.OnFire, 1);
+        }
+
+        public override void PostUpdate()
+        {
+            Lighting.AddLight(Item.position, 1f, 0.5f, 0f);
         }
     }
 }

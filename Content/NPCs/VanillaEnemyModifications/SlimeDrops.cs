@@ -8,22 +8,13 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class SlimeDrops : GlobalNPC
     {
-        public bool isRedSlime = false;
-
-        public override bool InstancePerEntity => true;
-
-        public override void SetDefaults(NPC npc)
-        {
-            if (npc.type == NPCID.RedSlime)
-            {
-                isRedSlime = true;
-            }
-        }
-
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (isRedSlime)
+            if (npc.netID == NPCID.RedSlime)
             {
+                // Clear the existing loot rules
+                npcLoot.RemoveWhere(rule => true);
+                // Add the new loot rule
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
             }
         }
