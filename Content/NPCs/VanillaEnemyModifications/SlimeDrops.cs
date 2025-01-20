@@ -10,7 +10,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.BlueSlime)
+            if (npc.type == 1 && npc.FullName == "Terraria.RedSlime")
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
             }
