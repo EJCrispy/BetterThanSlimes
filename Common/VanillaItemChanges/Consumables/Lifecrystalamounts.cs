@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.ModLoader.IO;
 
-namespace BetterThanSlimes.Content.Items.VanillaItemModifications.Consumables
+namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
 {
     public class LifeCrystalDetour : GlobalItem
     {
