@@ -10,8 +10,11 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.netID == NPCID.Pinky)
+            if (npc.netID == NPCID.RedSlime)
             {
+                // Clear the existing loot rules
+                npcLoot.RemoveWhere(rule => true);
+                // Add the new loot rule
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
             }
         }
