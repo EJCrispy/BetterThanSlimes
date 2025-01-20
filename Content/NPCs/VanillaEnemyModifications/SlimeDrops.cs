@@ -10,7 +10,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.RedSlime)
+            if (npc.type == NPCID.BlueSlime) // Check for Blue Slime (ID 6)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
             }

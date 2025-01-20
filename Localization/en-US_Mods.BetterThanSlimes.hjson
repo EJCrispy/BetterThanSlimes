@@ -56,7 +56,7 @@ Items: {
 
 	RedGel: {
 		DisplayName: Red Gel
-		Tooltip: "Warm and sticky"
+		Tooltip: Warm and sticky
 	}
 }
 
