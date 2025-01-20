@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Common.GlobalTiles
+namespace BetterThanSlimes.Common.GlobalTiles.Changes
 {
     public class BranchChanges : GlobalTile
     {

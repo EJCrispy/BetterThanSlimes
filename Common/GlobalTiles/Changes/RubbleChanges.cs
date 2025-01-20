@@ -12,7 +12,7 @@ using Terraria;
 using Terraria.GameContent.Achievements;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Common.GlobalTiles
+namespace BetterThanSlimes.Common.GlobalTiles.Changes
 {
     public class RubbleChanges : GlobalTile
     {
@@ -39,7 +39,7 @@ namespace BetterThanSlimes.Common.GlobalTiles
             if (validFrameX.Contains(tile.TileFrameX) && validFrameY.Contains(tile.TileFrameY))
             {
                 WorldGen.KillTile(i, j);
-                    Item.NewItem(null, new Vector2(i * 16, j * 16), ModContent.ItemType<LooseStone>(), 2);
+                Item.NewItem(null, new Vector2(i * 16, j * 16), ModContent.ItemType<LooseStone>(), 2);
             }
             else
             {

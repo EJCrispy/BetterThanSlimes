@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Common.GlobalTiles
+namespace BetterThanSlimes.Common.GlobalTiles.Changes
 {
     public class GlobalDirtTile : GlobalTile
     {

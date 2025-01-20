@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
-namespace BetterThanSlimes.Common.GlobalTiles
+namespace BetterThanSlimes.Common.GlobalTiles.Changes
 {
     public class TreeChanges : GlobalTile
     {
@@ -47,20 +47,20 @@ namespace BetterThanSlimes.Common.GlobalTiles
             }
         }
     }
-        public class TreeShakeChanges : GlobalItem
+    public class TreeShakeChanges : GlobalItem
+    {
+        public override void OnSpawn(Item item, IEntitySource source)
         {
-            public override void OnSpawn(Item item, IEntitySource source)
+            // Check if the source is from shaking a tree
+            if (source is EntitySource_ShakeTree)
             {
-                // Check if the source is from shaking a tree
-                if (source is EntitySource_ShakeTree)
+                // Prevent wood and coins from spawning
+                if (item.type == ItemID.Wood || item.type == ItemID.CopperCoin || item.type == ItemID.SilverCoin ||
+                    item.type == ItemID.GoldCoin || item.type == ItemID.PlatinumCoin)
                 {
-                    // Prevent wood and coins from spawning
-                    if (item.type == ItemID.Wood || item.type == ItemID.CopperCoin || item.type == ItemID.SilverCoin ||
-                        item.type == ItemID.GoldCoin || item.type == ItemID.PlatinumCoin)
-                    {
-                        item.TurnToAir(); // Remove the item
-                    }
+                    item.TurnToAir(); // Remove the item
                 }
             }
         }
     }
+}
