@@ -22,7 +22,9 @@ public class RemoveRecipes : ModSystem
             ItemID.CactusHelmet,
             ItemID.CactusBreastplate,
             ItemID.CactusLeggings,
-            ItemID.WoodWall
+            ItemID.WoodWall,
+            ItemID.WoodPlatform,
+            
         };
 
         // Iterate through recipes and remove the ones that match the target items
