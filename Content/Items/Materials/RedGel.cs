@@ -2,14 +2,14 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Content.Items
+namespace BetterThanSlimes.Content.Items.Materials
 {
-    public class Twig : ModItem
+    public class RedGel : ModItem
     {
         public override void SetDefaults()
         {
-            Item.width = 12;
-            Item.height = 18;
+            Item.width = 16;
+            Item.height = 12;
 
             Item.rare = ItemRarityID.White;
             Item.maxStack = 9999;

@@ -1,4 +1,4 @@
-﻿using BetterThanSlimes.Content.Items;
+﻿using BetterThanSlimes.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using System.Configuration;
 using System.Linq;

@@ -1,4 +1,5 @@
-﻿using BetterThanSlimes.Content.Items.Weapons;
+﻿using BetterThanSlimes.Content.Items.Materials;
+using BetterThanSlimes.Content.Items.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

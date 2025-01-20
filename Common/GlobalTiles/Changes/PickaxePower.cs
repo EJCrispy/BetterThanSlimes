@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Common.GlobalTiles
+namespace BetterThanSlimes.Common.GlobalTiles.Changes
 {
     public class PickaxePowerChanges : GlobalTile
     {

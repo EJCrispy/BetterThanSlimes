@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Content.Items
+namespace BetterThanSlimes.Content.Items.Materials
 {
-    public class Twine : ModItem
+    public class Twig : ModItem
     {
-
         public override void SetDefaults()
         {
             Item.width = 12;

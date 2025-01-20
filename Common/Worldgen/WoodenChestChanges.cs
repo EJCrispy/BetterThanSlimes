@@ -5,7 +5,7 @@ using Terraria.WorldBuilding;
 using Terraria.GameContent.Generation;
 using Terraria.DataStructures;
 using BetterThanSlimes.Content.Items.Weapons;
-using BetterThanSlimes.Content.Items;
+using BetterThanSlimes.Content.Items.Materials;
 
 namespace BetterThanSlimes.Common.Worldgen
 {
