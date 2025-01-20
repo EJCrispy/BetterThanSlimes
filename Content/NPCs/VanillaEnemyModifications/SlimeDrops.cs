@@ -6,7 +6,7 @@ using BetterThanSlimes.Content.Items.Materials;
 
 namespace BetterThanSlimes.Content.NPCs
 {
-    public class RedSlime : ModNPC
+    public class SlimeDrops : ModNPC
     {
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
