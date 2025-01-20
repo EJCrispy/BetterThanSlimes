@@ -10,13 +10,9 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.BlueSlime) // Check for general slime types
+            if (npc.type == -8 && npc.FullName == "Terraria.ModLoader.RedSlime")
             {
-                // Check additional conditions to ensure it’s a Red Slime
-                if (npc.color == Microsoft.Xna.Framework.Color.Red) // Assuming the Red Slime has a distinct red color
-                {
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
-                }
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
             }
         }
     }
