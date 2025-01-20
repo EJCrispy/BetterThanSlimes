@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using BetterThanSlimes.Content.Items.Materials;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +12,7 @@ public class CustomRecipes : ModSystem
         AddWoodPlatformRecipe();
         AddWorkbenchRecipe();
         AddWoodenSwordRecipe();
+        AddSpearRecipe();
     }
 
     private void AddWoodenSwordRecipe()
@@ -34,5 +36,13 @@ public class CustomRecipes : ModSystem
         Recipe recipe = Recipe.Create(ItemID.WorkBench); // Creates a recipe for 1 Work Bench
         recipe.AddIngredient(ItemID.Wood, 30); // Requires 30 Wood as ingredient
         recipe.Register(); // Registers the recipe into the game
+    }
+    private void AddSpearRecipe()
+    {
+        Recipe recipe = Recipe.Create(ItemID.Spear);
+        recipe.AddIngredient(ModContent.ItemType<SpearHead>(), 1);
+        recipe.AddIngredient(ModContent.ItemType<MetalRod>(), 1);
+        recipe.AddTile(TileID.Anvils);
+        recipe.Register();
     }
 }

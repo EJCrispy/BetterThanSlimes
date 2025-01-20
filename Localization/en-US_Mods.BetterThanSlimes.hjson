@@ -58,6 +58,21 @@ Items: {
 		DisplayName: Red Gel
 		Tooltip: Warm and sticky
 	}
+
+	MetalRod: {
+		DisplayName: Metal Rod
+		Tooltip: ""
+	}
+
+	SpearHead: {
+		DisplayName: Spear Head
+		Tooltip: ""
+	}
+
+	SharpHooks: {
+		DisplayName: Sharp Hooks
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

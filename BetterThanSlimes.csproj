@@ -9,6 +9,9 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Content\Guidebook.png" />
+	  <None Remove="Content\Items\Materials\MetalRod.png" />
+	  <None Remove="Content\Items\Materials\SharpHooks.png" />
+	  <None Remove="Content\Items\Materials\SpearHead.png" />
 	  <None Remove="Content\Items\Twine.png" />
 	</ItemGroup>
 	<ItemGroup>
