@@ -31,24 +31,6 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
     {
         public int lifeCrystalsUsed = 10; // this just makes people start with 100 hp, if it isn't set to 10 peoople spawn with that many life crystals of hp
 
-        public override void Initialize()
-        {
-            // This doesn't do shit by the way, idk why. too scared to delete it
-            if (Player.statLifeMax < 100)
-            {
-                Player.statLifeMax = 100;
-            }
-        }
-
-        public override void ResetEffects()
-        {
-            // again, this doesn't do shit, i'm too scared to change it tho
-            if (Player.statLifeMax < 100)
-            {
-                Player.statLifeMax = 100;
-            }
-        }
-
         public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
         {
             base.ModifyMaxStats(out health, out mana);
