@@ -37,4 +37,11 @@ public class CustomRecipes : ModSystem
         recipe.AddIngredient(ItemID.Wood, 30); // Requires 30 Wood as ingredient
         recipe.Register(); // Registers the recipe into the game
     }
+    private void AddTorchRecipe()
+    {
+        Recipe recipe = Recipe.Create(ItemID.Torch); // Creates a recipe for 1 Work Bench
+        recipe.AddIngredient(ModContent.ItemType<Twig>(), 1);
+        recipe.AddIngredient(ModContent.ItemType<RedGel>(), 1);
+        recipe.Register(); // Registers the recipe into the game
+    }
 }
