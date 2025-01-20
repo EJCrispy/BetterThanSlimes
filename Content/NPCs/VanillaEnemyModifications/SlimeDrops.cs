@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using BetterThanSlimes.Content.Items.Materials;
 
-namespace BetterThanSlimes.Content.NPCs
+namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class SlimeDrops : ModNPC
     {
