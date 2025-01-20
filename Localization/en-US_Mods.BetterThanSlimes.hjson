@@ -80,3 +80,14 @@ Tiles: {
 }
 
 WorldGen.WorldGenTutorialOresPassMessage: Mods.BetterThanSlimes.WorldGen.WorldGenTutorialOresPassMessage
+
+Configs: {
+	BetterThanSlimesConfig: {
+		DisplayName: Better Than Slimes Config
+
+		DisableMap: {
+			Label: Disable Map Visibility
+			Tooltip: If enabled, the map and minimap will be disabled while this mod is active.
+		}
+	}
+}
