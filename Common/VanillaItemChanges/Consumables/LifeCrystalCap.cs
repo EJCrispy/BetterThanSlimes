@@ -11,9 +11,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
 {
     public class LifeCrystalGlobalItem : GlobalItem
     {
-        public static readonly int LifePerCrystal = 10; // this shit doesn't work lol, see LifeCrystalAmounts.cs for the actual code. This .cs is literally only for the cap.
-        public const int MaxLifeCap = 200;
-
+        public const int MaxLifeCrystalsUsed = 20; // Define the max life crystals used
         private static ILHook _consumeItemILHook;
 
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
@@ -46,26 +44,16 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
             c.Emit(OpCodes.Ldarg_1);
             c.EmitDelegate<Action<Player, int>>((self, type) =>
             {
-                if (type == ItemID.LifeCrystal && self.statLifeMax2 < MaxLifeCap)
+                if (type == ItemID.LifeCrystal && self.GetModPlayer<ModPlayerWithLifeCrystals>().lifeCrystalsUsed < MaxLifeCrystalsUsed)
                 {
-                    self.statLifeMax2 += LifePerCrystal - 20; //again, this shit is useless
-
-                    if (self.statLifeMax2 > MaxLifeCap)
-                    {
-                        self.statLifeMax2 = MaxLifeCap;
-                    }
-
-                    if (self.statLife > self.statLifeMax2)
-                    {
-                        self.statLife = self.statLifeMax2;
-                    }
+                    self.GetModPlayer<ModPlayerWithLifeCrystals>().lifeCrystalsUsed++;
                 }
             });
         }
 
         public override bool CanUseItem(Item item, Player player)
         {
-            if (item.type == ItemID.LifeCrystal && player.statLifeMax2 >= MaxLifeCap) // no worky
+            if (item.type == ItemID.LifeCrystal && player.GetModPlayer<ModPlayerWithLifeCrystals>().lifeCrystalsUsed >= MaxLifeCrystalsUsed)
             {
                 return false;
             }
@@ -80,13 +68,54 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
             }
             return base.UseItem(item, player);
         }
+    }
 
-        public override void SetDefaults(Item item)
+    public class ModPlayerWithLifeCrystals : ModPlayer
+    {
+        public int lifeCrystalsUsed = 0;
+
+        public override void Initialize()
         {
-            if (item.type == ItemID.LifeCrystal)
+            lifeCrystalsUsed = 0;
+        }
+
+        public override void ResetEffects()
+        {
+            // Any reset logic if needed
+        }
+
+        public override void CopyClientState(ModPlayer targetCopy)
+        {
+            ModPlayerWithLifeCrystals clone = targetCopy as ModPlayerWithLifeCrystals;
+            clone.lifeCrystalsUsed = lifeCrystalsUsed;
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            var packet = Mod.GetPacket();
+            packet.Write((byte)ModMessageType.SyncPlayer);
+            packet.Write((byte)Player.whoAmI);
+            packet.Write(lifeCrystalsUsed);
+            packet.Send(toWho, fromWho);
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            var modPlayer = clientPlayer as ModPlayerWithLifeCrystals;
+            if (modPlayer.lifeCrystalsUsed != lifeCrystalsUsed)
             {
-                item.healLife = LifePerCrystal;
+                // Send changes to the server
+                var packet = Mod.GetPacket();
+                packet.Write((byte)ModMessageType.SyncPlayer);
+                packet.Write((byte)Player.whoAmI);
+                packet.Write(lifeCrystalsUsed);
+                packet.Send();
             }
         }
+    }
+
+    public enum ModMessageType : byte
+    {
+        SyncPlayer
     }
 }
