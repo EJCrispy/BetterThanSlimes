@@ -14,7 +14,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.RedSlime)
+            if (npc.type == NPCID.Pinky)
             {
                 isRedSlime = true;
             }
