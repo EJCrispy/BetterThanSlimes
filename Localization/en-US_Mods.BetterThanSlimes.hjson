@@ -53,6 +53,11 @@ Items: {
 		DisplayName: Twine
 		Tooltip: ""
 	}
+
+	RedGel: {
+		DisplayName: Red Gel
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
