@@ -6,12 +6,11 @@ using BetterThanSlimes.Content.Items.Materials;
 
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
-    public class SlimeDrops : ModNPC
+    public class SlimeDrops : GlobalNPC
     {
-
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (NPC.type == NPCID.RedSlime)
+            if (npc.type == NPCID.RedSlime)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
             }
