@@ -10,7 +10,7 @@ namespace YourModNamespace
         public override void PostDrawTiles()
         {
             Player player = Main.LocalPlayer;
-            int maxDistance = 30; // Maximum raycast distance
+            int maxDistance = 3; // Maximum raycast distance
 
             for (int angle = 0; angle < 360; angle += 2)
             {
