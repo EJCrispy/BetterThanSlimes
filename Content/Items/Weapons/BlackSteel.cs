@@ -26,7 +26,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
             // Weapon Properties
             Item.damage = 15;
-            Item.crit = 96;
+            Item.crit = 100;
             Item.knockBack = 3;
             Item.noUseGraphic = false;
             Item.noMelee = false;
@@ -61,6 +61,7 @@ namespace BetterThanSlimes.Content
         public override void OnKill(NPC npc)
         {
             Player player = Main.player[npc.lastInteraction];
+
             // Check if the NPC was killed by your custom weapon and is not a critter
             if (npc.catchItem <= 0 && player.HeldItem.type == ModContent.ItemType<Items.Weapons.BlackSteel>())
             {
@@ -74,10 +75,13 @@ namespace BetterThanSlimes.Content
                 for (int i = 0; i < numberOfProjectiles; i++)
                 {
                     // Generate random direction for the projectile
-                    Vector2 randomDirection = new Vector2(Main.rand.NextFloat(-1, 1), Main.rand.NextFloat(-1, 1)).SafeNormalize(Vector2.UnitY);
+                    Vector2 randomDirection = new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)).SafeNormalize(Vector2.UnitY);
 
-                    // Spawn the projectile with the random direction and a speed of 5
-                    Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, randomDirection * 5, projectileID, 15, 2, Main.myPlayer);
+                    // Set speed similar to Dungeon Spirit (around 6-8)
+                    float speed = Main.rand.NextFloat(6f, 8f);
+
+                    // Spawn the projectile with the random direction and speed
+                    Projectile.NewProjectile(npc.GetSource_Death(), spawnPosition, randomDirection * speed, projectileID, 15, 2, Main.myPlayer);
                 }
             }
         }
