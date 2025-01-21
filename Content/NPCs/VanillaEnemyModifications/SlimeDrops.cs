@@ -16,6 +16,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                 npcLoot.RemoveWhere(rule => true);
                 // Add the new loot rule
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedGel>(), 1, 1, 2)); // Drops 1-2 RedGel items
+
             }
         }
     }

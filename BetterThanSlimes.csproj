@@ -9,10 +9,12 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Content\Guidebook.png" />
+	  <None Remove="Content\Items\Consumables\SlimeCore.png" />
 	  <None Remove="Content\Items\Materials\MetalRod.png" />
 	  <None Remove="Content\Items\Materials\SharpHooks.png" />
 	  <None Remove="Content\Items\Materials\SpearHead.png" />
 	  <None Remove="Content\Items\Twine.png" />
+	  <None Remove="Content\Items\Weapons\TornNotebookProjectile.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Mono.Cecil" Version="0.11.6" />
@@ -20,6 +22,8 @@
 	  <PackageReference Include="MonoMod.RuntimeDetour.HookGen" Version="22.7.31.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Folder Include="Common\HungerSystem\" />
+	  <Folder Include="Content\Items\Consumables\" />
 	  <Folder Include="Content\NPCs\ModEnemies\" />
 	  <Folder Include="Content\NPCs\TownNPCChanges\" />
 	</ItemGroup>

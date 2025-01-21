@@ -26,7 +26,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
             // Weapon Properties
             Item.damage = 15;
-            Item.crit = 100;
+            Item.crit = 104;
             Item.knockBack = 3;
             Item.noUseGraphic = false;
             Item.noMelee = false;

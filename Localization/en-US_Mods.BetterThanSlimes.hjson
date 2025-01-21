@@ -73,11 +73,27 @@ Items: {
 		DisplayName: Sharp Hooks
 		Tooltip: ""
 	}
+
+	SlimeSpeedBoost: {
+		DisplayName: Slime Speed Boost
+		Tooltip: ""
+	}
+
+	SlimeCore: {
+		DisplayName: Slime Core
+		Tooltip: ""
+	}
+
+	TornNotebook: {
+		DisplayName: Torn Notebook
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
 	LooseStoneProjectile.DisplayName: Loose Stone Projectile
 	VengefulSpirit.DisplayName: Vengeful Spirit
+	TornNotebookProjectile.DisplayName: Torn Notebook Projectile
 }
 
 Buffs: {
@@ -105,4 +121,13 @@ Configs: {
 			Tooltip: If enabled, the map and minimap will be disabled while this mod is active.
 		}
 	}
+}
+
+Prefixes: {
+	DemonicPrefix.DisplayName: Demonic Prefix
+	ForcefulPrefix.DisplayName: Forceful Prefix
+	GodlyPrefix.DisplayName: Godly Prefix
+	HeavyPrefix.DisplayName: Heavy Prefix
+	RapidMovementPrefix.DisplayName: Rapid Movement Prefix
+	SightedPrefix.DisplayName: Sighted Prefix
 }
