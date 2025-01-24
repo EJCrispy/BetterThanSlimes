@@ -8,7 +8,7 @@ namespace BetterThanSlimes.Common.Systems
         public override void PostUpdateEverything()
         {
             {
-                Main.mapEnabled = false;
+              //  Main.mapEnabled = false;
             }
         }
     }
