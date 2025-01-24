@@ -21,6 +21,12 @@ public class KingSlimeTweaks : GlobalNPC
 
     public override void AI(NPC npc)
     {
+        // Check if the world is using the "For the Worthy" seed
+        if (!Main.getGoodWorld)
+        {
+            return; // Exit early if not in the "For the Worthy" seed
+        }
+
         if (npc.type == NPCID.KingSlime)
         {
             // Custom slime spawn logic
