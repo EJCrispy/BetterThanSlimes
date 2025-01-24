@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExampleMod.Content.Items.Placeable.Furniture
+namespace BetterThanSlimes.Content.Items.Placeable.Furniture
 {
     public class ClayKiln : ModItem
     {

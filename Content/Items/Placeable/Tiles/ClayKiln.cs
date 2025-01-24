@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace ExampleMod.Content.Tiles.Furniture
+namespace BetterThanSlimes.Content.Tiles.Furniture
 {
     public class ClayKiln : ModTile
     {
