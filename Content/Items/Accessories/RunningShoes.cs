@@ -26,8 +26,8 @@ namespace BetterThanSlimes.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             // These 2 stat changes are equal to the Lightning Boots
-            player.moveSpeed += MoveSpeedBonus / 800f; // Modifies the player movement speed bonus.
-            player.accRunSpeed = 30.75f; // Sets the players sprint speed in boots.
+            player.moveSpeed += MoveSpeedBonus / 70f; // Modifies the player movement speed bonus.
+            player.accRunSpeed = 10.75f; // Sets the players sprint speed in boots.
 
             // player.maxRunSpeed and player.runAcceleration are usually not set by boots and should not be changed in UpdateAccessory due to the logic order. See ExampleStatBonusAccessoryPlayer.PostUpdateRunSpeeds for an example of adjusting those speed stats.
 
