@@ -48,7 +48,7 @@ namespace BetterThanSlimes.Content.Items.Consumables
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Gel, 50); // Requires 50 gel
-            recipe.AddTile(TileID.WorkBenches); // Crafted at a workbench
+            recipe.AddTile(TileID.DemonAltar); // Crafted at a workbench
             recipe.Register();
         }
     }
