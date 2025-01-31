@@ -1,7 +1,11 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static BetterThanSlimes.BetterThanSlimes.Content;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BetterThanSlimes.Content.Items.Consumables;
 
 public class GreyGel : ModItem
 {
