@@ -9,7 +9,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
     [AutoloadEquip(EquipType.Shoes)]
     public class RunningShoes : ModItem
     {
-        public static readonly int MoveSpeedBonus = 4;
+        public static readonly int MoveSpeedBonus = 1;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MoveSpeedBonus);
 
