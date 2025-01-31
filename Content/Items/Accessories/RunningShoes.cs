@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace ExampleMod.Content.Items.Accessories
+namespace BetterThanSlimes.Content.Items.Accessories
 {
     // This example attempts to showcase most of the common boot accessory effects.
     [AutoloadEquip(EquipType.Shoes)]
