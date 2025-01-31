@@ -57,10 +57,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
 
         public override void UpdateVanity(Player player)
         {
-            // This code is a copy of the visual effects code in UpdateAccessory above
-            player.CancelAllBootRunVisualEffects();
-            player.vanityRocketBoots = 0;
-            player.hellfireTreads = false;
+
         }
     }
 }
