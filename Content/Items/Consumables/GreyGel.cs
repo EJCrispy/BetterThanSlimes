@@ -39,7 +39,12 @@ namespace BetterThanSlimes.Content.Items.Consumables
                 Main.StartSlimeRain(true); // Start slime rain
                 // Ensure that slime rain event starts
                 Main.slimeRain = true;
-                Main.slimeRainTime = 3600; // 1 in-game hour (adjust as needed)
+
+                // Calculate the remaining time until 12:00 AM
+                int timeLeftUntilMidnight = (int)((24 * 3600 - Main.time) % 86400);
+                if (!Main.dayTime) timeLeftUntilMidnight -= 54000; // Subtract night time if it's already night
+
+                Main.slimeRainTime = timeLeftUntilMidnight; // Set slime rain duration until 12:00 AM
             }
             return true;
         }
@@ -47,8 +52,10 @@ namespace BetterThanSlimes.Content.Items.Consumables
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Gel, 50); // Requires 50 gel
-            recipe.AddTile(TileID.DemonAltar); // Crafted at a workbench
+            recipe.AddIngredient(ItemID.Gel, 50);
+            recipe.AddIngredient(ItemID.BottledWater, 1);
+            recipe.AddIngredient(ItemID.Mushroom, 5);
+            recipe.AddTile(TileID.WorkBenches); // Crafted at a workbench
             recipe.Register();
         }
     }
