@@ -9,8 +9,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Content\Guidebook.png" />
-	  <None Remove="Content\Items\Accessories\EurusSocks.png" />
-	  <None Remove="Content\Items\Consumables\SlimeCore.png" />
 	  <None Remove="Content\Items\Materials\MetalRod.png" />
 	  <None Remove="Content\Items\Materials\SharpHooks.png" />
 	  <None Remove="Content\Items\Materials\SpearHead.png" />
@@ -27,7 +25,6 @@
 	<ItemGroup>
 	  <Folder Include="Common\HungerSystem\" />
 	  <Folder Include="Content\Items\Consumables\" />
-	  <Folder Include="Content\Items\Placeable\Tiles\Furniture\" />
 	  <Folder Include="Content\NPCs\ModEnemies\" />
 	  <Folder Include="Content\NPCs\TownNPCChanges\" />
 	</ItemGroup>
