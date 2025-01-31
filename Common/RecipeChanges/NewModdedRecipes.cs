@@ -15,6 +15,15 @@ public class CustomRecipes : ModSystem
         AddWoodenSwordRecipe();
         AddTorchRecipe();
         AddSpearRecipe();
+        AddClayBrickRecipe();
+    }
+
+    private void AddClayBrickRecipe()
+    {
+        Recipe recipe = Recipe.Create(ItemID.RedBrick);
+        recipe.AddIngredient(ItemID.ClayBlock, (2));
+        recipe.AddTile(TileID.Campfire);
+        recipe.Register();
     }
 
     private void AddSpearRecipe()
