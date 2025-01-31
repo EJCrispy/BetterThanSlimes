@@ -1,0 +1,46 @@
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static BetterThanSlimes.BetterThanSlimes.Content;
+
+public class GreyGel : ModItem
+{
+    public override void SetStaticDefaults()
+    {
+
+    }
+
+    public override void SetDefaults()
+    {
+        Item.width = 20;
+        Item.height = 20;
+        Item.maxStack = 99;
+        Item.useTime = 20;
+        Item.useAnimation = 20;
+        Item.useStyle = ItemUseStyleID.HoldUp;
+        Item.UseSound = SoundID.Item44;
+        Item.consumable = true;
+    }
+
+    public override bool? UseItem(Player player)
+    {
+        // Only useable during rain
+        if (!Main.raining) return false;
+
+        // Check if slime rain is not already happening
+        if (!Main.slimeRain)
+        {
+            Main.StartSlimeRain(true); // Start slime rain
+            Main.NewText("The Slime Rain has begun!", 50, 255, 130);
+        }
+        return true;
+    }
+
+    public override void AddRecipes()
+    {
+        Recipe recipe = CreateRecipe();
+        recipe.AddIngredient(ItemID.Gel, 50); // Requires 50 gel
+        recipe.AddTile(TileID.WorkBenches); // Crafted at a workbench
+        recipe.Register();
+    }
+}
