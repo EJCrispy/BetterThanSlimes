@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace BetterThanSlimes.Content.Items.Consumables
 {
-    public class SummonSlimeRain : ModItem
+    public class GreyGel : ModItem
     {
         public override void SetStaticDefaults()
         {
