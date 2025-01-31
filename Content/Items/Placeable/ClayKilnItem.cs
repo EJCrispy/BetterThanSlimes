@@ -1,6 +1,6 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
 
 namespace BetterThanSlimes.Content.Items.Placeable
 {
@@ -17,7 +17,7 @@ namespace BetterThanSlimes.Content.Items.Placeable
             Item.useTime = 10;
             Item.useAnimation = 15;
             Item.consumable = true;
-            Item.createTile = ModContent.TileType<ClayKiln>();
+            Item.createTile = ModContent.TileType<ClayKiln>(); // Ensure this matches the class
         }
 
         public override void AddRecipes()

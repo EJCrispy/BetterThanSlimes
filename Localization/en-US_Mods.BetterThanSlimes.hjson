@@ -98,6 +98,11 @@ Items: {
 		DisplayName: Running Shoes
 		Tooltip: The wearer can run fast
 	}
+
+	ClayKilnItem: {
+		DisplayName: Clay Kiln Item
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -118,6 +123,8 @@ Tiles: {
 		Displayname: Loose Dirt
 		Description: Lirt
 	}
+
+	ClayKiln.MapEntry: Clay Kiln
 }
 
 WorldGen.WorldGenTutorialOresPassMessage: Mods.BetterThanSlimes.WorldGen.WorldGenTutorialOresPassMessage
