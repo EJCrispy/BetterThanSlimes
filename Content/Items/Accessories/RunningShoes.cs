@@ -7,7 +7,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
 {
     // This example attempts to showcase most of the common boot accessory effects.
     [AutoloadEquip(EquipType.Shoes)]
-    public class ExampleBoots : ModItem
+    public class RunningShoes : ModItem
     {
         public static readonly int MoveSpeedBonus = 8;
 
