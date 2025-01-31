@@ -27,7 +27,7 @@ namespace BetterThanSlimes.Content.Items.Accessories
         {
             // These 2 stat changes are equal to the Lightning Boots
             player.moveSpeed += MoveSpeedBonus / 30f; // Modifies the player movement speed bonus.
-            player.accRunSpeed = 12.75f; // Sets the players sprint speed in boots.
+            player.accRunSpeed = 4.75f; // Sets the players sprint speed in boots.
 
             // player.maxRunSpeed and player.runAcceleration are usually not set by boots and should not be changed in UpdateAccessory due to the logic order. See ExampleStatBonusAccessoryPlayer.PostUpdateRunSpeeds for an example of adjusting those speed stats.
 
