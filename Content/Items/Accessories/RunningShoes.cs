@@ -49,8 +49,8 @@ namespace ExampleMod.Content.Items.Accessories
             player.iceSkate = false; // Grant the player improved speed on ice and not breaking thin ice when falling onto it
             player.desertBoots = false; // Grants the player increased movement speed while running on sand
             player.fireWalk = false; // Grants the player immunity from Meteorite and Hellstone tile damage
-            player.noFallDmg = false; // Grants the player the Lucky Horseshoe effect of nullifying fall damage
-            player.lavaRose = false; // Grants the Lava Rose effect
+            player.noFallDmg = false;
+        } // Grants the player the Lucky Horseshoe effect of nullifying fall damage
 
             // player.DoBootsEffect(player.DoBootsEffect_PlaceFlowersOnTile); // Spawns flowers when walking on normal or Hallowed grass
 
