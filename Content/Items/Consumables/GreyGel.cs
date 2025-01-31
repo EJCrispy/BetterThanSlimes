@@ -30,6 +30,9 @@ namespace BetterThanSlimes.Content.Items.Consumables
             // Only usable during rain
             if (!Main.raining) return false;
 
+            // End rain event
+            Main.StopRain();
+
             // Check if slime rain is not already happening
             if (!Main.slimeRain)
             {
