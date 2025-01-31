@@ -93,6 +93,11 @@ Items: {
 		DisplayName: Grey Gel
 		Tooltip: All water that this touches turns to slime! Hopefully it doesn't react with the rain...
 	}
+
+	RunningShoes: {
+		DisplayName: Running Shoes
+		Tooltip: The wearer can run fast
+	}
 }
 
 Projectiles: {
