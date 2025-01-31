@@ -27,13 +27,16 @@ namespace BetterThanSlimes.Content.Items.Consumables
 
         public override bool? UseItem(Player player)
         {
-            // Only useable during rain
+            // Only usable during rain
             if (!Main.raining) return false;
 
             // Check if slime rain is not already happening
             if (!Main.slimeRain)
             {
                 Main.StartSlimeRain(true); // Start slime rain
+                // Ensure that slime rain event starts
+                Main.slimeRain = true;
+                Main.slimeRainTime = 3600; // 1 in-game hour (adjust as needed)
             }
             return true;
         }
