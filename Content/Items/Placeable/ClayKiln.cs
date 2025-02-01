@@ -15,23 +15,25 @@ namespace BetterThanSlimes.Content.Items.Placeable
             Main.tileSolidTop[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileTable[Type] = true;
-            Main.tileLavaDeath[Type] = true; // Optional, if you want it to break in lava.
+            Main.tileLavaDeath[Type] = true; // Optional: Breaks in lava.
 
-            // Tile size and style setup
+            // Prevents the tile from dropping the default item
+            TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.addTile(Type);
 
-            // Map entry
             var name = CreateMapEntryName();
             AddMapEntry(new Color(200, 100, 50), name);
 
-            DustType = DustID.RedMoss; // Optional: Change to a different dust type if needed
-            AnimationFrameHeight = 38; // Each frame height (sprite's height divided by 12 for 12 frames)
+            DustType = DustID.RedMoss;
+            AnimationFrameHeight = 38;
+
+            // Set the tile as a crafting station with the same effects as a furnace
+            AdjTiles = new int[] { TileID.Furnaces };
         }
 
         public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
         {
-            // Calculate frameYOffset based on the tile's frame
             frameYOffset = Main.tileFrameCounter[type] % 12 * AnimationFrameHeight;
         }
 
@@ -41,20 +43,30 @@ namespace BetterThanSlimes.Content.Items.Placeable
             {
                 Main.LocalPlayer.adjTile[TileID.Furnaces] = true;
 
-                // Emit light (optional)
-                Lighting.AddLight(new Vector2(i * 16, j * 16), 1.0f, 0.5f, 0.2f);
+                // Emits furnace-like glow
+                Vector2 position = new Vector2(i * 16, j * 16);
+                Lighting.AddLight(position, 1.0f, 0.5f, 0.2f);
             }
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<ClayKilnItem>());
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                // Only drop 6 Red Bricks, no longer drop the tile itself
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.RedBrick, 6);
+            }
+        }
+
+        public override bool CanDrop(int i, int j)
+        {
+            return false;   
         }
 
         public override void RandomUpdate(int i, int j)
         {
-            // Emit small sparks similar to a furnace
-            if (Main.rand.NextBool(10)) // Adjust the chance to emit particles
+            // Emits sparks like a furnace
+            if (Main.rand.NextBool(10))
             {
                 int dust = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Torch, 0f, -1f, 100, default, 1.5f);
                 Main.dust[dust].velocity *= 0.5f;

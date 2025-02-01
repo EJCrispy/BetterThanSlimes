@@ -9,6 +9,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Content\Guidebook.png" />
+	  <None Remove="Content\Items\Materials\BrokenMirror.png" />
 	  <None Remove="Content\Items\Materials\MetalRod.png" />
 	  <None Remove="Content\Items\Materials\SharpHooks.png" />
 	  <None Remove="Content\Items\Materials\SpearHead.png" />
@@ -16,7 +17,9 @@
 	  <None Remove="Content\Items\Placeable\ClayKilnItem.png" />
 	  <None Remove="Content\Items\Placeable\Tiles\ClayKiln.png" />
 	  <None Remove="Content\Items\Twine.png" />
+	  <None Remove="Content\Items\Weapons\Hookshot.png" />
 	  <None Remove="Content\Items\Weapons\TornNotebookProjectile.png" />
+	  <None Remove="Content\Projectiles\HookshotProjectile.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Mono.Cecil" Version="0.11.6" />

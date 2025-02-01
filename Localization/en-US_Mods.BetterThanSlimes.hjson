@@ -103,12 +103,23 @@ Items: {
 		DisplayName: Clay Kiln Item
 		Tooltip: ""
 	}
+
+	BrokenMirror: {
+		DisplayName: Broken Mirror
+		Tooltip: ""
+	}
+
+	Hookshot: {
+		DisplayName: Hookshot
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
 	LooseStoneProjectile.DisplayName: Loose Stone Projectile
 	VengefulSpirit.DisplayName: Vengeful Spirit
 	TornNotebookProjectile.DisplayName: Torn Notebook Projectile
+	HookshotProjectile.DisplayName: Hookshot Projectile
 }
 
 Buffs: {
