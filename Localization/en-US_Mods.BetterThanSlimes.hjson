@@ -118,10 +118,6 @@ Items: {
 		DisplayName: Shaft
 		Tooltip: ""
 	}
-	Morsel: {
-		DisplayName: Morsel
-		Tooltip: "Meat from a tiny critter. Not very filling."
-	}
 	SpookyShaft: {
 		DisplayName: Spooky Shaft
 		Tooltip: ""
