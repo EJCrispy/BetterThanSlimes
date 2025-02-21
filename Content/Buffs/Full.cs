@@ -14,10 +14,16 @@ namespace BetterThanSlimes.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            // When the buff is about to run out, apply the Starvation debuff
+            // When the buff is about to run out, apply the Starvation debuff permanently
             if (player.buffTime[buffIndex] == 1) // 1 frame before the buff expires
             {
-                player.AddBuff(ModContent.BuffType<Starvation>(), 60 * 60); // Apply Starvation for 60 seconds
+                player.AddBuff(ModContent.BuffType<Starvation>(), int.MaxValue); // Apply Starvation permanently
+            }
+
+            // Remove the Starvation debuff if it's active
+            if (player.buffTime[buffIndex] > 1) // 1 frame before the buff expires
+                {
+                player.ClearBuff(ModContent.BuffType<Starvation>());
             }
         }
     }
