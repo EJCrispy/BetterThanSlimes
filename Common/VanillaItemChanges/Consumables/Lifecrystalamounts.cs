@@ -29,7 +29,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Consumables
 
     public class LifeCrystalModPlayer : ModPlayer
     {
-        public int lifeCrystalsUsed = 5; // this just makes people start with 100 hp, if it isn't set to 10 peoople spawn with that many life crystals of hp
+        public int lifeCrystalsUsed = 8; // this just makes people start with 100 hp, if it isn't set to 10 peoople spawn with that many life crystals of hp
 
         public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
         {
