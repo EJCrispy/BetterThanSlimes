@@ -35,7 +35,7 @@ if (npc.netID == NPCID.Penguin)
 if (npc.netID == NPCID.Seagull)
 if (npc.netID == NPCID.Goldfish)
 if (npc.netID == NPCID.GoldfishWalker)
-if (npc.netID == NPCID.RedSlime)
+if (npc.netID == NPCID.SnowFlinx)
                                                                                 { 
 // Add the new loot rule
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Morsel>(), 1, 1, 10));
