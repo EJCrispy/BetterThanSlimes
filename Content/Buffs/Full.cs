@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BetterThanSlimes.Content.Buffs
@@ -35,39 +34,6 @@ namespace BetterThanSlimes.Content.Buffs
             else if (player.buffTime[buffIndex] > 60 * 4 * 60) // 4 minutes or more (240 seconds)
             {
                 player.statDefense += 5; // +5 defense for 4+ minutes
-            }
-        }
-
-        // Helper method to convert time from other buffs to the Full buff
-        public static void ConvertFoodBuffsToFull(Player player)
-        {
-            int[] foodBuffIDs = [BuffID.WellFed, BuffID.WellFed2, BuffID.WellFed3]; // IDs for Well Fed, Plenty Satisfied, Exquisitely Stuffed
-            int fullBuffID = ModContent.BuffType<Full>();
-
-            foreach (int foodBuffID in foodBuffIDs)
-            {
-                if (player.HasBuff(foodBuffID))
-                {
-                    int foodBuffIndex = player.FindBuffIndex(foodBuffID);
-                    if (foodBuffIndex != -1)
-                    {
-                        // Add the remaining time of the food buff to the Full buff
-                        int fullBuffIndex = player.FindBuffIndex(fullBuffID);
-                        if (fullBuffIndex == -1)
-                        {
-                            // If the Full buff isn't active, add it with the remaining time
-                            player.AddBuff(fullBuffID, player.buffTime[foodBuffIndex]);
-                        }
-                        else
-                        {
-                            // If the Full buff is already active, add the remaining time to it
-                            player.buffTime[fullBuffIndex] += player.buffTime[foodBuffIndex];
-                        }
-
-                        // Remove the food buff
-                        player.DelBuff(foodBuffIndex);
-                    }
-                }
             }
         }
     }
