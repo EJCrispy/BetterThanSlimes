@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace YourMod.Items
+namespace BetterThanSlimes.Content.Items.Consumables
 {
     public class CookedMorsel : ModItem
     {
