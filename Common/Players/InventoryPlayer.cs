@@ -15,7 +15,12 @@ namespace TutorialMod.Common.Players
             itemsByMod["Terraria"].RemoveAll(item => item.type == ItemID.CopperShortsword);
             itemsByMod["Terraria"].RemoveAll(item => item.type == ItemID.CopperPickaxe);
             itemsByMod["Terraria"].RemoveAll(item => item.type == ItemID.CopperAxe);
-        }
 
+            // Add Steak to the starting inventory
+            if (itemsByMod.TryGetValue("Terraria", out var items))
+            {
+                items.Add(new Item(ItemID.Steak, 1));
+            }
+        }
     }
 }

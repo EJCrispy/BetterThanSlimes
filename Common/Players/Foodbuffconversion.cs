@@ -6,14 +6,16 @@ namespace BetterThanSlimes.Content.Players
 {
     public class FoodBuffConversionPlayer : ModPlayer
     {
+
         public override void UpdateEquips()
         {
             ConvertFoodBuffsToFull();
+            CheckForStarvation();
         }
 
         private void ConvertFoodBuffsToFull()
         {
-            int[] foodBuffIDs = [BuffID.WellFed, BuffID.WellFed2, BuffID.WellFed3]; // IDs for Well Fed, Plenty Satisfied, Exquisitely Stuffed
+            int[] foodBuffIDs = { BuffID.WellFed, BuffID.WellFed2, BuffID.WellFed3 }; // IDs for Well Fed, Plenty Satisfied, Exquisitely Stuffed
             int fullBuffID = ModContent.BuffType<Buffs.Full>();
 
             foreach (int foodBuffID in foodBuffIDs)
@@ -39,6 +41,26 @@ namespace BetterThanSlimes.Content.Players
                         // Remove the food buff
                         Player.DelBuff(foodBuffIndex);
                     }
+                }
+            }
+        }
+
+        private void CheckForStarvation()
+        {
+            int fullBuffID = ModContent.BuffType<Buffs.Full>();
+            int starvationBuffID = ModContent.BuffType<Buffs.Starvation>();
+
+            // If the player does not have the Full buff, apply the Starvation debuff
+            if (!Player.HasBuff(fullBuffID))
+            {
+                Player.AddBuff(starvationBuffID, int.MaxValue); // Apply Starvation permanently
+            }
+            else
+            {
+                // If the player has the Full buff, remove the Starvation debuff
+                if (Player.HasBuff(starvationBuffID))
+                {
+                    Player.ClearBuff(starvationBuffID);
                 }
             }
         }
