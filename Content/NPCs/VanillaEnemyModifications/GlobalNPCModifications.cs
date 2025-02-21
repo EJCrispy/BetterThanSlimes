@@ -70,16 +70,29 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     npcLoot.Add(ItemDropRule.Common(ItemID.BlandWhip, 1));
                     npcLoot.Add(ItemDropRule.Common(ItemID.RopeCoil, 1, 3, 3));
                     npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 3, 3));
-                    npcLoot.Add(ItemDropRule.Common(itemId: 5547,
+                    npcLoot.Add(ItemDropRule.Common(itemId: 5546,
                                                     1)); //should drop kapala
                 }
 
                 if (npc.type == NPCID.Clown)
                 {
-                    npcLoot.Add(ItemDropRule.Common(itemId: 5546,
+                    npcLoot.Add(ItemDropRule.Common(itemId: 5547,
                                                     1)); //should make clowns drop red nose
                 }
+            int[] npcTypes = {
+    NPCID.Bunny, NPCID.Squirrel, NPCID.SquirrelRed, NPCID.PartyBunny,
+    NPCID.BunnySlimed, NPCID.BunnyXmas, NPCID.Duck, NPCID.Duck2,
+    NPCID.DuckWhite, NPCID.DuckWhite2, NPCID.Grebe, NPCID.Grebe2,
+    NPCID.Owl, NPCID.Penguin, NPCID.Seagull, NPCID.Goldfish,
+    NPCID.GoldfishWalker, NPCID.SnowFlinx
+};
+
+            if (npcTypes.Contains(npc.type))
+            {
+                npcLoot.Add(ItemDropRule.Common(itemId: 5553, 1));
             }
+
         }
+    }
     }
 

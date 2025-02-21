@@ -64,4 +64,5 @@ public class CustomRecipes : ModSystem
         recipe.AddIngredient(ModContent.ItemType<RedGel>());
         recipe.Register();
     }
+
 }
