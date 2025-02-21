@@ -8,8 +8,8 @@ namespace BetterThanSlimes.Content.Buffs
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true; // This is a debuff
-            Main.buffNoSave[Type] = true; // This buff won't save when exiting and rejoining the world
-            Main.buffNoTimeDisplay[Type] = false; // Time will be displayed for this buff
+            Main.buffNoSave[Type] = false; // This buff won't save when exiting and rejoining the world
+            Main.buffNoTimeDisplay[Type] = true; // Time will be displayed for this buff
         }
 
         public override void Update(Player player, ref int buffIndex)

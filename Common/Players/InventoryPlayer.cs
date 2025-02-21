@@ -16,5 +16,6 @@ namespace TutorialMod.Common.Players
             itemsByMod["Terraria"].RemoveAll(item => item.type == ItemID.CopperPickaxe);
             itemsByMod["Terraria"].RemoveAll(item => item.type == ItemID.CopperAxe);
         }
+
     }
 }
