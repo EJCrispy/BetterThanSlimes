@@ -39,12 +39,10 @@ if (npc.type == NPCID.SnowFlinx)
 
 
                                                                                 {
-                                                                                    // Clear the existing loot rules
-                                                                                    npcLoot.RemoveWhere(rule => true);
-                                                                                    // Add the new loot rule
-                                                                                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Morsel>(), 1, 1, 10));
+                                                                                    npcLoot.Add(ItemDropRule.Common(itemId: 5552,
+                                  1));
 
-                }
+                                                                                }
             }
         }
     }
