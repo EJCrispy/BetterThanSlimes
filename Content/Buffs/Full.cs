@@ -7,8 +7,8 @@ namespace BetterThanSlimes.Content.Buffs
     {
         public override void SetStaticDefaults()
         {
-            Main.debuff[Type] = true; // This is not a debuff
-            Main.buffNoSave[Type] = false; // This buff won't save when exiting and rejoining the world
+            Main.debuff[Type] = true;
+            Main.buffNoSave[Type] = false; // This buff will save when exiting and rejoining the world
             Main.buffNoTimeDisplay[Type] = false; // Time will be displayed for this buff
         }
 
@@ -19,6 +19,7 @@ namespace BetterThanSlimes.Content.Buffs
             {
                 player.ClearBuff(ModContent.BuffType<Starvation>());
             }
+
         }
     }
 }

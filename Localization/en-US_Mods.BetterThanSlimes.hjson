@@ -141,12 +141,12 @@ Buffs: {
 
 	Full: {
 		DisplayName: Full
-		Description: Mods.BetterThanSlimes.Buffs.Full.Description
+		Description: Fatass
 	}
 
 	Starvation: {
-		DisplayName: Starvation
-		Description: Mods.BetterThanSlimes.Buffs.Starvation.Description
+		DisplayName: Starving!
+		Description: Better eat dumbass
 	}
 }
 
