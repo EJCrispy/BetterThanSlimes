@@ -113,6 +113,11 @@ Items: {
 		DisplayName: Hookshot
 		Tooltip: ""
 	}
+
+	Shaft: {
+		DisplayName: Shaft
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -126,6 +131,16 @@ Buffs: {
 	LilaBuff: {
 		Description: You can hear the heavenly melody
 		DisplayName: "512"
+	}
+
+	Full: {
+		DisplayName: Full
+		Description: Mods.BetterThanSlimes.Buffs.Full.Description
+	}
+
+	Starvation: {
+		DisplayName: Starvation
+		Description: Mods.BetterThanSlimes.Buffs.Starvation.Description
 	}
 }
 
