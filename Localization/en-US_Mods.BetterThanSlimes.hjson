@@ -118,6 +118,11 @@ Items: {
 		DisplayName: Shaft
 		Tooltip: ""
 	}
+
+	SpookyShaft: {
+		DisplayName: Spooky Shaft
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -125,6 +130,7 @@ Projectiles: {
 	VengefulSpirit.DisplayName: Vengeful Spirit
 	TornNotebookProjectile.DisplayName: Torn Notebook Projectile
 	HookshotProjectile.DisplayName: Hookshot Projectile
+	SpookyShaftProjectile.DisplayName: Spooky Shaft Projectile
 }
 
 Buffs: {
