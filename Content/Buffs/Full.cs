@@ -21,8 +21,8 @@ namespace BetterThanSlimes.Content.Buffs
             }
 
             // Remove the Starvation debuff if it's active
-            if (player.HasBuff(ModContent.BuffType<Starvation>()))
-            {
+            if (player.buffTime[buffIndex] > 1) // 1 frame before the buff expires
+                {
                 player.ClearBuff(ModContent.BuffType<Starvation>());
             }
         }
