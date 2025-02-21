@@ -70,7 +70,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     npcLoot.Add(ItemDropRule.Common(ItemID.BlandWhip, 1));
                     npcLoot.Add(ItemDropRule.Common(ItemID.RopeCoil, 1, 3, 3));
                     npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 3, 3));
-                    npcLoot.Add(ItemDropRule.Common(itemId: 5546,
+                    npcLoot.Add(ItemDropRule.Common(itemId: 5548,
                                                     1)); //should drop kapala
                 }
 
