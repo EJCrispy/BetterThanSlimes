@@ -21,9 +21,19 @@ namespace BetterThanSlimes.Content.Buffs
             }
 
             // Remove the Starvation debuff if it's active
-            if (player.buffTime[buffIndex] > 1) // 1 frame before the buff expires
-                {
+            if (player.buffTime[buffIndex] > 1) // While the Full buff is active
+            {
                 player.ClearBuff(ModContent.BuffType<Starvation>());
+            }
+
+            // Apply defense bonuses based on the remaining time of the Full buff
+            if (player.buffTime[buffIndex] > 60 * 8 * 60) // 8 minutes or more (480 seconds)
+            {
+                player.statDefense += 10; // +10 defense for 8+ minutes
+            }
+            else if (player.buffTime[buffIndex] > 60 * 4 * 60) // 4 minutes or more (240 seconds)
+            {
+                player.statDefense += 5; // +5 defense for 4+ minutes
             }
         }
     }
