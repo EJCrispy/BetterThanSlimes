@@ -123,6 +123,12 @@ Items: {
 		DisplayName: Spooky Shaft
 		Tooltip: ""
 	}
+}
+
+	SpookyShaft: {
+		DisplayName: Spooky Shaft
+		Tooltip: ""
+	}
 
 	CookedMorsel: {
 		DisplayName: Cooked Morsel
