@@ -79,27 +79,20 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     npcLoot.Add(ItemDropRule.Common(itemId: 5546,
                                                     1)); //should make clowns drop red nose
                 }
-            if (npc.type == NPCID.Bunny)
-                if (npc.type == NPCID.Squirrel)
-                    if (npc.type == NPCID.SquirrelRed)
-                        if (npc.type == NPCID.PartyBunny)
-                            if (npc.type == NPCID.BunnySlimed)
-                                if (npc.type == NPCID.BunnyXmas)
-                                    if (npc.type == NPCID.Duck)
-                                        if (npc.type == NPCID.Duck2)
-                                            if (npc.type == NPCID.DuckWhite)
-                                                if (npc.type == NPCID.DuckWhite2)
-                                                    if (npc.type == NPCID.Grebe)
-                                                        if (npc.type == NPCID.Grebe2)
-                                                            if (npc.type == NPCID.Owl)
-                                                                if (npc.type == NPCID.Penguin)
-                                                                    if (npc.type == NPCID.Seagull)
-                                                                        if (npc.type == NPCID.Goldfish)
-                                                                            if (npc.type == NPCID.GoldfishWalker)
-                                                                                if (npc.type == NPCID.SnowFlinx)
-                                                                                    npcLoot.Add(ItemDropRule.Common(itemId: 5546,
-                                1)); //should make clowns drop red nose
+            int[] npcTypes = {
+    NPCID.Bunny, NPCID.Squirrel, NPCID.SquirrelRed, NPCID.PartyBunny,
+    NPCID.BunnySlimed, NPCID.BunnyXmas, NPCID.Duck, NPCID.Duck2,
+    NPCID.DuckWhite, NPCID.DuckWhite2, NPCID.Grebe, NPCID.Grebe2,
+    NPCID.Owl, NPCID.Penguin, NPCID.Seagull, NPCID.Goldfish,
+    NPCID.GoldfishWalker, NPCID.SnowFlinx
+};
+
+            if (npcTypes.Contains(npc.type))
+            {
+                npcLoot.Add(ItemDropRule.Common(itemId: 5552, 1));
+            }
+
         }
-        }
+    }
     }
 
