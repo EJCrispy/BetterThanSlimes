@@ -113,6 +113,11 @@ Items: {
 		DisplayName: Hookshot
 		Tooltip: ""
 	}
+
+	Shaft: {
+		DisplayName: Shaft
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

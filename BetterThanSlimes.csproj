@@ -11,6 +11,7 @@
 	  <None Remove="Content\Guidebook.png" />
 	  <None Remove="Content\Items\Materials\BrokenMirror.png" />
 	  <None Remove="Content\Items\Materials\MetalRod.png" />
+	  <None Remove="Content\Items\Materials\shaft.png" />
 	  <None Remove="Content\Items\Materials\SharpHooks.png" />
 	  <None Remove="Content\Items\Materials\SpearHead.png" />
 	  <None Remove="Content\Items\Placeable\ClayKiln.png" />
