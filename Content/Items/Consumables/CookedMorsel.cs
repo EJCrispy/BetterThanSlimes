@@ -22,7 +22,7 @@ namespace BetterThanSlimes.Content.Items.Consumables
             Item.useAnimation = 15;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item2;
-            Item.maxStack = 30;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.rare = ItemRarityID.Blue;
             Item.value = 100000000;
