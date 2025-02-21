@@ -29,7 +29,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Common\HungerSystem\" />
-	  <Folder Include="Content\Items\Consumables\" />
 	  <Folder Include="Content\NPCs\ModEnemies\" />
 	  <Folder Include="Content\NPCs\TownNPCChanges\" />
 	</ItemGroup>

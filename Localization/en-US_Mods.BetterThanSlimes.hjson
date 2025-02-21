@@ -118,6 +118,14 @@ Items: {
 		DisplayName: Shaft
 		Tooltip: ""
 	}
+	Cooked Morsel: {
+		DisplayName: Cooked Morsel
+		Tooltip: "Cooked meat from a tiny critter. Slightly filling."
+	}
+	Morsel: {
+		DisplayName: Morsel
+		Tooltip: "Meat from a tiny critter. Not very filling."
+	}
 }
 
 Projectiles: {
