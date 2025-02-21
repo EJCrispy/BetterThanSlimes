@@ -138,7 +138,6 @@ Items: {
 	Morsel: {
 		DisplayName: Morsel
 		Tooltip: Cooked meat of a tiny critter. Unfullfilling.
-	}
 }
 
 Projectiles: {
