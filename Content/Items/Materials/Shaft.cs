@@ -20,8 +20,8 @@ namespace BetterThanSlimes.Content.Items.Materials
             Item.height = 16; // Hitbox height
             Item.useTime = 50; // Speed of use (in frames)
             Item.useAnimation = 50; // Animation speed (in frames)
-            Item.useStyle = ItemUseStyleID.Rapier; // Shortsword thrusting animation
-            Item.knockBack = 10f; // Knockback strength
+            Item.useStyle = ItemUseStyleID.Thrust; // Shortsword thrusting animation
+            Item.knockBack = 1f; // Knockback strength
             Item.value = Item.buyPrice(copper: 0); // Value in copper coins
             Item.rare = ItemRarityID.White; // Rarity
             Item.UseSound = SoundID.Item1; // Sound when used
