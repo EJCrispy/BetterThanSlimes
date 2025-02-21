@@ -126,12 +126,12 @@ Items: {
 
 	CookedMorsel: {
 		DisplayName: Cooked Morsel
-		Tooltip: "Cooked meat of a tiny critter. Moderately filling."
+		Tooltip: Cooked meat of a tiny critter. Moderately filling.
 	}
 
 	Morsel: {
 		DisplayName: Morsel
-		Tooltip: "Cooked meat of a tiny critter. Unfullfilling."
+		Tooltip: Cooked meat of a tiny critter. Unfullfilling.
 	}
 }
 
