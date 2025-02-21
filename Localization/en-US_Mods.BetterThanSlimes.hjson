@@ -4,6 +4,11 @@ Items: {
 		Tooltip: ""
 	}
 
+	ClayKilnItem: {
+		DisplayName: Clay Kiln
+		Tooltip: ""
+	}
+
 	Twig: {
 		Tooltip: ""
 		DisplayName: Twig
@@ -97,11 +102,6 @@ Items: {
 	RunningShoes: {
 		DisplayName: Running Shoes
 		Tooltip: The wearer can run fast
-	}
-
-	ClayKilnItem: {
-		DisplayName: Clay Kiln Item
-		Tooltip: ""
 	}
 
 	BrokenMirror: {
