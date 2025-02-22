@@ -50,7 +50,7 @@ namespace BetterThanSlimes.Content.Items.Tools
                                 // Adjust the projectile's velocity to move toward the target position
                                 Vector2 direction = targetPosition - projectile.Center;
                                 direction.Normalize();
-                                projectile.velocity = direction * 10f; // Adjust speed as needed
+                                projectile.velocity = direction * 100f; // Adjust speed as needed
                             }
                             else
                             {
