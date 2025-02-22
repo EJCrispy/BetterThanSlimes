@@ -27,7 +27,8 @@ public class RemoveRecipes : ModSystem
             ItemID.WoodenSword,
             ItemID.WoodenFence,
             ItemID.WorkBench,
-            ItemID.Furnace
+            ItemID.Furnace,
+            ItemID.WoodenChair
         };
 
         // Iterate through recipes and remove the ones that match the target items
