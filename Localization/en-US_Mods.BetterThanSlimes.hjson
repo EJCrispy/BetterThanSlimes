@@ -138,6 +138,11 @@ Items: {
 		DisplayName: Morsel
 		Tooltip: ""
 	}
+
+	Slingshot: {
+		DisplayName: Slingshot
+		Tooltip: ""
+	}
 }
 
 SpookyShaft: {
