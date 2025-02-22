@@ -13,6 +13,7 @@ namespace BetterThanSlimes
         private int outOfDarknessTimer = 0; // Tracks how long the player has been out of darkness
         private int zoomDelayTimer = 0; // Tracks how long the player has been in darkness before zooming starts
         private bool isZoomingIn = false; // Tracks whether the camera is currently zooming in
+        private int damageStartTimer = 0; // Tracks when the damage should start (after 8 seconds)
 
         public override void PostUpdate()
         {
@@ -30,33 +31,39 @@ namespace BetterThanSlimes
                     // Start the zoom-in after the delay
                     zoomDelayTimer++;
 
-                    // Gradually zoom in the camera over 5 seconds (300 ticks)
-                    if (zoomDelayTimer <= 300)
+                    // Gradually zoom in the camera over 4 seconds (240 ticks)
+                    if (zoomDelayTimer <= 240)
                     {
                         // Use a smooth step function for gradual zooming
-                        float progress = zoomDelayTimer / 300f;
+                        float progress = zoomDelayTimer / 240f;
                         zoomLevel = SmoothStep(1f, 2f, progress); // Zoom from 1x to 2x
                         isZoomingIn = true; // Mark that we're zooming in
                     }
                 }
 
-                // After 5 seconds of zooming (9 seconds total in darkness), start dealing damage
-                if (darknessTimer > 540) // 240 (delay) + 300 (zoom duration) = 540 ticks (9 seconds)
+                // Start the damage timer after 4 seconds of zooming (8 seconds total in darkness)
+                if (darknessTimer > 480) // 240 (delay) + 240 (zoom duration) = 480 ticks (8 seconds)
                 {
-                    if (damageCooldown <= 0)
-                    {
-                        // Apply damage
-                        Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason($"{Player.name} succumbed to the darkness."), damageAmount, 0);
+                    damageStartTimer++;
 
-                        // Increase damage by 3 for the next tick
-                        damageAmount += 3;
-
-                        // Reset cooldown (e.g., 1 second cooldown)
-                        damageCooldown = 60;
-                    }
-                    else
+                    // Start dealing damage after the grace period
+                    if (damageStartTimer > 0)
                     {
-                        damageCooldown--;
+                        if (damageCooldown <= 0)
+                        {
+                            // Apply damage
+                            Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason($"{Player.name} succumbed to the darkness."), damageAmount, 0);
+
+                            // Increase damage by 3 for the next tick
+                            damageAmount += 3;
+
+                            // Reset cooldown (e.g., 1 second cooldown)
+                            damageCooldown = 60;
+                        }
+                        else
+                        {
+                            damageCooldown--;
+                        }
                     }
                 }
             }
@@ -69,7 +76,7 @@ namespace BetterThanSlimes
                 if (isZoomingIn)
                 {
                     // Calculate the progress of the zoom-out based on the outOfDarknessTimer
-                    float progress = outOfDarknessTimer / 300f; // Use the same 5-second duration for zoom-out
+                    float progress = outOfDarknessTimer / 240f; // Use the same 4-second duration for zoom-out
                     zoomLevel = SmoothStep(2f, 1f, progress); // Smoothly interpolate back to 1x zoom
 
                     // If the zoom-out is complete, reset the zoom state
@@ -86,6 +93,7 @@ namespace BetterThanSlimes
                     darknessTimer = 0;
                     damageCooldown = 0;
                     zoomDelayTimer = 0; // Reset the zoom delay timer
+                    damageStartTimer = 0; // Reset the damage start timer
                 }
 
                 // Reset damage ramping after 10 seconds of not being in darkness
