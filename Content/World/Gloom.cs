@@ -10,11 +10,15 @@ namespace BetterThanSlimes
         private int damageCooldown = 0; // Cooldown between damage ticks
         private int damageAmount = 1; // Initial damage amount
         private float zoomLevel = 1f; // Current camera zoom level
+        private int outOfDarknessTimer = 0; // Tracks how long the player has been out of darkness
 
         public override void PostUpdate()
         {
             if (IsPlayerInDarkness())
             {
+                // Reset the out-of-darkness timer
+                outOfDarknessTimer = 0;
+
                 // Increment the darkness timer
                 darknessTimer++;
 
@@ -24,7 +28,6 @@ namespace BetterThanSlimes
                     // Use a smooth step function for gradual zooming
                     float progress = darknessTimer / 300f;
                     zoomLevel = SmoothStep(1f, 2f, progress); // Zoom from 1x to 2x
-                    Main.GameZoomTarget = zoomLevel;
                 }
 
                 // After 5 seconds, start dealing damage
@@ -49,11 +52,14 @@ namespace BetterThanSlimes
             }
             else
             {
+                // Increment the out-of-darkness timer
+                outOfDarknessTimer++;
+
                 // Gradually zoom out the camera if the player is no longer in darkness
                 if (zoomLevel > 1f)
                 {
-                    zoomLevel = MathHelper.Lerp(zoomLevel, 1f, 0.05f); // Smoothly interpolate back to 1x zoom
-                    Main.GameZoomTarget = zoomLevel;
+                    float progress = outOfDarknessTimer / 300f; // Use the same 5-second duration for zoom-out
+                    zoomLevel = SmoothStep(2f, 1f, progress); // Smoothly interpolate back to 1x zoom
                 }
 
                 // Reset everything if the player is no longer in darkness and the zoom is back to normal
@@ -61,11 +67,18 @@ namespace BetterThanSlimes
                 {
                     darknessTimer = 0;
                     damageCooldown = 0;
-                    damageAmount = 1;
                     zoomLevel = 1f;
-                    Main.GameZoomTarget = 1f; // Ensure the camera is fully reset
+                }
+
+                // Reset damage ramping after 10 seconds of not being in darkness
+                if (outOfDarknessTimer > 600) // 10 seconds (600 ticks)
+                {
+                    damageAmount = 1; // Reset damage to initial value
                 }
             }
+
+            // Apply the current zoom level to the camera
+            Main.GameZoomTarget = zoomLevel;
         }
 
         private bool IsPlayerInDarkness()
