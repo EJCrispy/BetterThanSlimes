@@ -27,6 +27,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 item.useAnimation = 15;
                 item.useStyle = ItemUseStyleID.EatFood; // Set to EatFood style
                 item.UseSound = SoundID.Item2; // Use the eating sound
+                item.createTile = -1; // Disable tile placement
             }
         }
 
