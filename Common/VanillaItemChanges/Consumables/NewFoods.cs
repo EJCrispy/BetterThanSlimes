@@ -93,7 +93,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             // Daybloom
             if (item.type == ItemID.Daybloom)
             {
-                player.AddBuff(BuffID.WellFed, 90 * 60); // 1.5 minutes
+                player.AddBuff(BuffID.WellFed, 45 * 60); // 45 seconds
 
                 // Manually remove one Daybloom from the player's inventory
                 if (item.stack > 1)
@@ -112,28 +112,6 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 return true;
             }
 
-            // Daybloom Seeds
-            if (item.type == ItemID.DaybloomSeeds)
-            {
-                player.AddBuff(BuffID.WellFed, 30 * 60); // 30 seconds
-
-                // Manually remove one Daybloom Seeds from the player's inventory
-                if (item.stack > 1)
-                {
-                    item.stack--;
-                }
-                else
-                {
-                    int index = player.FindItem(ItemID.DaybloomSeeds);
-                    if (index >= 0)
-                    {
-                        player.inventory[index].TurnToAir();
-                    }
-                }
-
-                return true;
-            }
-
             return base.UseItem(item, player);
         }
 
@@ -142,13 +120,21 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             // Mushroom
             if (item.type == ItemID.Mushroom)
             {
+                bool tooltipFound = false;
                 foreach (TooltipLine line in tooltips)
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
                         line.Text = "Grants 1 minute of food";
+                        tooltipFound = true;
                         break;
                     }
+                }
+
+                // If no existing tooltip is found, add a new one
+                if (!tooltipFound)
+                {
+                    tooltips.Add(new TooltipLine(Mod, "MushroomBuff", "Grants 1 minute of food"));
                 }
             }
 
@@ -159,7 +145,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.Text = "The juice gets everywhere. Munch on them to satiate yourself for 2 minutes.";
+                        line.Text = "The juice gets everywhere. Much on them to satiate yourself for 2 minutes.";
                         break;
                     }
                 }
@@ -168,26 +154,21 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             // Daybloom
             if (item.type == ItemID.Daybloom)
             {
+                bool tooltipFound = false;
                 foreach (TooltipLine line in tooltips)
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.Text = "A sunny snack. Grants 1.5 minutes of food.";
+                        line.Text = "A sunny snack. Grants 30 billion years of food.";
+                        tooltipFound = true;
                         break;
                     }
                 }
-            }
 
-            // Daybloom Seeds
-            if (item.type == ItemID.DaybloomSeeds)
-            {
-                foreach (TooltipLine line in tooltips)
+                // If no existing tooltip is found, add a new one
+                if (!tooltipFound)
                 {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.Text = "Crunchy and nutritious. Grants 30 seconds of food.";
-                        break;
-                    }
+                    tooltips.Add(new TooltipLine(Mod, "DaybloomBuff", "A sunny snack. Grants 30000 minutes of food."));
                 }
             }
         }
