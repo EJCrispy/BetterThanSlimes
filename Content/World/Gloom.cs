@@ -9,7 +9,7 @@ namespace BetterThanSlimes
         private int darknessTimer = 0; // Tracks how long the player has been in darkness
         private int damageCooldown = 0; // Cooldown between damage ticks
         private int damageAmount = 1; // Initial damage amount
-        private float zoomLevel = 1f; // Current camera zoom level
+        private float zoomLevel = 2f; // Current camera zoom level (base zoom is 2x)
         private int outOfDarknessTimer = 0; // Tracks how long the player has been out of darkness
         private int zoomDelayTimer = 0; // Tracks how long the player has been in darkness before zooming starts
         private bool isZoomingIn = false; // Tracks whether the camera is currently zooming in
@@ -36,7 +36,7 @@ namespace BetterThanSlimes
                     {
                         // Use a smooth step function for gradual zooming
                         float progress = zoomDelayTimer / 240f;
-                        zoomLevel = SmoothStep(1f, 2f, progress); // Zoom from 1x to 2x
+                        zoomLevel = SmoothStep(2f, 3f, progress); // Zoom from 2x to 3x
                         isZoomingIn = true; // Mark that we're zooming in
                     }
                     else
@@ -52,8 +52,12 @@ namespace BetterThanSlimes
                 {
                     if (damageCooldown <= 0)
                     {
-                        // Apply damage
-                        Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason($"{Player.name} succumbed to the darkness."), damageAmount, 0);
+                        // Apply damage without immunity frames
+                        Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason($"{Player.name} succumbed to the darkness."), damageAmount, 0, false);
+
+                        // Disable immunity frames by setting cooldownCounter to 0
+                        Player.immune = false;
+                        Player.immuneTime = 0;
 
                         // Increase damage by 3 for the next tick
                         damageAmount += 3;
@@ -77,19 +81,19 @@ namespace BetterThanSlimes
                 {
                     // Calculate the progress of the zoom-out based on the outOfDarknessTimer
                     float progress = outOfDarknessTimer / 240f; // Use the same 4-second duration for zoom-out
-                    zoomLevel = SmoothStep(2f, 1f, progress); // Smoothly interpolate back to 1x zoom
+                    zoomLevel = SmoothStep(3f, 2f, progress); // Smoothly interpolate back to 2x zoom
 
                     // If the zoom-out is complete, reset the zoom state
-                    if (zoomLevel <= 1f)
+                    if (zoomLevel <= 2f)
                     {
                         isZoomingIn = false; // No longer zooming in
                         isFullyZoomedIn = false; // No longer fully zoomed in
-                        zoomLevel = 1f; // Ensure the zoom level is exactly 1x
+                        zoomLevel = 2f; // Ensure the zoom level is exactly 2x
                     }
                 }
 
                 // Reset everything if the player is no longer in darkness and the zoom is back to normal
-                if (zoomLevel <= 1f)
+                if (zoomLevel <= 2f)
                 {
                     darknessTimer = 0;
                     damageCooldown = 0;
