@@ -20,6 +20,7 @@
 	  <None Remove="Content\Items\Tools\Dreamcatcher.png" />
 	  <None Remove="Content\Items\Twine.png" />
 	  <None Remove="Content\Items\Weapons\Hookshot.png" />
+	  <None Remove="Content\Items\Weapons\Slingshot.png" />
 	  <None Remove="Content\Items\Weapons\SpookyShaft.png" />
 	  <None Remove="Content\Items\Weapons\TornNotebookProjectile.png" />
 	  <None Remove="Content\Projectiles\HookshotProjectile.png" />
