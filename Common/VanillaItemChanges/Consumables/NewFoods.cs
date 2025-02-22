@@ -28,22 +28,30 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 item.useStyle = ItemUseStyleID.EatFood; // Set to EatFood style
                 item.UseSound = SoundID.Item2; // Use the eating sound
                 item.createTile = -1; // Disable tile placement
+                item.noMelee = true; // Ensure it doesn't act as a melee weapon
+                item.noUseGraphic = false; // Ensure the use animation is visible
             }
         }
 
-        public override void OnConsumeItem(Item item, Player player)
+        public override bool? UseItem(Item item, Player player)
         {
-            // Mushroom
-            if (item.type == ItemID.Mushroom)
-            {
-                player.AddBuff(BuffID.WellFed, 60 * 60); // 1 minute
-            }
-
             // Blue Berries
             if (item.type == ItemID.BlueBerries)
             {
-                player.AddBuff(BuffID.WellFed, 120 * 60); // 2 minutes
+                // Apply the Well Fed buff for 2 minutes (120 seconds)
+                player.AddBuff(BuffID.WellFed, 120 * 60);
+                return true; // Return true to confirm consumption
             }
+
+            // Mushroom
+            if (item.type == ItemID.Mushroom)
+            {
+                // Apply the Well Fed buff for 1 minute (60 seconds)
+                player.AddBuff(BuffID.WellFed, 60 * 60);
+                return true; // Return true to confirm consumption
+            }
+
+            return base.UseItem(item, player);
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
