@@ -19,7 +19,11 @@ namespace TutorialMod.Common.Players
             // Add Steak to the starting inventory
             if (itemsByMod.TryGetValue("Terraria", out var items))
             {
-                items.Add(new Item(ItemID.Steak, 1));
+                items.Add(new Item(ItemID.SmoothieofDarkness, 1));
+                items.Add(new Item(ItemID.Marshmallow, 1));
+
+
+
             }
         }
     }
