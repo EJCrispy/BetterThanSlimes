@@ -23,7 +23,7 @@ namespace BetterThanSlimes.Content.Buffs
             player.lifeRegen -= 6; // Adjust this value to control how fast the player loses health
             player.maxRunSpeed -= 3.925f;
             player.accRunSpeed -= 3.925f;
-            // Optionally, kill the player if their health reaches 0
+            // kill the player if their health reaches 0
             if (player.statLife <= 0)
             {
                 player.KillMe(Terraria.DataStructures.PlayerDeathReason.ByCustomReason(player.name + " starved to death."), 1, 0);
