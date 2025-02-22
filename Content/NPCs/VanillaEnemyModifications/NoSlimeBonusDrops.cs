@@ -3,14 +3,14 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace YourModName
+namespace BetterThanSlimes
 {
     public class NoBonusSlimeDrops : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            // Check if the NPC is a slime
-            if (npc.type == NPCID.BlueSlime || npc.type == NPCID.GreenSlime || npc.type == NPCID.PurpleSlime /* Add other slime types here */)
+            // Check if the NPC is a slime by its AI style
+            if (npc.aiStyle == NPCAIStyleID.Slime)
             {
                 // Remove all existing drop rules for slimes
                 npcLoot.RemoveWhere(rule => rule is SlimeBodyItemDropRule);
