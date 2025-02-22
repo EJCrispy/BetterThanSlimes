@@ -1,8 +1,8 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.Audio;
 using Terraria.ID;
+using BetterThanSlimes; // Add this namespace to reference your custom buff
 
 namespace BetterThanSlimes
 {
@@ -26,6 +26,9 @@ namespace BetterThanSlimes
 
                 // Increment the darkness timer
                 darknessTimer++;
+
+                // Apply the custom Fear debuff while in darkness
+                Player.AddBuff(ModContent.BuffType<Fear>(), 2); // 2 ticks (1/30th of a second) to ensure it's reapplied continuously
 
                 // Delay the zoom-in by 4 seconds (240 ticks)
                 if (darknessTimer > 240)
@@ -78,6 +81,11 @@ namespace BetterThanSlimes
                 // Increment the out-of-darkness timer
                 outOfDarknessTimer++;
 
+                // Remove the custom Fear debuff when leaving darkness
+                if (Player.HasBuff(ModContent.BuffType<Fear>()))
+                {
+                    Player.ClearBuff(ModContent.BuffType<Fear>());
+                }
 
                 // If the player was zooming in, smoothly transition to zooming out
                 if (isZoomingIn || isFullyZoomedIn)
@@ -126,7 +134,7 @@ namespace BetterThanSlimes
 
             // Check if the light level is below a certain threshold (e.g., very dark)
             float brightness = (lightingColor.R + lightingColor.G + lightingColor.B) / 765f; // 765 = 255 * 3
-            return brightness < 0.1f; // Adjusted threshold for stricter darkness (10% brightness)
+            return brightness < 0.05f; // Adjusted threshold for stricter darkness (5% brightness)
         }
 
         // SmoothStep function for smoother interpolation

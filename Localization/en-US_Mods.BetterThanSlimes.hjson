@@ -183,6 +183,10 @@ Buffs: {
 		DisplayName: Starving!
 		Description: Better eat dumbass
 	}
+	Fear: {
+		DisplayName: Fear
+		Description: The hair on your back stands up...
+	}
 }
 
 Tiles: {
