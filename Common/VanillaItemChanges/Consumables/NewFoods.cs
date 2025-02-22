@@ -83,19 +83,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             {
                 player.AddBuff(BuffID.WellFed, 45 * 60); // 45 seconds
 
-                // Manually remove one Daybloom from the player's inventory
-                if (item.stack > 1)
-                {
-                    item.stack--;
-                }
-                else
-                {
-                    int index = player.FindItem(ItemID.Daybloom);
-                    if (index >= 0)
-                    {
-                        player.inventory[index].TurnToAir();
-                    }
-                }
+
 
                 return true;
             }
