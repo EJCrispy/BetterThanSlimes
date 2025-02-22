@@ -13,7 +13,7 @@ namespace BetterThanSlimes
         private int outOfDarknessTimer = 0; // Tracks how long the player has been out of darkness
         private int zoomDelayTimer = 0; // Tracks how long the player has been in darkness before zooming starts
         private bool isZoomingIn = false; // Tracks whether the camera is currently zooming in
-        private int damageStartTimer = 0; // Tracks when the damage should start (after 8 seconds)
+        private bool isFullyZoomedIn = false; // Tracks whether the camera has fully zoomed in
 
         public override void PostUpdate()
         {
@@ -39,31 +39,31 @@ namespace BetterThanSlimes
                         zoomLevel = SmoothStep(1f, 2f, progress); // Zoom from 1x to 2x
                         isZoomingIn = true; // Mark that we're zooming in
                     }
+                    else
+                    {
+                        // Camera has fully zoomed in
+                        isFullyZoomedIn = true;
+                        isZoomingIn = false;
+                    }
                 }
 
-                // Start the damage timer after 4 seconds of zooming (8 seconds total in darkness)
-                if (darknessTimer > 480) // 240 (delay) + 240 (zoom duration) = 480 ticks (8 seconds)
+                // Start dealing damage only after the camera has fully zoomed in
+                if (isFullyZoomedIn)
                 {
-                    damageStartTimer++;
-
-                    // Start dealing damage after the grace period
-                    if (damageStartTimer > 0)
+                    if (damageCooldown <= 0)
                     {
-                        if (damageCooldown <= 0)
-                        {
-                            // Apply damage
-                            Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason($"{Player.name} succumbed to the darkness."), damageAmount, 0);
+                        // Apply damage
+                        Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason($"{Player.name} succumbed to the darkness."), damageAmount, 0);
 
-                            // Increase damage by 3 for the next tick
-                            damageAmount += 3;
+                        // Increase damage by 3 for the next tick
+                        damageAmount += 3;
 
-                            // Reset cooldown (e.g., 1 second cooldown)
-                            damageCooldown = 60;
-                        }
-                        else
-                        {
-                            damageCooldown--;
-                        }
+                        // Reset cooldown (e.g., 1 second cooldown)
+                        damageCooldown = 60;
+                    }
+                    else
+                    {
+                        damageCooldown--;
                     }
                 }
             }
@@ -73,7 +73,7 @@ namespace BetterThanSlimes
                 outOfDarknessTimer++;
 
                 // If the player was zooming in, smoothly transition to zooming out
-                if (isZoomingIn)
+                if (isZoomingIn || isFullyZoomedIn)
                 {
                     // Calculate the progress of the zoom-out based on the outOfDarknessTimer
                     float progress = outOfDarknessTimer / 240f; // Use the same 4-second duration for zoom-out
@@ -83,6 +83,7 @@ namespace BetterThanSlimes
                     if (zoomLevel <= 1f)
                     {
                         isZoomingIn = false; // No longer zooming in
+                        isFullyZoomedIn = false; // No longer fully zoomed in
                         zoomLevel = 1f; // Ensure the zoom level is exactly 1x
                     }
                 }
@@ -93,7 +94,6 @@ namespace BetterThanSlimes
                     darknessTimer = 0;
                     damageCooldown = 0;
                     zoomDelayTimer = 0; // Reset the zoom delay timer
-                    damageStartTimer = 0; // Reset the damage start timer
                 }
 
                 // Reset damage ramping after 10 seconds of not being in darkness
@@ -118,7 +118,7 @@ namespace BetterThanSlimes
 
             // Check if the light level is below a certain threshold (e.g., very dark)
             float brightness = (lightingColor.R + lightingColor.G + lightingColor.B) / 765f; // 765 = 255 * 3
-            return brightness < 0.2f; // Adjust this threshold as needed
+            return brightness < 0.1f; // Adjusted threshold for stricter darkness (10% brightness)
         }
 
         // SmoothStep function for smoother interpolation
