@@ -32,16 +32,16 @@ namespace BetterThanSlimes
                 Player.AddBuff(ModContent.BuffType<Fear>(), 2); // 2 ticks (1/30th of a second) to ensure it's reapplied continuously
 
                 // Delay the zoom-in by 4 seconds (240 ticks)
-                if (darknessTimer > 240)
+                if (darknessTimer > 140)
                 {
                     // Start the zoom-in after the delay
                     zoomDelayTimer++;
 
                     // Gradually zoom in the camera over 4 seconds (240 ticks)
-                    if (zoomDelayTimer <= 240)
+                    if (zoomDelayTimer <= 120)
                     {
                         // Use a smooth step function for gradual zooming
-                        float progress = zoomDelayTimer / 240f;
+                        float progress = zoomDelayTimer / 120f;
                         zoomLevel = SmoothStep(2f, 3f, progress); // Zoom from 2x to 3x
                         isZoomingIn = true; // Mark that we're zooming in
                     }
