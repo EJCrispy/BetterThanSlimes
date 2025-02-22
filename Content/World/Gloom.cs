@@ -2,7 +2,8 @@
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using BetterThanSlimes; // Add this namespace to reference your custom buff
+using BetterThanSlimes;
+using BetterThanSlimes.Content.Buffs; // Add this namespace to reference your custom buff
 
 namespace BetterThanSlimes
 {
@@ -82,7 +83,7 @@ namespace BetterThanSlimes
                 outOfDarknessTimer++;
 
                 // Remove the custom Fear debuff when leaving darkness
-                if (Player.HasBuff(ModContent.BuffType<Fear>()))
+                if (Player.HasBuff(ModContent.BuffType<Full>()))
                 {
                     Player.ClearBuff(ModContent.BuffType<Fear>());
                 }
