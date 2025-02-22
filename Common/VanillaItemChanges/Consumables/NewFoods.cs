@@ -40,6 +40,22 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             {
                 // Apply the Well Fed buff for 2 minutes (120 seconds)
                 player.AddBuff(BuffID.WellFed, 120 * 60);
+
+                // Manually remove one Blue Berries from the player's inventory
+                if (item.stack > 1)
+                {
+                    item.stack--; // Reduce stack by 1
+                }
+                else
+                {
+                    // If the stack is 1, remove the item entirely
+                    int index = player.FindItem(ItemID.BlueBerries);
+                    if (index >= 0)
+                    {
+                        player.inventory[index].TurnToAir(); // Remove the item
+                    }
+                }
+
                 return true; // Return true to confirm consumption
             }
 
