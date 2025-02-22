@@ -107,8 +107,9 @@ namespace BetterThanSlimes
                 }
             }
 
-            // Apply the current zoom level to the camera
+            // Apply the current zoom level to the camera (uncapped)
             Main.GameZoomTarget = zoomLevel;
+            Main.GameViewMatrix.Zoom = new Vector2(zoomLevel); // Directly set the zoom level
         }
 
         private bool IsPlayerInDarkness()
