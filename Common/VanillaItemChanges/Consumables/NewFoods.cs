@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
 {
-    public class NewFoods : GlobalItem
+    public class FoodItems : GlobalItem
     {
         public override void SetDefaults(Item item)
         {
@@ -22,11 +22,11 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             // Blue Berries
             if (item.type == ItemID.BlueBerries)
             {
-                item.consumable = true;
+                item.consumable = true; // Ensure it's consumable
                 item.useTime = 15;
                 item.useAnimation = 15;
-                item.useStyle = ItemUseStyleID.EatFood;
-                item.UseSound = SoundID.Item2;
+                item.useStyle = ItemUseStyleID.EatFood; // Set to EatFood style
+                item.UseSound = SoundID.Item2; // Use the eating sound
             }
         }
 
