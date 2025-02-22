@@ -45,18 +45,6 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 item.noUseGraphic = false;
             }
 
-            // Daybloom Seeds
-            if (item.type == ItemID.DaybloomSeeds)
-            {
-                item.consumable = true;
-                item.useTime = 15;
-                item.useAnimation = 15;
-                item.useStyle = ItemUseStyleID.EatFood;
-                item.UseSound = SoundID.Item2;
-                item.createTile = -1; // Disable tile placement
-                item.noMelee = true;
-                item.noUseGraphic = false;
-            }
         }
 
         public override bool? UseItem(Item item, Player player)
@@ -168,7 +156,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 // If no existing tooltip is found, add a new one
                 if (!tooltipFound)
                 {
-                    tooltips.Add(new TooltipLine(Mod, "DaybloomBuff", "A sunny snack. Grants 30000 minutes of food."));
+                    tooltips.Add(new TooltipLine(Mod, "DaybloomBuff", "A sunny snack. Grants 45 seconds of food."));
                 }
             }
         }
