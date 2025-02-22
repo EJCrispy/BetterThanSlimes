@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
+using Terraria.ID;
 
 namespace BetterThanSlimes
 {
@@ -27,10 +28,10 @@ namespace BetterThanSlimes
                 // Increment the darkness timer
                 darknessTimer++;
 
-                // Play a sound effect while in darkness (if not already playing)
+                // Play a built-in sound effect while in darkness (if not already playing)
                 if (!isSoundPlaying)
                 {
-                    SoundEngine.PlaySound(new SoundStyle("BetterThanSlimes/Sounds/DarknessLoop") with { IsLooped = true });
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(BetterThanSlimes)}/Sounds/DarknessLoop") with { IsLooped = true });
                     isSoundPlaying = true;
                 }
 
