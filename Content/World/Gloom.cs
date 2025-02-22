@@ -12,6 +12,7 @@ namespace BetterThanSlimes
         private float zoomLevel = 1f; // Current camera zoom level
         private int outOfDarknessTimer = 0; // Tracks how long the player has been out of darkness
         private int zoomDelayTimer = 0; // Tracks how long the player has been in darkness before zooming starts
+        private bool isZoomingIn = false; // Tracks whether the camera is currently zooming in
 
         public override void PostUpdate()
         {
@@ -35,6 +36,7 @@ namespace BetterThanSlimes
                         // Use a smooth step function for gradual zooming
                         float progress = zoomDelayTimer / 300f;
                         zoomLevel = SmoothStep(1f, 2f, progress); // Zoom from 1x to 2x
+                        isZoomingIn = true; // Mark that we're zooming in
                     }
                 }
 
@@ -63,11 +65,19 @@ namespace BetterThanSlimes
                 // Increment the out-of-darkness timer
                 outOfDarknessTimer++;
 
-                // Gradually zoom out the camera if the player is no longer in darkness
-                if (zoomLevel > 1f)
+                // If the player was zooming in, smoothly transition to zooming out
+                if (isZoomingIn)
                 {
+                    // Calculate the progress of the zoom-out based on the outOfDarknessTimer
                     float progress = outOfDarknessTimer / 300f; // Use the same 5-second duration for zoom-out
                     zoomLevel = SmoothStep(2f, 1f, progress); // Smoothly interpolate back to 1x zoom
+
+                    // If the zoom-out is complete, reset the zoom state
+                    if (zoomLevel <= 1f)
+                    {
+                        isZoomingIn = false; // No longer zooming in
+                        zoomLevel = 1f; // Ensure the zoom level is exactly 1x
+                    }
                 }
 
                 // Reset everything if the player is no longer in darkness and the zoom is back to normal
@@ -75,7 +85,6 @@ namespace BetterThanSlimes
                 {
                     darknessTimer = 0;
                     damageCooldown = 0;
-                    zoomLevel = 1f;
                     zoomDelayTimer = 0; // Reset the zoom delay timer
                 }
 
