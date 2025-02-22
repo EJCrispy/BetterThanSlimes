@@ -54,20 +54,6 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             {
                 player.AddBuff(BuffID.WellFed, 120 * 60); // 2 minutes
 
-                // Manually remove one Blue Berries from the player's inventory
-                if (item.stack > 1)
-                {
-                    item.stack--;
-                }
-                else
-                {
-                    int index = player.FindItem(ItemID.BlueBerries);
-                    if (index >= 0)
-                    {
-                        player.inventory[index].TurnToAir();
-                    }
-                }
-
                 return true;
             }
 
