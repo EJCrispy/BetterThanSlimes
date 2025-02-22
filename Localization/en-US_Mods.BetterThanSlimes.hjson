@@ -9,6 +9,11 @@ Items: {
 		Tooltip: ""
 	}
 
+	Dreamcatcher: {
+		DisplayName: Dreamcatcher
+		Tooltip: Said to bring otherworldly effects to your dreams. And your inventory.
+	}
+
 	Twig: {
 		Tooltip: ""
 		DisplayName: Twig

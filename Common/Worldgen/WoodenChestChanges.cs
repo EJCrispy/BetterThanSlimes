@@ -6,6 +6,7 @@ using Terraria.GameContent.Generation;
 using Terraria.DataStructures;
 using BetterThanSlimes.Content.Items.Weapons;
 using BetterThanSlimes.Content.Items.Materials;
+using BetterThanSlimes.Content.Items.Tools;
 
 namespace BetterThanSlimes.Common.Worldgen
 {
@@ -40,6 +41,8 @@ namespace BetterThanSlimes.Common.Worldgen
                     AddItemToChest(chest, ModContent.ItemType<Twig>(), WorldGen.genRand.Next(2, 5)); // Twigs (2-4)
                     AddItemToChest(chest, ItemID.Gel, WorldGen.genRand.Next(1, 3), 0.5f); // Gel (1-2) with 50% chance
                     AddItemToChest(chest, ModContent.ItemType<SharpHooks>(), WorldGen.genRand.Next(1), 0.25f); // Gel (1-2) with 50% chance
+                    AddItemToChest(chest, ModContent.ItemType<Dreamcatcher>(), WorldGen.genRand.Next(1), 0.25f); // Gel (1-2) with 50% chance
+
 
                 }
             }

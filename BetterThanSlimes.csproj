@@ -17,6 +17,7 @@
 	  <None Remove="Content\Items\Placeable\ClayKiln.png" />
 	  <None Remove="Content\Items\Placeable\ClayKilnItem.png" />
 	  <None Remove="Content\Items\Placeable\Tiles\ClayKiln.png" />
+	  <None Remove="Content\Items\Tools\Dreamcatcher.png" />
 	  <None Remove="Content\Items\Twine.png" />
 	  <None Remove="Content\Items\Weapons\Hookshot.png" />
 	  <None Remove="Content\Items\Weapons\SpookyShaft.png" />
