@@ -16,9 +16,8 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
     {
         public override void SetDefaults(Item item)
         {
-            if (item.type == ItemID.CopperShortsword)
+            if (item.type == ItemID.CopperPickaxe)
             { // Here we make sure to only change Copper Shortsword by checking item.type in an if statement
-                item.damage = 50;   // Changed original CopperShortsword's damage to 50!
                 item.tileBoost = 1;
             }
         }

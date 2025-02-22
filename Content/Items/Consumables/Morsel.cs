@@ -24,7 +24,7 @@ namespace BetterThanSlimes.Content.Items.Consumables
             Item.rare = ItemRarityID.White;
             Item.value = 10000;
             Item.buffType = BuffID.WellFed;
-            Item.buffTime = 5000; // Buff duration in ticks
+            Item.buffTime = 11000; // Buff duration in ticks
         }
     }
 }
