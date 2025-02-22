@@ -16,7 +16,6 @@ namespace BetterThanSlimes
         private int zoomDelayTimer = 0; // Tracks how long the player has been in darkness before zooming starts
         private bool isZoomingIn = false; // Tracks whether the camera is currently zooming in
         private bool isFullyZoomedIn = false; // Tracks whether the camera has fully zoomed in
-        private bool isSoundPlaying = false; // Tracks whether the sound is currently playing
 
         public override void PostUpdate()
         {
@@ -27,13 +26,6 @@ namespace BetterThanSlimes
 
                 // Increment the darkness timer
                 darknessTimer++;
-
-                // Play a built-in sound effect while in darkness (if not already playing)
-                if (!isSoundPlaying)
-                {
-                    SoundEngine.PlaySound(new SoundStyle($"{nameof(BetterThanSlimes)}/Sounds/DarknessLoop") with { IsLooped = true });
-                    isSoundPlaying = true;
-                }
 
                 // Delay the zoom-in by 4 seconds (240 ticks)
                 if (darknessTimer > 240)
@@ -86,12 +78,6 @@ namespace BetterThanSlimes
                 // Increment the out-of-darkness timer
                 outOfDarknessTimer++;
 
-                // Stop the sound effect if it's playing
-                if (isSoundPlaying)
-                {
-                    SoundEngine.PlaySound(null); // Stop the sound
-                    isSoundPlaying = false;
-                }
 
                 // If the player was zooming in, smoothly transition to zooming out
                 if (isZoomingIn || isFullyZoomedIn)
