@@ -21,8 +21,8 @@ namespace BetterThanSlimes.Content.Buffs
             }
             player.lifeRegenTime = 0;
             player.lifeRegen -= 6; // Adjust this value to control how fast the player loses health
-            player.maxRunSpeed -= 3.925f;
-            player.accRunSpeed -= 3.925f;
+            player.maxRunSpeed -= 1.925f;
+            player.accRunSpeed -= 1.925f;
             // kill the player if their health reaches 0
             if (player.statLife <= 0)
             {
