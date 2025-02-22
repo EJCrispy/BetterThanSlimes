@@ -11,6 +11,7 @@ namespace BetterThanSlimes
         private int damageAmount = 1; // Initial damage amount
         private float zoomLevel = 1f; // Current camera zoom level
         private int outOfDarknessTimer = 0; // Tracks how long the player has been out of darkness
+        private int zoomDelayTimer = 0; // Tracks how long the player has been in darkness before zooming starts
 
         public override void PostUpdate()
         {
@@ -22,16 +23,23 @@ namespace BetterThanSlimes
                 // Increment the darkness timer
                 darknessTimer++;
 
-                // Gradually zoom in the camera over 5 seconds (300 ticks)
-                if (darknessTimer <= 300)
+                // Delay the zoom-in by 4 seconds (240 ticks)
+                if (darknessTimer > 240)
                 {
-                    // Use a smooth step function for gradual zooming
-                    float progress = darknessTimer / 300f;
-                    zoomLevel = SmoothStep(1f, 2f, progress); // Zoom from 1x to 2x
+                    // Start the zoom-in after the delay
+                    zoomDelayTimer++;
+
+                    // Gradually zoom in the camera over 5 seconds (300 ticks)
+                    if (zoomDelayTimer <= 300)
+                    {
+                        // Use a smooth step function for gradual zooming
+                        float progress = zoomDelayTimer / 300f;
+                        zoomLevel = SmoothStep(1f, 2f, progress); // Zoom from 1x to 2x
+                    }
                 }
 
-                // After 5 seconds, start dealing damage
-                if (darknessTimer > 300)
+                // After 5 seconds of zooming (9 seconds total in darkness), start dealing damage
+                if (darknessTimer > 540) // 240 (delay) + 300 (zoom duration) = 540 ticks (9 seconds)
                 {
                     if (damageCooldown <= 0)
                     {
@@ -68,6 +76,7 @@ namespace BetterThanSlimes
                     darknessTimer = 0;
                     damageCooldown = 0;
                     zoomLevel = 1f;
+                    zoomDelayTimer = 0; // Reset the zoom delay timer
                 }
 
                 // Reset damage ramping after 10 seconds of not being in darkness
