@@ -8,6 +8,32 @@ namespace YourModName
 {
     public class NoBonusSlimeDrops : GlobalNPC
     {
+        // List of NPC IDs for slimes
+        private static readonly HashSet<int> SlimeNPCIDs = new HashSet<int>
+        {
+            NPCID.BlueSlime,
+            NPCID.GreenSlime,
+            NPCID.PurpleSlime,
+            NPCID.RedSlime,
+            NPCID.YellowSlime,
+            NPCID.BlackSlime,
+            NPCID.MotherSlime,
+            NPCID.LavaSlime,
+            NPCID.JungleSlime,
+            NPCID.SpikedIceSlime,
+            NPCID.SpikedJungleSlime,
+            NPCID.SandSlime,
+            NPCID.CorruptSlime,
+            NPCID.Slimer,
+            NPCID.Slimer2,
+            NPCID.IceSlime,
+            NPCID.UmbrellaSlime,
+            NPCID.DungeonSlime,
+            NPCID.RainbowSlime,
+            NPCID.Gastropod
+            // Add more slime NPC IDs here if needed
+        };
+
         // List of item IDs to remove from slime drops
         private static readonly HashSet<int> ItemsToRemove = new HashSet<int>
         {
@@ -33,8 +59,8 @@ namespace YourModName
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            // Check if the NPC is a slime by its AI style
-            if (npc.aiStyle == NPCAIStyleID.Slime)
+            // Check if the NPC is a slime by its NPC ID
+            if (SlimeNPCIDs.Contains(npc.type))
             {
                 // Remove the specified items from the slime's drop list
                 npcLoot.RemoveWhere(rule => IsRuleDroppingForbiddenItem(rule));
