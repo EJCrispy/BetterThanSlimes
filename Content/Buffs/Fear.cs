@@ -6,7 +6,7 @@ namespace BetterThanSlimes.Content.Buffs
     public class Fear : ModBuff
     {
         // Store the original music volume to restore it later
-        private float originalMusicVolume;
+        private float? originalMusicVolume = null;
 
         public override void SetStaticDefaults()
         {
@@ -24,7 +24,7 @@ namespace BetterThanSlimes.Content.Buffs
             player.jumpSpeedBoost *= 0.5f;
 
             // If the debuff is just applied, store the original music volume
-            if (player.buffTime[buffIndex] == player.buffTime[buffIndex])
+            if (originalMusicVolume == null)
             {
                 originalMusicVolume = Main.musicVolume;
             }
@@ -33,9 +33,13 @@ namespace BetterThanSlimes.Content.Buffs
             Main.musicVolume = 0f;
 
             // Restore the original music volume when the debuff ends
-            if (player.buffTime[buffIndex] <= 0)
+            if (player.buffTime[buffIndex] <= 1) // Check if the buff is about to end
             {
-                Main.musicVolume = originalMusicVolume;
+                if (originalMusicVolume.HasValue)
+                {
+                    Main.musicVolume = originalMusicVolume.Value;
+                    originalMusicVolume = null; // Reset the stored volume
+                }
             }
         }
     }
