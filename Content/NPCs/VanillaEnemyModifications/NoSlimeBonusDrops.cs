@@ -1,61 +1,48 @@
 ﻿using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using MonoMod.RuntimeDetour;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using System.Reflection;
-using System;
 
-namespace BetterThanSlimes.Common.VanillaNPCChanges
+namespace NoSlimeBonusDrops
 {
-    public class SlimeGlobalNPC : GlobalNPC
+    public class NoSlimeBonusDropsMod : Mod
     {
-        private static ILHook _slimeAIHook;
-
-        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
-        {
-            // Only apply to slimes with base ID 1
-            return npc.type == NPCID.BlueSlime || npc.type == NPCID.GreenSlime; // Add other slime types as needed
-        }
+        private static ILHook _slimeDropRuleHook;
 
         public override void Load()
         {
-            // Find the AI_001_Slimes method
-            MethodInfo method = typeof(NPC).GetMethod("AI_001_Slimes", BindingFlags.Instance | BindingFlags.NonPublic);
+            // Find the GetDropInfo method in SlimeBodyItemDropRule
+            MethodInfo method = typeof(Terraria.GameContent.ItemDropRules.SlimeBodyItemDropRule)
+                .GetMethod("GetDropInfo", BindingFlags.Instance | BindingFlags.Public);
+
             if (method != null)
             {
                 // Create an IL hook for the method
-                _slimeAIHook = new ILHook(method, ModifySlimeAI);
+                _slimeDropRuleHook = new ILHook(method, DisableSlimeBonusDrops);
+                Logger.Info("Successfully hooked into GetDropInfo!");
             }
             else
             {
-                throw new Exception("Failed to find method: AI_001_Slimes");
+                Logger.Error("Failed to find method: GetDropInfo");
             }
         }
 
         public override void Unload()
         {
             // Dispose of the hook when the mod is unloaded
-            _slimeAIHook?.Dispose();
+            _slimeDropRuleHook?.Dispose();
+            Logger.Info("Unloaded NoSlimeBonusDrops mod.");
         }
 
-        private void ModifySlimeAI(ILContext il)
+        private void DisableSlimeBonusDrops(ILContext il)
         {
             var c = new ILCursor(il);
 
-            // Locate the part of the method where the bonus drop chance is checked
-            // This will depend on the specific IL code in the AI_001_Slimes method
-            // For example, look for a comparison with 0.05 (5% chance)
-            if (c.TryGotoNext(MoveType.Before, x => x.MatchLdcR4(0.05f)))
-            {
-                // Replace the 5% chance with 0% chance
-                c.Next.Operand = 0f; // Set the chance to 0%
-            }
-            else
-            {
-                throw new Exception("Failed to find the bonus drop chance check in AI_001_Slimes");
-            }
+            // Replace the entire method body with a simple return statement
+            c.Emit(OpCodes.Ret); // Immediately return without executing any logic
+            Logger.Info("Disabled slime bonus drops!");
         }
     }
 }
