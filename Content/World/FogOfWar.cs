@@ -13,6 +13,9 @@ namespace BetterThanSlimes
 
         public override void Load()
         {
+            // Force the lighting mode to "Color"
+            Lighting.Mode = LightMode.Color;
+
             // Find the UpdateLightDecay method in the LightingEngine class
             MethodInfo updateLightDecayMethod = typeof(LightingEngine)
                 .GetMethod("UpdateLightDecay", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -45,19 +48,22 @@ namespace BetterThanSlimes
             {
                 // Replace 0.91f with 0.60f
                 c.Prev.Operand = 0.60f;
-                Mod.Logger.Info("Modified LightDecayThroughAir to 0.88f!");
+                Mod.Logger.Info("Modified LightDecayThroughAir to 0.60f!");
             }
             else
             {
                 Mod.Logger.Error("Failed to find LightDecayThroughAir assignment!");
             }
 
+            // Reset the cursor to the start of the method
+            c.Index = 0;
+
             // Find the instruction where LightDecayThroughSolid is set to 0.56f
             if (c.TryGotoNext(MoveType.After, x => x.MatchLdcR4(0.56f)))
             {
                 // Replace 0.56f with 0.01f
                 c.Prev.Operand = 0.01f;
-                Mod.Logger.Info("Modified LightDecayThroughSolid to 0.00f!");
+                Mod.Logger.Info("Modified LightDecayThroughSolid to 0.01f!");
             }
             else
             {
