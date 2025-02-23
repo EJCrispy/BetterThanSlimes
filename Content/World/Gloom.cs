@@ -31,13 +31,13 @@ namespace BetterThanSlimes
                 // Apply the custom Fear debuff while in darkness
                 Player.AddBuff(ModContent.BuffType<Fear>(), 2); // 2 ticks (1/30th of a second) to ensure it's reapplied continuously
 
-                // Delay the zoom-in by 4 seconds (240 ticks)
-                if (darknessTimer > 140)
+                // Delay the zoom-in by 2 seconds (120 ticks)
+                if (darknessTimer > 120)
                 {
                     // Start the zoom-in after the delay
                     zoomDelayTimer++;
 
-                    // Gradually zoom in the camera over 4 seconds (240 ticks)
+                    // Gradually zoom in the camera over 2 seconds (120 ticks)
                     if (zoomDelayTimer <= 120)
                     {
                         // Use a smooth step function for gradual zooming
@@ -92,7 +92,7 @@ namespace BetterThanSlimes
                 if (isZoomingIn || isFullyZoomedIn)
                 {
                     // Calculate the progress of the zoom-out based on the outOfDarknessTimer
-                    float progress = outOfDarknessTimer / 240f; // Use the same 4-second duration for zoom-out
+                    float progress = outOfDarknessTimer / 120f; // Use the same 2-second duration for zoom-out
                     zoomLevel = SmoothStep(3f, 2f, progress); // Smoothly interpolate back to 2x zoom
 
                     // If the zoom-out is complete, reset the zoom state
