@@ -24,6 +24,8 @@
 	  <None Remove="Content\Items\Weapons\SpookyShaft.png" />
 	  <None Remove="Content\Items\Weapons\TornNotebookProjectile.png" />
 	  <None Remove="Content\Projectiles\HookshotProjectile.png" />
+	  <None Remove="Content\Projectiles\SlingshotHoldingProjectile.png" />
+	  <None Remove="Content\Projectiles\SlingshotProjectile.png" />
 	  <None Remove="Content\Projectiles\SpookyShaftProjectile.png" />
 	</ItemGroup>
 	<ItemGroup>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria;
@@ -15,19 +11,17 @@ namespace BetterThanSlimes.Content.Items.Weapons
 {
     public class Slingshot : ModItem
     {
-
         private int delay = 0;
         private bool lastLMouse = false;
 
         public static readonly SoundStyle PullSound = new SoundStyle($"FargowiltasSouls/Assets/Sounds/Weapons/BowPull") with { Volume = 1f };
         public static readonly SoundStyle ReleaseSound = new SoundStyle($"FargowiltasSouls/Assets/Sounds/Weapons/BowRelease") with { Volume = 1f };
+
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Spirit Longbow");
-            //Tooltip.SetDefault("Converts arrows to Spirit Arrows that release spirit energy behind them\nHold button to charge shots for more damage and higher speed");
-
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+
         public override void SetDefaults()
         {
             Item.damage = 23;
@@ -45,7 +39,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.noUseGraphic = true;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<LooseStoneProjectile>();
-            Item.useAmmo = ModContent.ItemType<LooseStone>();
+            Item.useAmmo = ItemID.WoodenArrow;
             Item.noMelee = true;
         }
 
@@ -76,21 +70,29 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
             if (player.channel && player.ownedProjectileCounts[Item.shoot] < 1 && delay == 0)
             {
-                int damage = (int)(player.GetDamage(DamageClass.Ranged).ApplyTo(Item.damage));
-
-                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, Item.shoot, damage, Item.knockBack, player.whoAmI);
+                // Use the ConsumeAmmo method to consume ammo
+                if (player.HasAmmo(Item))
+                {
+                    int damage = (int)(player.GetDamage(DamageClass.Ranged).ApplyTo(Item.damage));
+                    Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, Item.shoot, damage, Item.knockBack, player.whoAmI);
+                }
             }
         }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            return false; // projectile is manually spawned in HoldItem
+            // Return false to prevent default shooting behavior since we handle it manually in HoldItem
+            return false;
         }
 
         public override bool CanUseItem(Player player)
         {
+            // Ensure the player has ammo to use the weapon
+            if (!player.HasAmmo(Item))
+            {
+                return false; // Prevent use if no ammo is available
+            }
             return delay <= 0 && base.CanUseItem(player);
-
         }
-
     }
 }
