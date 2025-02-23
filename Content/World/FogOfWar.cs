@@ -7,7 +7,7 @@ using Terraria.Graphics.Light;
 
 namespace BetterThanSlimes
 {
-    public class LightingEnginePatch : ModSystem
+    public class FogOfWar : ModSystem
     {
         private static ILHook _updateLightDecayHook;
 
@@ -43,7 +43,7 @@ namespace BetterThanSlimes
             // Find the instruction where LightDecayThroughAir is set to 0.91f
             if (c.TryGotoNext(MoveType.After, x => x.MatchLdcR4(0.91f)))
             {
-                // Replace 0.91f with 0.88f
+                // Replace 0.91f with 0.60f
                 c.Prev.Operand = 0.60f;
                 Mod.Logger.Info("Modified LightDecayThroughAir to 0.88f!");
             }
@@ -55,8 +55,8 @@ namespace BetterThanSlimes
             // Find the instruction where LightDecayThroughSolid is set to 0.56f
             if (c.TryGotoNext(MoveType.After, x => x.MatchLdcR4(0.56f)))
             {
-                // Replace 0.56f with 0.00f
-                c.Prev.Operand = 0.00f;
+                // Replace 0.56f with 0.01f
+                c.Prev.Operand = 0.01f;
                 Mod.Logger.Info("Modified LightDecayThroughSolid to 0.00f!");
             }
             else
