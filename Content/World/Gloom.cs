@@ -65,8 +65,8 @@ namespace BetterThanSlimes
                         Player.immune = false;
                         Player.immuneTime = 0;
 
-                        // Increase damage by 3 for the next tick
-                        damageAmount += 3;
+                        // Increase damage by 5 for the next tick
+                        damageAmount += 5;
 
                         // Reset cooldown (e.g., 1 second cooldown)
                         damageCooldown = 60;
@@ -115,7 +115,7 @@ namespace BetterThanSlimes
                 // Reset damage ramping after 10 seconds of not being in darkness
                 if (outOfDarknessTimer > 600) // 10 seconds (600 ticks)
                 {
-                    damageAmount = 1; // Reset damage to initial value
+                    damageAmount = 20; // Reset damage to initial value
                 }
             }
 
