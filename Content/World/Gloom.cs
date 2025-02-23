@@ -135,7 +135,7 @@ namespace BetterThanSlimes
 
             // Check if the light level is below a certain threshold (e.g., very dark)
             float brightness = (lightingColor.R + lightingColor.G + lightingColor.B) / 765f; // 765 = 255 * 3
-            return brightness < 0.05f; // Adjusted threshold for stricter darkness (5% brightness)
+            return brightness < 0.01f; // Adjusted threshold for stricter darkness (5% brightness)
         }
 
         // SmoothStep function for smoother interpolation
