@@ -29,7 +29,7 @@ namespace BetterThanSlimes
                 darknessTimer++;
 
                 // Apply the custom Fear debuff while in darkness
-                Player.AddBuff(ModContent.BuffType<Fear>(), 2); // 2 ticks (1/30th of a second) to ensure it's reapplied continuously
+                Player.AddBuff(ModContent.BuffType<Fear>(), 1); // 1 ticks (1/60th of a second) to ensure it's reapplied continuously
 
                 // Delay the zoom-in by 2 seconds (120 ticks)
                 if (darknessTimer > 120)
