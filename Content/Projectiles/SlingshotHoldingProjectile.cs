@@ -73,7 +73,6 @@ namespace BetterThanSlimes.Content.Projectiles
                     Projectile.position += new Vector2(Main.rand.NextFloat(-shake, shake), Main.rand.NextFloat(-shake, shake));
                 }
 
-
                 if (soundTimer-- == 0)
                 {
                     //SoundEngine.PlaySound(SoundID.NPCDeath6 with {Pitch = 0.1f + ((charge - 1) / 3) }, player.Center);
@@ -84,8 +83,8 @@ namespace BetterThanSlimes.Content.Projectiles
             {
                 if (Main.myPlayer == Projectile.owner)
                 {
-                    Vector2 shootspeed = new(10f * charge, 0f);
-                    Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, shootspeed.RotatedBy(rot), ModContent.ProjectileType<LooseStoneProjectile>(), (int)(Projectile.damage * charge), 3f, Projectile.owner);
+                    Vector2 shootspeed = new(3.5f * charge, 0f);
+                    Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, shootspeed.RotatedBy(rot), ModContent.ProjectileType<SlingshotProjectile>(), (int)(Projectile.damage * charge), 3f, Projectile.owner);
                 }
                 Projectile.Kill();
             }

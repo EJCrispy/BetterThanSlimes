@@ -20,11 +20,13 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.maxStack = 9999;
 
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.useAnimation = 36;
-            Item.useTime = 36;
+            Item.useAnimation = 46;
+            Item.useTime = 46;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.consumable = true;
+            Item.ammo = Item.type; // Set as ammo
+
 
             // Weapon Properties
             Item.damage = 5;
@@ -34,7 +36,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.DamageType = DamageClass.Ranged;
 
             // Projectile Properties
-            Item.shootSpeed = 9f;
+            Item.shootSpeed = 7f;
             Item.shoot = ModContent.ProjectileType<Projectiles.LooseStoneProjectile>();
         }
     }

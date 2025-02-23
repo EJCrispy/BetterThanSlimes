@@ -1,4 +1,5 @@
 ﻿using BetterThanSlimes.Content.Items.Materials;
+using BetterThanSlimes.Content.Items.Weapons;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -16,6 +17,14 @@ public class CustomRecipes : ModSystem
         AddTorchRecipe();
         AddSpearRecipe();
         AddClayBrickRecipe();
+        AddLooseStoneRecipe();
+    }
+
+    private void AddLooseStoneRecipe()
+    {
+        Recipe recipe = Recipe.Create(ModContent.ItemType<LooseStone>(), 4);
+        recipe.AddIngredient(ItemID.StoneBlock);
+        recipe.Register();
     }
 
     private void AddClayBrickRecipe()
@@ -64,5 +73,6 @@ public class CustomRecipes : ModSystem
         recipe.AddIngredient(ModContent.ItemType<RedGel>());
         recipe.Register();
     }
+
 
 }

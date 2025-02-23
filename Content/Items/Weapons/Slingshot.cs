@@ -24,7 +24,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 23;
+            Item.damage = 3;
             Item.DamageType = DamageClass.Ranged;
             Item.width = 66;
             Item.height = 30;
@@ -38,8 +38,8 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.channel = true;
             Item.noUseGraphic = true;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<LooseStoneProjectile>();
-            Item.useAmmo = ItemID.WoodenArrow;
+            Item.shoot = ModContent.ProjectileType<SlingshotProjectile>();
+            Item.useAmmo = ModContent.ItemType<LooseStone>();
             Item.noMelee = true;
         }
 
@@ -49,35 +49,48 @@ namespace BetterThanSlimes.Content.Items.Weapons
         {
             if (lastLMouse && !Main.mouseLeft && CanUseItem(player))
             {
-                delay = (int)MathF.Ceiling(30f);
+                delay = (int)MathF.Ceiling(30f); // Reset delay on release
             }
             if (delay-- < 0)
             {
                 delay = 0;
             }
+
             if (player.channel)
             {
-                if (Charge < 4)
+                // Increase charge gradually up to a max of 4
+                if (Charge < 4f)
                 {
-                    Charge += 1 / 30f;
+                    Charge += 1f / 30f;
+                }
+
+                // Check if the player already has the holding projectile
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<SlingshotHoldingProjectile>()] < 1 && delay == 0)
+                {
+                    if (player.HasAmmo(Item))
+                    {
+                        int damage = (int)(player.GetDamage(DamageClass.Ranged).ApplyTo(Item.damage));
+                        Projectile.NewProjectile(
+                            player.GetSource_ItemUse(Item),
+                            player.Center,
+                            Vector2.Zero,
+                            ModContent.ProjectileType<SlingshotHoldingProjectile>(),
+                            damage,
+                            Item.knockBack,
+                            player.whoAmI,
+                            Charge
+                        );
+                    }
                 }
             }
             else
             {
-                Charge = 1;
+                Charge = 1f; // Reset charge when not holding
             }
-            lastLMouse = Main.mouseLeft;
 
-            if (player.channel && player.ownedProjectileCounts[Item.shoot] < 1 && delay == 0)
-            {
-                // Use the ConsumeAmmo method to consume ammo
-                if (player.HasAmmo(Item))
-                {
-                    int damage = (int)(player.GetDamage(DamageClass.Ranged).ApplyTo(Item.damage));
-                    Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, Item.shoot, damage, Item.knockBack, player.whoAmI);
-                }
-            }
+            lastLMouse = Main.mouseLeft;
         }
+
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

@@ -167,6 +167,7 @@ Projectiles: {
 	HookshotProjectile.DisplayName: Hookshot Projectile
 	SpookyShaftProjectile.DisplayName: Spooky Shaft Projectile
 	SlingshotHoldingProjectile.DisplayName: Slingshot Holding Projectile
+	SlingshotProjectile.DisplayName: Slingshot Projectile
 }
 
 Buffs: {
