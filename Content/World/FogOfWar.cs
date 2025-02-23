@@ -4,16 +4,33 @@ using MonoMod.RuntimeDetour;
 using MonoMod.Cil;
 using System.Reflection;
 using Terraria.Graphics.Light;
+using System;
 
 namespace BetterThanSlimes
 {
     public class FogOfWar : ModSystem
     {
         private static ILHook _updateLightDecayHook;
+        private static Hook _lightingModeHook;
 
         public override void Load()
         {
-            // Force the lighting mode to "Color"
+            // Hook into the Lighting.Mode setter to force it to "Color"
+            MethodInfo lightingModeSetter = typeof(Lighting)
+                .GetProperty("Mode", BindingFlags.Public | BindingFlags.Static)
+                ?.GetSetMethod();
+
+            if (lightingModeSetter != null)
+            {
+                _lightingModeHook = new Hook(lightingModeSetter, ForceLightingMode);
+                Mod.Logger.Info("Successfully hooked into Lighting.Mode setter!");
+            }
+            else
+            {
+                Mod.Logger.Error("Failed to find Lighting.Mode setter!");
+            }
+
+            // Force the lighting mode to "Color" initially
             Lighting.Mode = LightMode.Color;
 
             // Find the UpdateLightDecay method in the LightingEngine class
@@ -34,9 +51,18 @@ namespace BetterThanSlimes
 
         public override void Unload()
         {
-            // Dispose of the hook when the mod is unloaded
+            // Dispose of the hooks when the mod is unloaded
             _updateLightDecayHook?.Dispose();
-            Mod.Logger.Info("Unloaded LightingEnginePatch functionality.");
+            _lightingModeHook?.Dispose();
+            Mod.Logger.Info("Unloaded FogOfWar functionality.");
+        }
+
+        // Hook to force the lighting mode to "Color"
+        private void ForceLightingMode(Action<LightMode> orig, LightMode mode)
+        {
+            // Override the mode to "Color"
+            orig(LightMode.Color);
+            Mod.Logger.Info("Forced Lighting.Mode to Color!");
         }
 
         private void ModifyLightDecayValues(ILContext il)
