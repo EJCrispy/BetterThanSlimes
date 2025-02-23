@@ -5,7 +5,7 @@ using MonoMod.Cil;
 using System.Reflection;
 using Terraria.Graphics.Light;
 
-namespace YourModNamespace
+namespace BetterThanSlimes
 {
     public class LightingEnginePatch : ModSystem
     {
