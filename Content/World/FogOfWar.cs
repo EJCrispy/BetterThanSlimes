@@ -9,34 +9,34 @@ namespace BetterThanSlimes
 {
     public class FogOfWar : ModSystem
     {
-        private static ILHook _updateLightingHook;
+        private static ILHook _updateLightDecayHook;
 
         public override void Load()
         {
-            // Find the UpdateLighting method in the LightingEngine class
-            MethodInfo updateLightingMethod = typeof(LightingEngine)
-                .GetMethod("UpdateLighting", BindingFlags.Public | BindingFlags.Instance);
+            // Find the UpdateLightDecay method in the LightingEngine class
+            MethodInfo updateLightDecayMethod = typeof(LightingEngine)
+                .GetMethod("UpdateLightDecay", BindingFlags.NonPublic | BindingFlags.Instance);
 
-            if (updateLightingMethod != null)
+            if (updateLightDecayMethod != null)
             {
-                // Create an IL hook for the UpdateLighting method
-                _updateLightingHook = new ILHook(updateLightingMethod, ModifyLightingValues);
-                Mod.Logger.Info("Successfully hooked into UpdateLighting!");
+                // Create an IL hook for the UpdateLightDecay method
+                _updateLightDecayHook = new ILHook(updateLightDecayMethod, ModifyLightDecayValues);
+                Mod.Logger.Info("Successfully hooked into UpdateLightDecay!");
             }
             else
             {
-                Mod.Logger.Error("Failed to find method: UpdateLighting");
+                Mod.Logger.Error("Failed to find method: UpdateLightDecay");
             }
         }
 
         public override void Unload()
         {
             // Dispose of the hook when the mod is unloaded
-            _updateLightingHook?.Dispose();
-            Mod.Logger.Info("Unloaded FogOfWar functionality.");
+            _updateLightDecayHook?.Dispose();
+            Mod.Logger.Info("Unloaded LightingEnginePatch functionality.");
         }
 
-        private void ModifyLightingValues(ILContext il)
+        private void ModifyLightDecayValues(ILContext il)
         {
             var c = new ILCursor(il);
 
@@ -45,22 +45,19 @@ namespace BetterThanSlimes
             {
                 // Replace 0.91f with 0.60f
                 c.Prev.Operand = 0.60f;
-                Mod.Logger.Info("Modified LightDecayThroughAir to 0.60f!");
+                Mod.Logger.Info("Modified LightDecayThroughAir to 0.88f!");
             }
             else
             {
                 Mod.Logger.Error("Failed to find LightDecayThroughAir assignment!");
             }
 
-            // Reset the cursor to the start of the method
-            c.Index = 0;
-
             // Find the instruction where LightDecayThroughSolid is set to 0.56f
             if (c.TryGotoNext(MoveType.After, x => x.MatchLdcR4(0.56f)))
             {
                 // Replace 0.56f with 0.01f
                 c.Prev.Operand = 0.01f;
-                Mod.Logger.Info("Modified LightDecayThroughSolid to 0.01f!");
+                Mod.Logger.Info("Modified LightDecayThroughSolid to 0.00f!");
             }
             else
             {
