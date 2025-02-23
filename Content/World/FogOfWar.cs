@@ -73,7 +73,7 @@ namespace BetterThanSlimes
             if (c.TryGotoNext(MoveType.After, x => x.MatchLdcR4(0.91f)))
             {
                 // Replace 0.91f with 0.60f
-                c.Prev.Operand = 0.79f;
+                c.Prev.Operand = 0.71f;
                 Mod.Logger.Info("Modified LightDecayThroughAir to 0.60f!");
             }
             else
