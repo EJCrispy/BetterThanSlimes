@@ -107,7 +107,7 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.Text = "The juice gets everywhere. Much on them to satiate yourself for 2 minutes.";
+                        line.Text = "The juice gets everywhere. Munch on them to satiate yourself for 2 minutes.";
                         break;
                     }
                 }

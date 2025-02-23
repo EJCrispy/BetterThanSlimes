@@ -41,7 +41,7 @@ namespace BetterThanSlimes.Content.Items.Tools
                             // Target a point directly below the player (on the ground)
                             Vector2 targetPosition = new Vector2(
                                 player.Center.X, // Same X position as the player
-                                player.position.Y + player.height + 2200 // Ground level below the player
+                                player.position.Y + player.height + 1800 // Ground level below the player
                             );
 
                             // Check if the star is close to the target position
@@ -50,7 +50,7 @@ namespace BetterThanSlimes.Content.Items.Tools
                                 // Adjust the projectile's velocity to move toward the target position
                                 Vector2 direction = targetPosition - projectile.Center;
                                 direction.Normalize();
-                                projectile.velocity = direction * 10f; // Adjust speed as needed
+                                projectile.velocity = direction * 15f; // Adjust speed as needed
                             }
                             else
                             {
