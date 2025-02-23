@@ -32,16 +32,16 @@ namespace BetterThanSlimes
                 Player.AddBuff(ModContent.BuffType<Fear>(), 1); // 1 ticks (1/60th of a second) to ensure it's reapplied continuously
 
                 // Delay the zoom-in by 2 seconds (120 ticks)
-                if (darknessTimer > 120)
+                if (darknessTimer > 30)
                 {
                     // Start the zoom-in after the delay
                     zoomDelayTimer++;
 
                     // Gradually zoom in the camera over 2 seconds (120 ticks)
-                    if (zoomDelayTimer <= 120)
+                    if (zoomDelayTimer <= 30)
                     {
                         // Use a smooth step function for gradual zooming
-                        float progress = zoomDelayTimer / 120f;
+                        float progress = zoomDelayTimer / 30f;
                         zoomLevel = SmoothStep(2f, 3f, progress); // Zoom from 2x to 3x
                         isZoomingIn = true; // Mark that we're zooming in
                     }
@@ -92,7 +92,7 @@ namespace BetterThanSlimes
                 if (isZoomingIn || isFullyZoomedIn)
                 {
                     // Calculate the progress of the zoom-out based on the outOfDarknessTimer
-                    float progress = outOfDarknessTimer / 120f; // Use the same 2-second duration for zoom-out
+                    float progress = outOfDarknessTimer / 30f; // Use the same 2-second duration for zoom-out
                     zoomLevel = SmoothStep(3f, 2f, progress); // Smoothly interpolate back to 2x zoom
 
                     // If the zoom-out is complete, reset the zoom state

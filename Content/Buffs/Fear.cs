@@ -22,25 +22,7 @@ namespace BetterThanSlimes.Content.Buffs
 
             // Halve the player's jump speed
             player.jumpSpeedBoost *= 0.5f;
-
-            // If the debuff is just applied, store the original music volume
-            if (originalMusicVolume == -1)
-            {
-                originalMusicVolume = Main.musicVolume;
-            }
-
-            // Set the music volume to 0% while the debuff is active
-            Main.musicVolume = 0f;
-
-            // Restore the original music volume when the debuff is about to end
-            if (player.buffTime[buffIndex] <= 1) // Check if the buff is about to expire
-            {
-                if (originalMusicVolume != -1)
-                {
-                    Main.musicVolume = originalMusicVolume;
-                    originalMusicVolume = -1; // Reset the stored volume
                 }
             }
         }
-    }
-}
+    
