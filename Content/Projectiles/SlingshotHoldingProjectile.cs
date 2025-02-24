@@ -17,8 +17,8 @@ namespace BetterThanSlimes.Content.Projectiles
         }
         public override void SetDefaults()
         {
-            Projectile.width = 30;
-            Projectile.height = 68;
+            Projectile.width = 22;
+            Projectile.height = 38;
             Projectile.ignoreWater = true;
             Projectile.hide = true;
             Projectile.tileCollide = false;

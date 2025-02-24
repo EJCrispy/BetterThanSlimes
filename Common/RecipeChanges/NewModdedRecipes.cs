@@ -18,6 +18,16 @@ public class CustomRecipes : ModSystem
         AddSpearRecipe();
         AddClayBrickRecipe();
         AddLooseStoneRecipe();
+        AddSlingshotRecipe();
+    }
+
+    private void AddSlingshotRecipe()
+    {
+        Recipe recipe = Recipe.Create(ModContent.ItemType<Slingshot>());
+        recipe.AddIngredient(ModContent.ItemType<Shaft>());
+        recipe.AddIngredient(ModContent.ItemType<Twine>());
+        recipe.AddIngredient(ModContent.ItemType<Twig>(), 3);
+        recipe.Register();
     }
 
     private void AddLooseStoneRecipe()

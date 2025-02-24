@@ -4,6 +4,11 @@ Items: {
 		Tooltip: ""
 	}
 
+	Slingshot: {
+		DisplayName: Slingshot
+		Tooltip: Charge up to increase damage and velocity!
+	}
+
 	ClayKilnItem: {
 		DisplayName: Clay Kiln
 		Tooltip: ""
@@ -136,11 +141,6 @@ Items: {
 
 	Morsel: {
 		DisplayName: Morsel
-		Tooltip: ""
-	}
-
-	Slingshot: {
-		DisplayName: Slingshot
 		Tooltip: ""
 	}
 }

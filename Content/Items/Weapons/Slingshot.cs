@@ -28,13 +28,13 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.DamageType = DamageClass.Ranged;
             Item.width = 66;
             Item.height = 30;
-            Item.useTime = 5;
-            Item.useAnimation = 5;
+            Item.useTime = 45;
+            Item.useAnimation = 45;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 0.5f;
             Item.value = Item.sellPrice(0, 2);
             Item.rare = ItemRarityID.Blue;
-            Item.UseSound = SoundID.Item2;
+            Item.UseSound = SoundID.Item1;
             Item.channel = true;
             Item.noUseGraphic = true;
             Item.autoReuse = true;
@@ -42,8 +42,8 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.useAmmo = ModContent.ItemType<LooseStone>();
             Item.noMelee = true;
         }
-
-        private float Charge = 1;
+        private float Charge = 1f;
+        private bool maxChargeSoundPlayed = false;
 
         public override void HoldItem(Player player)
         {
@@ -62,30 +62,35 @@ namespace BetterThanSlimes.Content.Items.Weapons
                 if (Charge < 4f)
                 {
                     Charge += 1f / 30f;
+                    maxChargeSoundPlayed = false; // Reset when not at max
+                }
+                else if (!maxChargeSoundPlayed)
+                {
+                    // Play "The Axe" sound with higher pitch
+                    SoundEngine.PlaySound(SoundID.Item47 with { Volume = 1f, Pitch = 2f }, player.position);
+                    maxChargeSoundPlayed = true;
                 }
 
-                // Check if the player already has the holding projectile
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<SlingshotHoldingProjectile>()] < 1 && delay == 0)
+                // Spawn holding projectile if not present
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<SlingshotHoldingProjectile>()] < 1 && delay == 0 && player.HasAmmo(Item))
                 {
-                    if (player.HasAmmo(Item))
-                    {
-                        int damage = (int)(player.GetDamage(DamageClass.Ranged).ApplyTo(Item.damage));
-                        Projectile.NewProjectile(
-                            player.GetSource_ItemUse(Item),
-                            player.Center,
-                            Vector2.Zero,
-                            ModContent.ProjectileType<SlingshotHoldingProjectile>(),
-                            damage,
-                            Item.knockBack,
-                            player.whoAmI,
-                            Charge
-                        );
-                    }
+                    int damage = (int)(player.GetDamage(DamageClass.Ranged).ApplyTo(Item.damage));
+                    Projectile.NewProjectile(
+                        player.GetSource_ItemUse(Item),
+                        player.Center,
+                        Vector2.Zero,
+                        ModContent.ProjectileType<SlingshotHoldingProjectile>(),
+                        damage,
+                        Item.knockBack,
+                        player.whoAmI,
+                        Charge
+                    );
                 }
             }
             else
             {
-                Charge = 1f; // Reset charge when not holding
+                Charge = 1f; // Reset charge on release
+                maxChargeSoundPlayed = false;
             }
 
             lastLMouse = Main.mouseLeft;
