@@ -15,7 +15,7 @@ namespace BetterThanSlimes.Content.NPCs
                 // Add Red Slime to the spawn pool with a 10% chance (adjust as needed)
                 if (!pool.ContainsKey(NPCID.RedSlime))
                 {
-                    pool.Add(NPCID.RedSlime, 0.5f); // 10% chance to spawn
+                    pool.Add(NPCID.RedSlime, 0.07f); // 7% chance to spawn
                 }
             }
         }
