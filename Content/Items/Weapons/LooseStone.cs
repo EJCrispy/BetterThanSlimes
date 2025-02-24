@@ -29,14 +29,14 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
 
             // Weapon Properties
-            Item.damage = 5;
+            Item.damage = 3;
             Item.knockBack = 3;
             Item.noUseGraphic = true;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Ranged;
 
             // Projectile Properties
-            Item.shootSpeed = 7f;
+            Item.shootSpeed = 4f;
             Item.shoot = ModContent.ProjectileType<Projectiles.LooseStoneProjectile>();
         }
     }
