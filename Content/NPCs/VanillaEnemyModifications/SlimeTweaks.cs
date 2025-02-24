@@ -2,9 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 using Terraria.Audio;
-using Terraria.WorldBuilding;
+using Terraria.DataStructures;
 
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
@@ -15,54 +14,25 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             // Check if the NPC is a Red Slime
             if (npc.netID == NPCID.RedSlime)
             {
-                // Ensure the Red Slime is always aggroed on the player (surface and underground)
+                // Ensure the Red Slime is always aggroed on the player
                 if (npc.target == -1 || !Main.player[npc.target].active || Main.player[npc.target].dead)
                 {
-                    // Set the target to the nearest player, if it's not already targeting one
+                    // Set the target to the nearest player
                     npc.target = FindClosestPlayer(npc.Center);
                 }
 
-                // Set the AI state to act as though the player has attacked the slime
+                // Force the Red Slime to be aggro'd
                 if (npc.target >= 0 && npc.target < Main.player.Length && Main.player[npc.target].active && !Main.player[npc.target].dead)
                 {
                     Player target = Main.player[npc.target];
-                    // Set the slime as aggro'd
-                    npc.ai[0] = 2f; // NPC state 1 means it's aggro'd
+                    npc.ai[0] = 2f; // Set the AI state to aggro'd
+                    npc.ai[1] = 0f; // Reset any other AI states if necessary
 
                     // Generate flame-like dust particles around the slime
                     if (Main.rand.NextBool(3)) // 1/3 chance per frame
                     {
                         Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f);
                     }
-                }
-
-                // Make the Red Slime drop through platforms
-                if (npc.collideY && npc.velocity.Y > 0) // Check if the slime is standing on something
-                {
-                    Tile tile = Framing.GetTileSafely((int)(npc.Center.X / 16), (int)((npc.position.Y + npc.height) / 16));
-                    if (tile.HasTile && TileID.Sets.Platforms[tile.TileType])
-                    {
-                        npc.noTileCollide = true;
-                        npc.velocity.Y = 1f; // Make the slime fall through the platform
-                    }
-                    else
-                    {
-                        npc.noTileCollide = false;
-                    }
-                }
-
-                // Damage the Red Slime every 2 seconds
-                npc.ai[1]++; // Increment the timer
-                if (npc.ai[1] >= 120) // 120 ticks = 2 seconds (60 ticks = 1 second)
-                {
-                    NPC.HitInfo hitInfo = new NPC.HitInfo
-                    {
-                        Damage = 1,          // 1 damage
-                        Knockback = 0,       // No knockback
-                        HitDirection = 0     // Default hit direction
-                    };
-                    npc.StrikeNPC(hitInfo);  // Deal damage using HitInfo
-                    npc.ai[1] = 0; // Reset the timer
                 }
             }
         }
