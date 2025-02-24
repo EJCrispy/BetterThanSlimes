@@ -6,7 +6,7 @@ Items: {
 
 	Slingshot: {
 		DisplayName: Slingshot
-		Tooltip: Charge up to increase damage and velocity!
+		Tooltip: Charge up to increase damage and velocity! Uses loose stones as ammo.
 	}
 
 	ClayKilnItem: {
