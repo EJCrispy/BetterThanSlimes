@@ -9,6 +9,9 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class RedSlimeGlobalNPC : GlobalNPC
     {
+        // Dictionary to store the lifetime of each Red Slime
+        private static System.Collections.Generic.Dictionary<int, int> redSlimeTimers = new System.Collections.Generic.Dictionary<int, int>();
+
         public override void AI(NPC npc)
         {
             // Check if the NPC is a Red Slime
@@ -33,6 +36,26 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     {
                         Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f);
                     }
+                }
+
+                // Track the Red Slime's lifetime
+                if (!redSlimeTimers.ContainsKey(npc.whoAmI))
+                {
+                    // Initialize the timer if it doesn't exist
+                    redSlimeTimers[npc.whoAmI] = 0;
+                }
+
+                // Increment the timer
+                redSlimeTimers[npc.whoAmI]++;
+
+                // Check if 45 seconds (2700 ticks) have passed
+                if (redSlimeTimers[npc.whoAmI] >= 2700)
+                {
+                    // Kill the Red Slime
+                    npc.StrikeInstantKill();
+
+                    // Remove the timer entry
+                    redSlimeTimers.Remove(npc.whoAmI);
                 }
             }
         }
@@ -71,6 +94,12 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             // Check if the NPC is a Red Slime
             if (npc.netID == NPCID.RedSlime)
             {
+                // Remove the timer entry if the Red Slime dies naturally
+                if (redSlimeTimers.ContainsKey(npc.whoAmI))
+                {
+                    redSlimeTimers.Remove(npc.whoAmI);
+                }
+
                 // Spawn a bomb at the slime's position
                 int bombType = ProjectileID.Bomb; // Use the standard bomb projectile
                 Vector2 spawnPosition = npc.Center; // Spawn at the slime's center
