@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Audio;
 using Terraria.WorldBuilding;
-using BetterThanSlimes.Content.Items.Accessories;
 
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
@@ -35,6 +34,35 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     {
                         Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f);
                     }
+                }
+
+                // Make the Red Slime drop through platforms
+                if (npc.collideY && npc.velocity.Y > 0) // Check if the slime is standing on something
+                {
+                    Tile tile = Framing.GetTileSafely((int)(npc.Center.X / 16), (int)((npc.position.Y + npc.height) / 16));
+                    if (tile.HasTile && TileID.Sets.Platforms[tile.TileType])
+                    {
+                        npc.noTileCollide = true;
+                        npc.velocity.Y = 1f; // Make the slime fall through the platform
+                    }
+                    else
+                    {
+                        npc.noTileCollide = false;
+                    }
+                }
+
+                // Damage the Red Slime every 2 seconds
+                npc.ai[1]++; // Increment the timer
+                if (npc.ai[1] >= 120) // 120 ticks = 2 seconds (60 ticks = 1 second)
+                {
+                    NPC.HitInfo hitInfo = new NPC.HitInfo
+                    {
+                        Damage = 1,          // 1 damage
+                        Knockback = 0,       // No knockback
+                        HitDirection = 0     // Default hit direction
+                    };
+                    npc.StrikeNPC(hitInfo);  // Deal damage using HitInfo
+                    npc.ai[1] = 0; // Reset the timer
                 }
             }
         }
