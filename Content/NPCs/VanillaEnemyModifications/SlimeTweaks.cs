@@ -76,7 +76,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                 Vector2 spawnPosition = npc.Center; // Spawn at the slime's center
 
                 // Spawn the bomb projectile
-                Projectile.NewProjectile(
+                int bombIndex = Projectile.NewProjectile(
                     npc.GetSource_Death(), // Source of the projectile (the slime's death)
                     spawnPosition,        // Position to spawn the bomb
                     Vector2.Zero,         // Initial velocity (zero for stationary spawn)
@@ -85,6 +85,12 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     3f,                   // Knockback (adjust as needed)
                     Main.myPlayer         // Owner (the player who triggered the death)
                 );
+
+                // Make the bomb explode instantly
+                if (bombIndex != Main.maxProjectiles && Main.projectile[bombIndex] != null)
+                {
+                    Main.projectile[bombIndex].timeLeft = 1; // Set timeLeft to 1 to make it explode instantly
+                }
 
                 // Optional: Add some visual or sound effects for flavor
                 SoundEngine.PlaySound(SoundID.NPCDeath1, npc.Center); // Play a death sound
