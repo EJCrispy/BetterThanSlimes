@@ -28,7 +28,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                 {
                     Player target = Main.player[npc.target];
                     // Set the slime as aggro'd
-                    npc.ai[0] = 1f; // NPC state 1 means it's aggro'd
+                    npc.ai[0] = 2f; // NPC state 1 means it's aggro'd
 
                     // Generate flame-like dust particles around the slime
                     if (Main.rand.NextBool(3)) // 1/3 chance per frame
