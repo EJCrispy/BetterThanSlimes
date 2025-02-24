@@ -121,32 +121,36 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     redSlimeData.Remove(npc.whoAmI);
                 }
 
-                // Spawn a bomb at the slime's position
-                int bombType = ProjectileID.Bomb; // Use the standard bomb projectile
-                Vector2 spawnPosition = npc.Center; // Spawn at the slime's center
-
-                // Spawn the bomb projectile
-                int bombIndex = Projectile.NewProjectile(
-                    npc.GetSource_Death(), // Source of the projectile (the slime's death)
-                    spawnPosition,        // Position to spawn the bomb
-                    Vector2.Zero,         // Initial velocity (zero for stationary spawn)
-                    bombType,             // Projectile type (bomb)
-                    30,                   // Damage (adjust as needed)
-                    3f,                   // Knockback (adjust as needed)
-                    Main.myPlayer         // Owner (the player who triggered the death)
-                );
-
-                // Make the bomb explode instantly
-                if (bombIndex != Main.maxProjectiles && Main.projectile[bombIndex] != null)
+                // Check if the Red Slime's health was above 1 when it died
+                if (npc.life > 1)
                 {
-                    Main.projectile[bombIndex].timeLeft = 1; // Set timeLeft to 1 to make it explode instantly
-                }
+                    // Spawn a bomb at the slime's position
+                    int bombType = ProjectileID.Bomb; // Use the standard bomb projectile
+                    Vector2 spawnPosition = npc.Center; // Spawn at the slime's center
 
-                // Optional: Add some visual or sound effects for flavor
-                SoundEngine.PlaySound(SoundID.NPCDeath1, npc.Center); // Play a death sound
-                for (int i = 0; i < 10; i++) // Spawn some dust for effect
-                {
-                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), 150, Color.OrangeRed, 1.5f);
+                    // Spawn the bomb projectile
+                    int bombIndex = Projectile.NewProjectile(
+                        npc.GetSource_Death(), // Source of the projectile (the slime's death)
+                        spawnPosition,        // Position to spawn the bomb
+                        Vector2.Zero,         // Initial velocity (zero for stationary spawn)
+                        bombType,             // Projectile type (bomb)
+                        30,                   // Damage (adjust as needed)
+                        3f,                   // Knockback (adjust as needed)
+                        Main.myPlayer         // Owner (the player who triggered the death)
+                    );
+
+                    // Make the bomb explode instantly
+                    if (bombIndex != Main.maxProjectiles && Main.projectile[bombIndex] != null)
+                    {
+                        Main.projectile[bombIndex].timeLeft = 1; // Set timeLeft to 1 to make it explode instantly
+                    }
+
+                    // Optional: Add some visual or sound effects for flavor
+                    SoundEngine.PlaySound(SoundID.NPCDeath1, npc.Center); // Play a death sound
+                    for (int i = 0; i < 10; i++) // Spawn some dust for effect
+                    {
+                        Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), 150, Color.OrangeRed, 1.5f);
+                    }
                 }
             }
         }
