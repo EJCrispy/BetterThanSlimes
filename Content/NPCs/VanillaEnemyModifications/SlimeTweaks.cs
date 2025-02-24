@@ -9,8 +9,8 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class RedSlimeGlobalNPC : GlobalNPC
     {
-        // Dictionary to store the lifetime and state of each Red Slime
-        private static System.Collections.Generic.Dictionary<int, (int timer, bool isWarningPhase)> redSlimeData = new System.Collections.Generic.Dictionary<int, (int, bool)>();
+        // Dictionary to store the lifetime, state, and death reason of each Red Slime
+        private static System.Collections.Generic.Dictionary<int, (int timer, bool isWarningPhase, bool killedByTimer)> redSlimeData = new System.Collections.Generic.Dictionary<int, (int, bool, bool)>();
 
         public override void AI(NPC npc)
         {
@@ -41,8 +41,8 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                 // Track the Red Slime's lifetime and state
                 if (!redSlimeData.ContainsKey(npc.whoAmI))
                 {
-                    // Initialize the timer and warning phase state
-                    redSlimeData[npc.whoAmI] = (timer: 0, isWarningPhase: false);
+                    // Initialize the timer, warning phase state, and death reason
+                    redSlimeData[npc.whoAmI] = (timer: 0, isWarningPhase: false, killedByTimer: false);
                 }
 
                 // Increment the timer
@@ -71,6 +71,10 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     // Wait for 60 ticks (1 second) before dying
                     if (data.timer >= 2760)
                     {
+                        // Mark the slime as killed by the timer
+                        data.killedByTimer = true;
+                        redSlimeData[npc.whoAmI] = data;
+
                         // Kill the Red Slime
                         npc.StrikeInstantKill();
 
@@ -115,14 +119,16 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             // Check if the NPC is a Red Slime
             if (npc.netID == NPCID.RedSlime)
             {
-                // Remove the data entry if the Red Slime dies naturally
+                // Check if the Red Slime was killed by the timer
+                bool killedByTimer = false;
                 if (redSlimeData.ContainsKey(npc.whoAmI))
                 {
-                    redSlimeData.Remove(npc.whoAmI);
+                    killedByTimer = redSlimeData[npc.whoAmI].killedByTimer;
+                    redSlimeData.Remove(npc.whoAmI); // Clean up the data entry
                 }
 
-                // Check if the Red Slime's health was above 1 when it died
-                if (npc.life > 1)
+                // Spawn a bomb if the Red Slime was killed by the timer or died instantly (health > 1)
+                if (killedByTimer || npc.life > 1)
                 {
                     // Spawn a bomb at the slime's position
                     int bombType = ProjectileID.Bomb; // Use the standard bomb projectile
