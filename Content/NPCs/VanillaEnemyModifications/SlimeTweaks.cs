@@ -71,71 +71,26 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             // Check if the NPC is a Red Slime
             if (npc.netID == NPCID.RedSlime)
             {
-                // Explosion parameters
-                int explosionRadius = 48; // Radius in pixels (adjust as needed)
-                Vector2 explosionCenter = npc.Center;
+                // Spawn a bomb at the slime's position
+                int bombType = ProjectileID.Bomb; // Use the standard bomb projectile
+                Vector2 spawnPosition = npc.Center; // Spawn at the slime's center
 
-                // Create dust effects for the explosion
-                for (int i = 0; i < 100; i++) // Increased dust count for better visibility
+                // Spawn the bomb projectile
+                Projectile.NewProjectile(
+                    npc.GetSource_Death(), // Source of the projectile (the slime's death)
+                    spawnPosition,        // Position to spawn the bomb
+                    Vector2.Zero,         // Initial velocity (zero for stationary spawn)
+                    bombType,             // Projectile type (bomb)
+                    30,                   // Damage (adjust as needed)
+                    3f,                   // Knockback (adjust as needed)
+                    Main.myPlayer         // Owner (the player who triggered the death)
+                );
+
+                // Optional: Add some visual or sound effects for flavor
+                SoundEngine.PlaySound(SoundID.NPCDeath1, npc.Center); // Play a death sound
+                for (int i = 0; i < 10; i++) // Spawn some dust for effect
                 {
-                    Vector2 dustPosition = explosionCenter + Main.rand.NextVector2Circular(explosionRadius, explosionRadius);
-                    Dust dust = Dust.NewDustPerfect(dustPosition, DustID.Torch, Main.rand.NextVector2Circular(3f, 3f), 150, Color.OrangeRed, 2f);
-                    dust.noGravity = true; // Make the dust float
-                    dust.fadeIn = 1.5f; // Add a fade-in effect
-                }
-
-                // Add gore for larger visual chunks
-                for (int i = 0; i < 5; i++)
-                {
-                    Vector2 goreVelocity = Main.rand.NextVector2Circular(5f, 5f);
-                    Gore.NewGore(npc.GetSource_Death(), explosionCenter, goreVelocity, GoreID.Smoke1);
-                }
-
-                // Damage players in the explosion radius
-                foreach (Player player in Main.player)
-                {
-                    if (player.active && !player.dead)
-                    {
-                        float distanceToPlayer = Vector2.Distance(player.Center, explosionCenter);
-                        if (distanceToPlayer <= explosionRadius)
-                        {
-                            // Damage the player
-                            int explosionDamage = 30; // Adjust damage as necessary
-                            player.Hurt(PlayerDeathReason.ByNPC(npc.whoAmI), explosionDamage, 3);
-                        }
-                    }
-                }
-
-                // Destroy blocks in the explosion radius
-                for (int x = (int)(explosionCenter.X - explosionRadius); x < (int)(explosionCenter.X + explosionRadius); x++)
-                {
-                    for (int y = (int)(explosionCenter.Y - explosionRadius); y < (int)(explosionCenter.Y + explosionRadius); y++)
-                    {
-                        // Check if the coordinates are within valid tile bounds
-                        if (x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY)
-                        {
-                            Vector2 blockPosition = new Vector2(x, y);
-                            if (Vector2.Distance(blockPosition, explosionCenter) <= explosionRadius)
-                            {
-                                // Check if the tile exists and is solid
-                                Tile tile = Main.tile[x, y];
-                                if (tile != null && tile.HasTile && Main.tileSolid[tile.TileType])
-                                {
-                                    // Destroy the tile
-                                    WorldGen.KillTile(x, y, noItem: true); // Destroy the tile without dropping an item
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Play explosion sound
-                SoundEngine.PlaySound(SoundID.Item14, explosionCenter);
-
-                // Create a screen shake effect for added impact (optional)
-                if (Main.netMode != NetmodeID.Server)
-                {
-                    // Implement screen shake here if desired
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), 150, Color.OrangeRed, 1.5f);
                 }
             }
         }
