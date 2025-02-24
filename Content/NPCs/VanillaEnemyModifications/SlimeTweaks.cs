@@ -106,7 +106,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     }
                 }
 
-                // Destroy blocks in the explosion radius (add this functionality)
+                // Destroy blocks in the explosion radius
                 for (int x = (int)(explosionCenter.X - explosionRadius); x < (int)(explosionCenter.X + explosionRadius); x++)
                 {
                     for (int y = (int)(explosionCenter.Y - explosionRadius); y < (int)(explosionCenter.Y + explosionRadius); y++)
@@ -117,10 +117,12 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                             Vector2 blockPosition = new Vector2(x, y);
                             if (Vector2.Distance(blockPosition, explosionCenter) <= explosionRadius)
                             {
-                                // Destroy the block (check if it's not a tile that's immune to destruction)
-                                if (Main.tile[x, y] != null && !Main.tile[x, y].HasTile)
+                                // Check if the tile exists and is solid
+                                Tile tile = Main.tile[x, y];
+                                if (tile != null && tile.HasTile && Main.tileSolid[tile.TileType])
                                 {
-                                    WorldGen.KillTile(x, y); // This will destroy the block
+                                    // Destroy the tile
+                                    WorldGen.KillTile(x, y, noItem: true); // Destroy the tile without dropping an item
                                 }
                             }
                         }
