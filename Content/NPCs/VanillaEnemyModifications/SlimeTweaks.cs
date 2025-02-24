@@ -9,8 +9,8 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 {
     public class RedSlimeGlobalNPC : GlobalNPC
     {
-        // Dictionary to store the lifetime of each Red Slime
-        private static System.Collections.Generic.Dictionary<int, int> redSlimeTimers = new System.Collections.Generic.Dictionary<int, int>();
+        // Dictionary to store the lifetime and state of each Red Slime
+        private static System.Collections.Generic.Dictionary<int, (int timer, bool isWarningPhase)> redSlimeData = new System.Collections.Generic.Dictionary<int, (int, bool)>();
 
         public override void AI(NPC npc)
         {
@@ -38,24 +38,45 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     }
                 }
 
-                // Track the Red Slime's lifetime
-                if (!redSlimeTimers.ContainsKey(npc.whoAmI))
+                // Track the Red Slime's lifetime and state
+                if (!redSlimeData.ContainsKey(npc.whoAmI))
                 {
-                    // Initialize the timer if it doesn't exist
-                    redSlimeTimers[npc.whoAmI] = 0;
+                    // Initialize the timer and warning phase state
+                    redSlimeData[npc.whoAmI] = (timer: 0, isWarningPhase: false);
                 }
 
                 // Increment the timer
-                redSlimeTimers[npc.whoAmI]++;
+                var data = redSlimeData[npc.whoAmI];
+                data.timer++;
+                redSlimeData[npc.whoAmI] = data;
 
                 // Check if 45 seconds (2700 ticks) have passed
-                if (redSlimeTimers[npc.whoAmI] >= 2700)
+                if (data.timer >= 2700 && !data.isWarningPhase)
                 {
-                    // Kill the Red Slime
-                    npc.StrikeInstantKill();
+                    // Enter the warning phase
+                    data.isWarningPhase = true;
+                    redSlimeData[npc.whoAmI] = data;
 
-                    // Remove the timer entry
-                    redSlimeTimers.Remove(npc.whoAmI);
+                    // Stop the slime's movement
+                    npc.velocity = Vector2.Zero;
+                    npc.aiStyle = -1; // Disable default AI
+                }
+
+                // If in the warning phase, change color to orange and wait for a short time
+                if (data.isWarningPhase)
+                {
+                    // Change the slime's color to orange
+                    npc.color = Color.Orange;
+
+                    // Wait for 60 ticks (1 second) before dying
+                    if (data.timer >= 2760)
+                    {
+                        // Kill the Red Slime
+                        npc.StrikeInstantKill();
+
+                        // Remove the data entry
+                        redSlimeData.Remove(npc.whoAmI);
+                    }
                 }
             }
         }
@@ -94,10 +115,10 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
             // Check if the NPC is a Red Slime
             if (npc.netID == NPCID.RedSlime)
             {
-                // Remove the timer entry if the Red Slime dies naturally
-                if (redSlimeTimers.ContainsKey(npc.whoAmI))
+                // Remove the data entry if the Red Slime dies naturally
+                if (redSlimeData.ContainsKey(npc.whoAmI))
                 {
-                    redSlimeTimers.Remove(npc.whoAmI);
+                    redSlimeData.Remove(npc.whoAmI);
                 }
 
                 // Spawn a bomb at the slime's position
