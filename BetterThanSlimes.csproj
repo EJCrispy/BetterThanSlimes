@@ -8,6 +8,12 @@
 		
 	</PropertyGroup>
 	<ItemGroup>
+	  <AdditionalFiles Remove="Common\HungerSystem\**" />
+	  <Compile Remove="Common\HungerSystem\**" />
+	  <EmbeddedResource Remove="Common\HungerSystem\**" />
+	  <None Remove="Common\HungerSystem\**" />
+	</ItemGroup>
+	<ItemGroup>
 	  <None Remove="Content\Guidebook.png" />
 	  <None Remove="Content\Items\Materials\BrokenMirror.png" />
 	  <None Remove="Content\Items\Materials\MetalRod.png" />
@@ -38,7 +44,6 @@
 	  <PackageReference Include="MonoMod.RuntimeDetour.HookGen" Version="22.7.31.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Common\HungerSystem\" />
 	  <Folder Include="Content\NPCs\ModEnemies\" />
 	  <Folder Include="Content\NPCs\TownNPCChanges\" />
 	</ItemGroup>

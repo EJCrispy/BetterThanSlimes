@@ -69,7 +69,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                     npc.color = Color.Orange;
 
                     // Wait for 60 ticks (1 second) before dying
-                    if (data.timer >= 2760)
+                    if (data.timer >= 2880)
                     {
                         // Mark the slime as killed by the timer
                         data.killedByTimer = true;

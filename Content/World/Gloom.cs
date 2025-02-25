@@ -115,7 +115,7 @@ namespace BetterThanSlimes
                 // Reset damage ramping after 10 seconds of not being in darkness
                 if (outOfDarknessTimer > 600) // 10 seconds (600 ticks)
                 {
-                    damageAmount = 20; // Reset damage to initial value
+                    damageAmount = 20; // Reset damage to initial value, initial damage value
                 }
             }
 
