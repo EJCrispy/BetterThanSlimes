@@ -11,10 +11,20 @@ namespace BetterThanSlimes.Common
             // Check if the projectile is a bomb explosion
             if (projectile.type == ProjectileID.BombFish)
             {
-                // Prevent the bomb explosion from hitting NPCs
-                return false;
+                // Allow the bomb explosion to hit NPCs
+                return true;
             }
             return base.CanHitNPC(projectile, target); // Return null to use default behavior
+        }
+
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            // Check if the projectile is a bomb explosion
+            if (projectile.type == ProjectileID.BombFish)
+            {
+                // Reduce damage to 10% for NPCs
+                modifiers.SourceDamage *= 0.1f;
+            }
         }
 
         public override bool CanHitPlayer(Projectile projectile, Player target)
