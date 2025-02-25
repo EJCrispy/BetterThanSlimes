@@ -131,7 +131,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
                 if (killedByTimer || npc.life > 1)
                 {
                     // Spawn a bomb at the slime's position
-                    int bombType = ProjectileID.Bomb; // Use the standard bomb projectile
+                    int bombType = ProjectileID.BombFish; // Use the standard bomb projectile
                     Vector2 spawnPosition = npc.Center; // Spawn at the slime's center
 
                     // Spawn the bomb projectile

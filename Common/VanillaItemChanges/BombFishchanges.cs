@@ -9,7 +9,7 @@ namespace BetterThanSlimes.Common
         public override bool? CanHitNPC(Projectile projectile, NPC target)
         {
             // Check if the projectile is a bomb explosion
-            if (projectile.type == ProjectileID.Bomb)
+            if (projectile.type == ProjectileID.BombFish)
             {
                 // Prevent the bomb explosion from hitting NPCs
                 return false;
@@ -20,7 +20,7 @@ namespace BetterThanSlimes.Common
         public override bool CanHitPlayer(Projectile projectile, Player target)
         {
             // Check if the projectile is a bomb explosion
-            if (projectile.type == ProjectileID.Bomb)
+            if (projectile.type == ProjectileID.BombFish)
             {
                 // Allow the bomb explosion to hit players
                 return true;
