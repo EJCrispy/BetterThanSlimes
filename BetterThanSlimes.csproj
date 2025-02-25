@@ -9,9 +9,17 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <AdditionalFiles Remove="Common\HungerSystem\**" />
+	  <AdditionalFiles Remove="Content\NPCs\ModEnemies\**" />
+	  <AdditionalFiles Remove="Content\NPCs\TownNPCChanges\**" />
 	  <Compile Remove="Common\HungerSystem\**" />
+	  <Compile Remove="Content\NPCs\ModEnemies\**" />
+	  <Compile Remove="Content\NPCs\TownNPCChanges\**" />
 	  <EmbeddedResource Remove="Common\HungerSystem\**" />
+	  <EmbeddedResource Remove="Content\NPCs\ModEnemies\**" />
+	  <EmbeddedResource Remove="Content\NPCs\TownNPCChanges\**" />
 	  <None Remove="Common\HungerSystem\**" />
+	  <None Remove="Content\NPCs\ModEnemies\**" />
+	  <None Remove="Content\NPCs\TownNPCChanges\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Content\Guidebook.png" />
@@ -42,10 +50,6 @@
 	  <PackageReference Include="Mono.Cecil" Version="0.11.6" />
 	  <PackageReference Include="MonoMod.RuntimeDetour" Version="25.2.3" />
 	  <PackageReference Include="MonoMod.RuntimeDetour.HookGen" Version="22.7.31.1" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Content\NPCs\ModEnemies\" />
-	  <Folder Include="Content\NPCs\TownNPCChanges\" />
 	</ItemGroup>
 
 	<!-- References -->
