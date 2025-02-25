@@ -68,12 +68,6 @@ namespace BetterThanSlimes.Content.Projectiles
                     charge += 1 / 30f;
                 }
 
-                if (charge >= chargeMax - 0.2f)
-                {
-                    float shake = 0.8f;
-                    Projectile.position += new Vector2(Main.rand.NextFloat(-shake, shake), Main.rand.NextFloat(-shake, shake));
-                }
-
                 if (soundTimer-- == 0)
                 {
                     //SoundEngine.PlaySound(SoundID.NPCDeath6 with {Pitch = 0.1f + ((charge - 1) / 3) }, player.Center);
