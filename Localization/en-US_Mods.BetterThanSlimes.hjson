@@ -143,6 +143,11 @@ Items: {
 		DisplayName: Morsel
 		Tooltip: ""
 	}
+
+	MagnifyingGlass: {
+		DisplayName: Magnifying Glass
+		Tooltip: ""
+	}
 }
 
 SpookyShaft: {
@@ -168,6 +173,8 @@ Projectiles: {
 	SpookyShaftProjectile.DisplayName: Spooky Shaft Projectile
 	SlingshotHoldingProjectile.DisplayName: Slingshot Holding Projectile
 	SlingshotProjectile.DisplayName: Slingshot Projectile
+	MagnifyingGlassBeam.DisplayName: Magnifying Glass Beam
+	HoldingMagnifyingGlass.DisplayName: Holding Magnifying Glass
 }
 
 Buffs: {

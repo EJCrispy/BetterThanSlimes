@@ -20,10 +20,14 @@
 	  <None Remove="Content\Items\Tools\Dreamcatcher.png" />
 	  <None Remove="Content\Items\Twine.png" />
 	  <None Remove="Content\Items\Weapons\Hookshot.png" />
+	  <None Remove="Content\Items\Weapons\MagnifyingGlass.png" />
+	  <None Remove="Content\Items\Weapons\MagnifyingGlassBeam.png" />
 	  <None Remove="Content\Items\Weapons\Slingshot.png" />
 	  <None Remove="Content\Items\Weapons\SpookyShaft.png" />
 	  <None Remove="Content\Items\Weapons\TornNotebookProjectile.png" />
+	  <None Remove="Content\Projectiles\HoldingMagnifyingGlass.png" />
 	  <None Remove="Content\Projectiles\HookshotProjectile.png" />
+	  <None Remove="Content\Projectiles\MagnifyingGlassBeam.png" />
 	  <None Remove="Content\Projectiles\SlingshotHoldingProjectile.png" />
 	  <None Remove="Content\Projectiles\SlingshotProjectile.png" />
 	  <None Remove="Content\Projectiles\SpookyShaftProjectile.png" />
