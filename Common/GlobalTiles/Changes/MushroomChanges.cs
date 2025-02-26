@@ -15,7 +15,7 @@ namespace BetterThanSlimes.Common.GlobalTiles.Changes
             Tile tile = Main.tile[i, j];
 
             // Ensure only tiles of the desired type can be broken
-            if (tile.TileType == 3) // Replace 185 with your specific tile type
+            if (tile.TileType == 3 || tile.TileType == 82 || tile.TileType == 83)
             {
                 WorldGen.KillTile(i, j);
             }
