@@ -1,4 +1,5 @@
-﻿using BetterThanSlimes.Content.Items.Weapons;
+﻿using BetterThanSlimes.Content.Items.Materials;
+using BetterThanSlimes.Content.Items.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -37,8 +38,8 @@ namespace BetterThanSlimes.Content.Items.Tools
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Gel, 2);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddIngredient(ModContent.ItemType<LooseStone>(), 2); // 5555 is loose stone
+            recipe.AddIngredient(ModContent.ItemType<Shaft>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<LooseStone>(), 2);
             recipe.Register();
         }
     }

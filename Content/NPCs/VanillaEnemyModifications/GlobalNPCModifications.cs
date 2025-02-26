@@ -89,7 +89,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 
             if (npcTypes.Contains(npc.type))
             {
-                npcLoot.Add(ItemDropRule.Common(itemId: 5553, 1));
+                npcLoot.Add(ItemDropRule.Common(itemId: 5552, 1));
             }
 
         }

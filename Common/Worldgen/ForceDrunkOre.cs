@@ -18,7 +18,7 @@ namespace BetterThanSlimes.Common.Worldgen
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
 
-            int PotsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Pots"));
+            int PotsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Tin"));
             if (PotsIndex != -1)
             {
 
