@@ -12,8 +12,8 @@ namespace BetterThanSlimes.Content.ModdedTiles
     {
         public override void SetStaticDefaults()
         {
-            Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
+            Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
 
             AddMapEntry(new Color(151, 107, 75), Language.GetText("Loose Dirt"));
@@ -42,7 +42,7 @@ namespace BetterThanSlimes.Content.ModdedTiles
                     Projectile.NewProjectile(
                         new EntitySource_TileBreak(i, j),
                         new Vector2(i * 16 + 8, j * 16 + 8),
-                        new Vector2(0f, 5.8f), // Increased downward velocity for faster fall
+                        new Vector2(0f, 3.3f), // Increased downward velocity for faster fall
                         ModContent.ProjectileType<LooseDirtProjectile>(),
                         0,
                         0f
@@ -74,11 +74,29 @@ namespace BetterThanSlimes.Content.ModdedTiles
                 Tile tile = Framing.GetTileSafely(x, y);
                 if (tile.HasTile && tile.TileType == TileID.Dirt)
                 {
-                    WorldGen.KillTile(x, y); // Break the dirt tile
-                    WorldGen.PlaceTile(x, y, ModContent.TileType<LooseDirtTile>(), true, true); // Place loose dirt
-                    if (Main.netMode == NetmodeID.Server)
+                    // Check if there is any nearby LooseDirtTile
+                    bool hasNearbyLooseDirt = false;
+                    for (int l = 0; l < 4; l++)
                     {
-                        NetMessage.SendTileSquare(-1, x, y, 1); // Sync the tile change in multiplayer
+                        int checkX = x + offsetsX[l];
+                        int checkY = y + offsetsY[l];
+                        Tile checkTile = Framing.GetTileSafely(checkX, checkY);
+                        if (checkTile.HasTile && checkTile.TileType == ModContent.TileType<LooseDirtTile>())
+                        {
+                            hasNearbyLooseDirt = true;
+                            break;
+                        }
+                    }
+
+                    // Only convert to LooseDirtTile if there is no nearby LooseDirtTile
+                    if (!hasNearbyLooseDirt)
+                    {
+                        WorldGen.KillTile(x, y); // Break the dirt tile
+                        WorldGen.PlaceTile(x, y, ModContent.TileType<LooseDirtTile>(), true, true); // Place loose dirt
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            NetMessage.SendTileSquare(-1, x, y, 1); // Sync the tile change in multiplayer
+                        }
                     }
                 }
             }
