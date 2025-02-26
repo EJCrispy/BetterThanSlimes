@@ -23,6 +23,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Content\Guidebook.png" />
+	  <None Remove="Content\Items\Consumables\SlimeCore.png" />
 	  <None Remove="Content\Items\Materials\BrokenMirror.png" />
 	  <None Remove="Content\Items\Materials\MetalRod.png" />
 	  <None Remove="Content\Items\Materials\shaft.png" />
@@ -39,6 +40,7 @@
 	  <None Remove="Content\Items\Weapons\Slingshot.png" />
 	  <None Remove="Content\Items\Weapons\SpookyShaft.png" />
 	  <None Remove="Content\Items\Weapons\TornNotebookProjectile.png" />
+	  <None Remove="Content\ModdedTiles\LooseDirtRodProjectile.png" />
 	  <None Remove="Content\Projectiles\HoldingMagnifyingGlass.png" />
 	  <None Remove="Content\Projectiles\HookshotProjectile.png" />
 	  <None Remove="Content\Projectiles\MagnifyingGlassBeam.png" />

@@ -4,6 +4,9 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 using BetterThanSlimes.Content.Items.Placeable;
+using static Terraria.ID.ContentSamples.CreativeHelper;
+using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 
 namespace BetterThanSlimes.Content.ModdedTiles
 {
@@ -17,20 +20,110 @@ namespace BetterThanSlimes.Content.ModdedTiles
 
             AddMapEntry(new Color(151, 107, 75), Language.GetText("Loose Dirt"));
 
-            DustType = DustID.Dirt; // Determines the type of dust the tile generates when broken
-            MineResist = 0.25f; // Reduces the number of hits needed to break the tile
+            DustType = DustID.Dirt;
+            MineResist = 0.25f;
         }
 
-        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        public override bool CanDrop(int i, int j)
         {
-            if (!noItem && !effectOnly)
+            // Return false to prevent dropping any item when the tile is broken
+            return false;
+        }
+        public override void PlaceInWorld(int i, int j, Item item)
+        {
+            base.PlaceInWorld(i, j, item);
+
+            Tile belowTile = Framing.GetTileSafely(i, j + 1);
+            if (!belowTile.HasTile)
             {
-                // Prevent the default item drop
-                noItem = true;
-                // Drop not
+                WorldGen.KillTile(i, j);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Projectile.NewProjectile(
+                        new EntitySource_TileBreak(i, j),
+                        new Vector2(i * 16 + 8, j * 16 + 8),
+                        new Vector2(0f, 5.8f), // Increased downward velocity for faster fall
+                        ModContent.ProjectileType<LooseDirtRodProjectile>(),
+                        0,
+                        0f
+                    );
+                }
+            }
+        }
+    }
+
+    public class LooseDirtRodProjectile : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.friendly = false;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = true;
+            Projectile.timeLeft = 300;
+            Projectile.aiStyle = -1; // Disable default AI to manually control acceleration
+        }
+
+        public override void AI()
+        {
+            // Replicate sand projectile gravity and acceleration
+            const float gravity = 0.3f; // Gravity strength (same as sand)
+            const float maxFallSpeed = 10f; // Maximum fall speed (same as sand)
+
+            // Apply gravity
+            Projectile.velocity.Y += gravity;
+
+            // Cap the fall speed
+            if (Projectile.velocity.Y > maxFallSpeed)
+            {
+                Projectile.velocity.Y = maxFallSpeed;
+            }
+
+            // Spawn dirt particles while falling
+            if (Main.rand.NextBool(3)) // Adjust the frequency of particles
+            {
+                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Dirt, 0f, 0f, 100, default, 0.6f); // Smaller scale (0.6f)
+                dust.alpha = 128; // More transparent (0 = fully opaque, 255 = fully transparent)
             }
         }
 
-        
+        public override void Kill(int timeLeft)
+        {
+            int i = (int)(Projectile.Center.X / 16f);
+            int j = (int)(Projectile.Center.Y / 16f);
+
+            // Break grass, torches, and ambient objects
+            Tile tile = Framing.GetTileSafely(i, j);
+            if (tile.HasTile)
+            {
+                // Check for grass, torches, or other breakable tiles
+                if (tile.TileType == TileID.Grass || tile.TileType == TileID.Torches || tile.TileType == TileID.Plants || tile.TileType == TileID.Plants2)
+                {
+                    WorldGen.KillTile(i, j); // Break the tile
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendTileSquare(-1, i, j, 1); // Sync the tile break in multiplayer
+                    }
+                }
+            }
+
+            // Spawn dirt particles when hitting the ground
+            for (int k = 0; k < 10; k++) // Adjust the number of particles
+            {
+                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Dirt, 0f, 0f, 100, default, 0.6f); // Smaller scale (0.6f)
+                dust.alpha = 128; // More transparent (0 = fully opaque, 255 = fully transparent)
+            }
+
+            // Place the loose dirt tile if the ground is empty
+            if (!Framing.GetTileSafely(i, j).HasTile)
+            {
+                WorldGen.PlaceTile(i, j, ModContent.TileType<LooseDirtTile>(), true, true);
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendTileSquare(-1, i, j, 1); // Sync the tile placement in multiplayer
+                }
+            }
+        }
     }
 }
