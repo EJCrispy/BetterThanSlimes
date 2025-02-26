@@ -41,6 +41,7 @@
 	  <None Remove="Content\Items\Weapons\SpookyShaft.png" />
 	  <None Remove="Content\Items\Weapons\TornNotebookProjectile.png" />
 	  <None Remove="Content\ModdedTiles\LooseDirtRodProjectile.png" />
+	  <None Remove="Content\ModdedTiles\LooseDirtTile.png" />
 	  <None Remove="Content\Projectiles\HoldingMagnifyingGlass.png" />
 	  <None Remove="Content\Projectiles\HookshotProjectile.png" />
 	  <None Remove="Content\Projectiles\MagnifyingGlassBeam.png" />
