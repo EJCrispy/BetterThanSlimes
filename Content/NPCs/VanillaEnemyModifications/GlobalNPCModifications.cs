@@ -59,7 +59,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
         using Terraria;
         using Terraria.ID;
         using Terraria.GameContent.ItemDropRules;
-        using static global::BetterThanSlimes.BetterThanSlimes.Content.Items.Accessories;
+        using static global::BetterThanSlimes.BetterThanSlimes.Content.Projectiles.Accessories;
 
         public class MinibossModifications : GlobalNPC
         {

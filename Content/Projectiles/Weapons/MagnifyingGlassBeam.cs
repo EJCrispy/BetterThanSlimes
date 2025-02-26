@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace BetterThanSlimes.Content.Projectiles
+namespace BetterThanSlimes.Content.Projectiles.Weapons
 {
     public class MagnifyingGlassBeam : ModProjectile
     {

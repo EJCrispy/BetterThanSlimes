@@ -176,6 +176,7 @@ Projectiles: {
 	MagnifyingGlassBeam.DisplayName: Magnifying Glass Beam
 	HoldingMagnifyingGlass.DisplayName: Holding Magnifying Glass
 	LooseDirtRodProjectile.DisplayName: Loose Dirt Rod Projectile
+	LooseDirtProjectile.DisplayName: Loose Dirt Projectile
 }
 
 Buffs: {

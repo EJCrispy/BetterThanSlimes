@@ -4,7 +4,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Content.Projectiles
+namespace BetterThanSlimes.Content.Projectiles.Weapons
 {
     public class SlingshotProjectile : ModProjectile
     {

@@ -1,4 +1,4 @@
-﻿using BetterThanSlimes.Content.Projectiles;
+﻿using BetterThanSlimes.Content.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;

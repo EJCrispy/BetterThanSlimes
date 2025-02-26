@@ -7,10 +7,9 @@ using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BetterThanSlimes.Content.Projectiles
+namespace BetterThanSlimes.Content.Projectiles.Weapons
 {
-
-    public class HoldingMagnifyingGlass : ModProjectile
+    public class SlingshotHoldingProjectile : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -18,8 +17,8 @@ namespace BetterThanSlimes.Content.Projectiles
         }
         public override void SetDefaults()
         {
-            Projectile.width = 40;
-            Projectile.height = 18;
+            Projectile.width = 22;
+            Projectile.height = 38;
             Projectile.ignoreWater = true;
             Projectile.hide = true;
             Projectile.tileCollide = false;
@@ -68,6 +67,12 @@ namespace BetterThanSlimes.Content.Projectiles
                     charge += 1 / 30f;
                 }
 
+                if (charge >= chargeMax - 0.2f)
+                {
+                    float shake = 0.8f;
+                    Projectile.position += new Vector2(Main.rand.NextFloat(-shake, shake), Main.rand.NextFloat(-shake, shake));
+                }
+
                 if (soundTimer-- == 0)
                 {
                     //SoundEngine.PlaySound(SoundID.NPCDeath6 with {Pitch = 0.1f + ((charge - 1) / 3) }, player.Center);
@@ -79,7 +84,7 @@ namespace BetterThanSlimes.Content.Projectiles
                 if (Main.myPlayer == Projectile.owner)
                 {
                     Vector2 shootspeed = new(3.5f * charge, 0f);
-                    Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, shootspeed.RotatedBy(rot), ModContent.ProjectileType<SlingshotProjectile>(), (int)(Projectile.damage * charge), 3f, Projectile.owner);
+                    Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, shootspeed.RotatedBy(rot), ModContent.ProjectileType<SlingshotProjectile>(), (int)(Projectile.damage * charge), 3f, Projectile.owner);
                 }
                 Projectile.Kill();
             }

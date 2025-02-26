@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BetterThanSlimes.Content.Projectiles.Weapons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
 
             // Projectile Properties
             Item.shootSpeed = 5.5f;
-            Item.shoot = ModContent.ProjectileType<Projectiles.LooseStoneProjectile>();
+            Item.shoot = ModContent.ProjectileType<LooseStoneProjectile>();
         }
     }
 }

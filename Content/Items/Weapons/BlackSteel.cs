@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using BetterThanSlimes.Content.Projectiles.Weapons;
 
 namespace BetterThanSlimes.Content.Items.Weapons
 {
@@ -65,7 +66,7 @@ namespace BetterThanSlimes.Content
             // Check if the NPC was killed by your custom weapon and is not a critter
             if (npc.catchItem <= 0 && player.HeldItem.type == ModContent.ItemType<Items.Weapons.BlackSteel>())
             {
-                int projectileID = ModContent.ProjectileType<Projectiles.VengefulSpirit>();
+                int projectileID = ModContent.ProjectileType<VengefulSpirit>();
                 Vector2 spawnPosition = npc.Center;
 
                 // Determine the number of projectiles to spawn (between 1 and 3)

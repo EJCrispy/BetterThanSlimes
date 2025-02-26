@@ -12,7 +12,7 @@ namespace BetterThanSlimes
     {
         internal class Content
         {
-            internal class Items
+            internal class Projectiles
             {
                 internal class Accessories
                 {

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using BetterThanSlimes.Content.Projectiles;
+using BetterThanSlimes.Content.Projectiles.Weapons;
 
 namespace BetterThanSlimes.Content.Items.Weapons
 {

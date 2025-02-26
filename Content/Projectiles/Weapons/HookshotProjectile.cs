@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace BetterThanSlimes.Content.Projectiles
+namespace BetterThanSlimes.Content.Projectiles.Weapons
 {
     public class HookshotProjectile : ModProjectile
     {
@@ -178,7 +178,7 @@ namespace BetterThanSlimes.Content.Projectiles
             // Draw the chain between the player and the projectile
             Vector2 start = player.Center;
             Vector2 end = Projectile.Center;
-            Terraria.Utils.DrawLine(Main.spriteBatch, start, end, Color.White, Color.White, 1f);
+            Utils.DrawLine(Main.spriteBatch, start, end, Color.White, Color.White, 1f);
 
             return true;
         }
