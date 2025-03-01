@@ -60,7 +60,8 @@ public class RemoveRecipes : ModSystem
             ItemID.SandstoneChair,
             ItemID.ShadewoodChair,
             ItemID.SpiderChair,
-            ItemID.BarStool
+            ItemID.BarStool,
+            ItemID.CactusPlatform
         };
 
         // Iterate through recipes and remove the ones that match the target items

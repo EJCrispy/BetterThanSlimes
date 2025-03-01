@@ -9,8 +9,6 @@ public class CustomRecipes : ModSystem
 {
     public override void PostAddRecipes()
     {
-        Mod.Logger.Info("Adding custom recipes...");
-
         AddWoodPlatformRecipe();
         AddWorkbenchRecipe();
         AddWoodenSwordRecipe();
@@ -19,6 +17,14 @@ public class CustomRecipes : ModSystem
         AddClayBrickRecipe();
         AddLooseStoneRecipe();
         AddSlingshotRecipe();
+        AddCactusPlatformRecipe();
+    }
+
+    private void AddCactusPlatformRecipe()
+    {
+        Recipe recipe = Recipe.Create(ItemID.CactusPlatform);
+        recipe.AddIngredient(ItemID.Cactus);
+        recipe.Register();
     }
 
     private void AddSlingshotRecipe()
