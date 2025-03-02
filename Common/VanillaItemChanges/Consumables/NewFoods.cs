@@ -45,6 +45,19 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 item.noUseGraphic = false;
             }
 
+            // Gel
+            if (item.type == ItemID.Gel)
+            {
+                item.consumable = true;
+                item.useTime = 15;
+                item.useAnimation = 15;
+                item.useStyle = ItemUseStyleID.EatFood;
+                item.UseSound = SoundID.Item2;
+                item.createTile = -1; // Disable tile placement
+                item.noMelee = true;
+                item.noUseGraphic = false;
+            }
+
         }
 
         public override bool? UseItem(Item item, Player player)
@@ -68,6 +81,16 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
             if (item.type == ItemID.Daybloom)
             {
                 player.AddBuff(BuffID.WellFed, 45 * 60); // 45 seconds
+
+
+
+                return true;
+            }
+
+            // Gel
+            if (item.type == ItemID.Gel)
+            {
+                player.AddBuff(BuffID.WellFed, 30 * 60); // 30 seconds
 
 
 
@@ -131,6 +154,26 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                 if (!tooltipFound)
                 {
                     tooltips.Add(new TooltipLine(Mod, "DaybloomBuff", "A sunny snack. Grants 45 seconds of food."));
+                }
+
+                // Gel
+                if (item.type == ItemID.Gel)
+                {
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "You've read this before. Grants 30 seconds of Food";
+                            tooltipFound = true;
+                            break;
+                        }
+                    }
+
+                    // If no existing tooltip is found, add a new one
+                    if (!tooltipFound)
+                    {
+                        tooltips.Add(new TooltipLine(Mod, "DaybloomBuff", "You've read this before. Grants 30 seconds of food."));
+                    }
                 }
             }
         }
