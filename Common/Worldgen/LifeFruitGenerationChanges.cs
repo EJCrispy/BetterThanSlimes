@@ -9,6 +9,6 @@ namespace BetterThanSlimes.Common.Worldgen
 {
     public class LifeFruitGenerationChanges
     {
-        public override void 
     }
 }
+
