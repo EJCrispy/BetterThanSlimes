@@ -14,12 +14,14 @@ namespace BetterThanSlimes.Content.Projectiles
             Projectile.width = 16;
             Projectile.height = 16;
             Projectile.hostile = true; // Set to false to prevent harming players by default
-            Projectile.penetrate = -1;
+            Projectile.friendly = false;
+            Projectile.penetrate = 8;
             Projectile.tileCollide = true;
             Projectile.timeLeft = 300;
             Projectile.aiStyle = -1; // Disable default AI to manually control acceleration
             Projectile.damage = 5; // Damage value (used when harming the player)
             Projectile.DamageType = DamageClass.Ranged;
+            Projectile.knockBack = 0.5f; // Set knockback to match sand (0.5f is weak knockback)
         }
 
         public override void AI()
@@ -37,6 +39,25 @@ namespace BetterThanSlimes.Content.Projectiles
                 Projectile.velocity.Y = maxFallSpeed;
             }
 
+            // Check for player collisions manually
+            foreach (Player player in Main.player)
+            {
+                if (player.active && !player.dead && player.Hitbox.Intersects(Projectile.Hitbox))
+                {
+                    // Apply damage and knockback
+                    player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, Projectile.whoAmI), Projectile.damage, player.direction, false);
+
+                    // Apply knockback (same as sand)
+                    Vector2 knockbackDirection = (player.Center - Projectile.Center).SafeNormalize(Vector2.Zero);
+                    player.velocity += knockbackDirection * Projectile.knockBack;
+
+                    Projectile.penetrate--;
+                    if (Projectile.penetrate <= 0)
+                        Projectile.Kill();
+                    break; // Exit after hitting one player
+                }
+            }
+
             // Spawn dirt particles while falling
             if (Main.rand.NextBool(3)) // Adjust the frequency of particles
             {
@@ -44,7 +65,6 @@ namespace BetterThanSlimes.Content.Projectiles
                 dust.alpha = 128; // More transparent (0 = fully opaque, 255 = fully transparent)
             }
         }
-
         public override void Kill(int timeLeft)
         {
             int i = (int)(Projectile.Center.X / 16f);
@@ -72,8 +92,12 @@ namespace BetterThanSlimes.Content.Projectiles
                 dust.alpha = 128; // More transparent (0 = fully opaque, 255 = fully transparent)
             }
 
-            // Place the loose dirt tile if the ground is empty
-            if (!Framing.GetTileSafely(i, j).HasTile)
+            // Check if the tile is hammered (sloped or half-brick)
+            Tile targetTile = Framing.GetTileSafely(i, j);
+            bool isHammered = targetTile.IsHalfBlock || targetTile.Slope != SlopeType.Solid;
+
+            // Place the loose dirt tile if the ground is empty and not hammered
+            if (!targetTile.HasTile && !isHammered)
             {
                 WorldGen.PlaceTile(i, j, ModContent.TileType<LooseDirtTile>(), true, true);
                 if (Main.netMode == NetmodeID.Server)

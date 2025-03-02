@@ -101,5 +101,26 @@ namespace BetterThanSlimes.Content.ModdedTiles
                 }
             }
         }
+
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            // Check if the player is inside the tile
+            for (int k = 0; k < Main.maxPlayers; k++)
+            {
+                Player player = Main.player[k];
+                if (player.active && !player.dead)
+                {
+                    // Calculate the tile's world position
+                    Vector2 tilePosition = new Vector2(i * 16, j * 16);
+
+                    // Check if the player is inside the tile's bounds
+                    if (player.Hitbox.Intersects(new Rectangle((int)tilePosition.X, (int)tilePosition.Y, 16, 16)))
+                    {
+                        // Apply the Suffocation debuff
+                        player.AddBuff(BuffID.Suffocation, 10); // 60 ticks = 1 second
+                    }
+                }
+            }
+        }
     }
 }
