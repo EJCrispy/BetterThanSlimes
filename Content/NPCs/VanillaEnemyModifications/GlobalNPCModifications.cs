@@ -54,31 +54,31 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 
 // This Section adds the following drops to the Doctor Bones enemy: Leather Whip (1), Rope coil (3), and Bombs (3).
 namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
+{
+    using Terraria.ModLoader;
+    using Terraria;
+    using Terraria.ID;
+    using Terraria.GameContent.ItemDropRules;
+    using static global::BetterThanSlimes.BetterThanSlimes.Content.Projectiles.Accessories;
+
+    public class MinibossModifications : GlobalNPC
     {
-        using Terraria.ModLoader;
-        using Terraria;
-        using Terraria.ID;
-        using Terraria.GameContent.ItemDropRules;
-        using static global::BetterThanSlimes.BetterThanSlimes.Content.Projectiles.Accessories;
-
-        public class MinibossModifications : GlobalNPC
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+            if (npc.type == NPCID.DoctorBones)
             {
-                if (npc.type == NPCID.DoctorBones)
-                {
-                    npcLoot.Add(ItemDropRule.Common(ItemID.BlandWhip, 1));
-                    npcLoot.Add(ItemDropRule.Common(ItemID.RopeCoil, 1, 3, 3));
-                    npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 3, 3));
-                    npcLoot.Add(ItemDropRule.Common(itemId: 5548,
-                                                    1)); //should drop kapala
-                }
+                npcLoot.Add(ItemDropRule.Common(ItemID.BlandWhip, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.RopeCoil, 1, 3, 3));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 3, 3));
+                npcLoot.Add(ItemDropRule.Common(itemId: 5548,
+                                                1)); //should drop kapala
+            }
 
-                if (npc.type == NPCID.Clown)
-                {
-                    npcLoot.Add(ItemDropRule.Common(itemId: 5547,
-                                                    1)); //should make clowns drop red nose
-                }
+            if (npc.type == NPCID.Clown)
+            {
+                npcLoot.Add(ItemDropRule.Common(itemId: 5547,
+                                                1)); //should make clowns drop red nose
+            }
             int[] npcTypes = {
     NPCID.Bunny, NPCID.Squirrel, NPCID.SquirrelRed, NPCID.PartyBunny,
     NPCID.BunnySlimed, NPCID.BunnyXmas, NPCID.Duck, NPCID.Duck2,
@@ -94,5 +94,7 @@ namespace BetterThanSlimes.Content.NPCs.VanillaEnemyModifications
 
         }
     }
-    }
+}
+
+
 

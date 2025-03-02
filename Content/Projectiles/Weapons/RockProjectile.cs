@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 
 namespace BetterThanSlimes.Content.Projectiles.Weapons
 {
-    public class LooseStoneProjectile : ModProjectile
+    public class RockProjectile : ModProjectile
     {
         public override void SetStaticDefaults()
         {

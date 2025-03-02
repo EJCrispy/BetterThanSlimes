@@ -1,12 +1,12 @@
 Items: {
-	LooseStone: {
-		DisplayName: Loose Stone
+	Rock: {
+		DisplayName: Rock
 		Tooltip: ""
 	}
 
 	Slingshot: {
 		DisplayName: Slingshot
-		Tooltip: Charge up to increase damage and velocity! Uses loose stones as ammo.
+		Tooltip: Charge up to increase damage and velocity! Uses rocks as ammo.
 	}
 
 	ClayKilnItem: {
@@ -166,7 +166,7 @@ Morsel: {
 }
 
 Projectiles: {
-	LooseStoneProjectile.DisplayName: Loose Stone Projectile
+	RockProjectile.DisplayName: Rock Projectile
 	VengefulSpirit.DisplayName: Vengeful Spirit
 	TornNotebookProjectile.DisplayName: Torn Notebook Projectile
 	HookshotProjectile.DisplayName: Hookshot Projectile

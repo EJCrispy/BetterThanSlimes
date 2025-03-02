@@ -39,7 +39,7 @@ namespace BetterThanSlimes.Content.Items.Tools
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Gel, 2);
             recipe.AddIngredient(ModContent.ItemType<Shaft>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<LooseStone>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<Rock>(), 2);
             recipe.Register();
         }
     }

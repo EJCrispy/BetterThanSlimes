@@ -36,7 +36,7 @@ namespace BetterThanSlimes.Common.Worldgen
 
                     // Now add the new items with their respective chances
                     AddItemToChest(chest, ModContent.ItemType<SpearHead>(), WorldGen.genRand.Next(1), 0.25f); // Gel (1-2) with 50% chance
-                    AddItemToChest(chest, ModContent.ItemType<LooseStone>(), WorldGen.genRand.Next(2, 7)); // Loose Stones (2-6)
+                    AddItemToChest(chest, ModContent.ItemType<Rock>(), WorldGen.genRand.Next(2, 7)); // Loose Stones (2-6)
                     AddItemToChest(chest, ModContent.ItemType<Twine>(), 1, 0.25f); // Twine (1) with 25% chance
                     AddItemToChest(chest, ModContent.ItemType<Twig>(), WorldGen.genRand.Next(2, 5)); // Twigs (2-4)
                     AddItemToChest(chest, ItemID.Gel, WorldGen.genRand.Next(1, 3), 0.5f); // Gel (1-2) with 50% chance

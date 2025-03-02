@@ -39,7 +39,7 @@ namespace BetterThanSlimes.Content.Items.Weapons
             Item.noUseGraphic = true;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<SlingshotProjectile>();
-            Item.useAmmo = ModContent.ItemType<LooseStone>();
+            Item.useAmmo = ModContent.ItemType<Rock>();
             Item.noMelee = true;
         }
         private float Charge = 1f;

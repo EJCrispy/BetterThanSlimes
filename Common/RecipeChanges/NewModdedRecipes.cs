@@ -15,9 +15,27 @@ public class CustomRecipes : ModSystem
         AddTorchRecipe();
         AddSpearRecipe();
         AddClayBrickRecipe();
-        AddLooseStoneRecipe();
+        AddRockRecipe();
         AddSlingshotRecipe();
         AddCactusPlatformRecipe();
+        AddRedSlimeRecipe();
+        AddPinkTorchRecipe();
+    }
+
+    private void AddPinkTorchRecipe()
+    {
+        Recipe recipe = Recipe.Create(ItemID.PinkTorch);
+        recipe.AddIngredient(ModContent.ItemType<Twig>());
+        recipe.AddIngredient(ItemID.PinkGel);
+        recipe.Register();
+    }
+
+    private void AddRedSlimeRecipe()
+    {
+        Recipe recipe = Recipe.Create(ModContent.ItemType<RedGel>(), 2);
+        recipe.AddIngredient(ModContent.ItemType<RedGel>());
+        recipe.AddIngredient(ItemID.Gel, 4);
+        recipe.Register();
     }
 
     private void AddCactusPlatformRecipe()
@@ -36,9 +54,9 @@ public class CustomRecipes : ModSystem
         recipe.Register();
     }
 
-    private void AddLooseStoneRecipe()
+    private void AddRockRecipe()
     {
-        Recipe recipe = Recipe.Create(ModContent.ItemType<LooseStone>(), 4);
+        Recipe recipe = Recipe.Create(ModContent.ItemType<Rock>(), 4);
         recipe.AddIngredient(ItemID.StoneBlock);
         recipe.Register();
     }
