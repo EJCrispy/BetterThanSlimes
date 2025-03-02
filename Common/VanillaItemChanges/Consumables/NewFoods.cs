@@ -156,26 +156,20 @@ namespace BetterThanSlimes.Common.VanillaItemChanges.Tools
                     tooltips.Add(new TooltipLine(Mod, "DaybloomBuff", "A sunny snack. Grants 45 seconds of food."));
                 }
 
-                // Gel
+                // Blue Berries
                 if (item.type == ItemID.Gel)
                 {
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "You've read this before. Grants 30 seconds of Food";
-                            tooltipFound = true;
+                            line.Text = "The classic. 30 seconds each.";
                             break;
                         }
                     }
-
-                    // If no existing tooltip is found, add a new one
-                    if (!tooltipFound)
-                    {
-                        tooltips.Add(new TooltipLine(Mod, "DaybloomBuff", "You've read this before. Grants 30 seconds of food."));
-                    }
                 }
             }
+            
         }
     }
 }
